@@ -131,9 +131,10 @@
                                                id="item1">
                                               <div class="tipContent">
                                                   <div class="goal-icon col-md-5">
-                                                      <img src="assets/img/goal-car-icon.PNG"
+
+                                                      <img src="<?php echo $value['image_url'] != null ?  $value['image_url'] :'assets/img/goal-car-icon.PNG'?>"
                                                            alt="">
-                                                      <div class="goal-name"><strong>Car</strong>
+                                                      <div class="goal-name"><strong><?php echo $value['name']; ?></strong>
                                                       </div>
                                                   </div>
                                                   <div class="goal-price col-md-7 text-right">
@@ -148,7 +149,7 @@
                                                       </div>
                                                   </div>
                                                   <div class="col-md-12 likelihood">
-                                                      <strong>88% Likelihood</strong>
+                                                      <strong><?php echo $value['percent_expenses'] . '%'?> Likelihood</strong>
                                                   </div>
                                               </div>
                                           </div>
