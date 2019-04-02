@@ -44,4 +44,64 @@ function formatTitle($title = ''){
 	return $title;
 }
 
+/**
+ * Sort array asceding
+ * @param $array
+ * @return mixed
+ */
+function custom_sort( $numbers )
+{
+  $sorted = [];
+  sort($numbers);
+
+  $arrlength = count($numbers);
+  for($x = 0; $x < $arrlength; $x++) {
+    $sorted[] = $numbers[$x];
+  }
+  return $sorted;
+}
+
+/**
+ * Calculate period of goal execute
+ * @param $goal
+ *
+ * @return array of years
+ */
+function defineYear($goal, $person) {
+  $period = [];
+  if (!empty($goal)) {
+    foreach ($goal as $key=> $item) {
+      if ( $key == 'age'){
+        $period[] = (string) (date('Y', strtotime($person)) + $item);
+      }
+      if ($key == 'start_date') {
+        $dt = new DateTime($item);
+        $period[] = $dt->format('Y');
+      }
+      if ($key == 'end_date') {
+        $dt = new DateTime($item);
+        $period[] = $dt->format('Y');
+      }
+      if ( $key == 'target_date') {
+        $dt = new DateTime($item);
+        $period[] = $dt->format('Y');
+      }
+      if ( $key == 'months') {
+        $datetime = new \DateTime();
+        $datetime->modify('+' . $item . ' months');
+        $period[] = $datetime->format('Y');
+      }
+    }
+  }
+  return min($period);
+}
+
+function getPriority($goals){
+  if (!empty($goal)) {
+    foreach ($goal as $item) {
+
+    }
+  }
+}
+
 ?>

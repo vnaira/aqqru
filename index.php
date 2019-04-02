@@ -1,10 +1,5 @@
 <?php
 
-/*
-	This is the index file of our simple website.
-	It routes requets to the appropriate controllers
-*/
-
 require_once "includes/main.php";
 
 try {
