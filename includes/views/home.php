@@ -159,7 +159,7 @@
                                                     </div>
                                                     <div class="col-md-12 likelihood">
                                                         <strong>
-                                                          <?php echo (isset($value[ 'percent_expenses' ])) ? $value[ 'percent_expenses' ] . '% Likelihood' : '' ;?>
+                                                          <?php echo (isset($value[ 'achievability' ])) ? $value[ 'achievability' ] . '% Likelihood' : '' ;?>
                                                         </strong>
                                                     </div>
                                                 </div>
@@ -230,28 +230,30 @@
                         <div class="col-md-9 sub-title-2 m-bot-20">
                             <h4 class="">WITHDRAW FUNDS</h4>
                         </div>
+                        <?php foreach ($content['with_draw']['withdraw'] as $draw_item){?>
                         <div class="col-md-3">
                             <div class="row">
 
-                                <strong><$4,000</strong></div>
+                                <strong><?php echo '$'.number_format($draw_item['withdraw']);?></strong></div>
                         </div>
                         <div class="col-md-9 sub-title-2">
                             <div class="row">
-                                <strong>BofA Savings</strong>
+                                <strong><?php echo $draw_item['withdraw_name'];?></strong>
                                 <p>(annual amount: $10k)</p>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <strong>$1,000</strong>
-                            </div>
-                        </div>
-                        <div class="col-md-9 sub-title-2">
-                            <div class="row">
-                                <strong>Charles Schwab </strong>
-                                <p>(annual amount: $10k)</p>
-                            </div>
-                        </div>
+  <?php }?>
+<!--                        <div class="col-md-3">-->
+<!--                            <div class="row">-->
+<!--                                <strong>$1,000</strong>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-9 sub-title-2">-->
+<!--                            <div class="row">-->
+<!--                                <strong>Charles Schwab </strong>-->
+<!--                                <p>(annual amount: $10k)</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                     <div class="com-md-1 m-top-90 padd-container">
                         <img src="assets/img/arrow-right.PNG" alt=""

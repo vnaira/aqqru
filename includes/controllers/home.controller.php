@@ -66,7 +66,7 @@ class HomeController {
    * @return array
    */
   public function setAchievability($goals, $results) {
-$fullGoals = [];
+    $fullGoals = [];
     if (!empty($results) && !empty($goals)) {
       foreach ($goals as $index => $goal_item) {
         if (!empty($goal_item)) {
@@ -85,9 +85,38 @@ $fullGoals = [];
     return $fullGoals;
   }
 
-
-  public function getImmediateAction($data){
-
+  /**
+   *
+   * @param $data
+   *
+   * @return array
+   */
+  public function getImmediateAction($data) {
+    $actions = [];
+    $actions_w = [];
+    $actions_d = [];
+    $immediateActions = [];
+    $invesAllocation = $data[ 'results' ][ 'guidance' ][ 'capital_allocation' ];
+    foreach ($invesAllocation as $investItem) {
+      switch ($investItem[ 'action_name' ]) {
+        case "Withdraw":
+          $actions_w[ 'withdraw' ] += round($investItem[ 'annual_value' ]);
+          $actions_w[ 'withdraw_name' ] = ($investItem[ 'object_name' ]);
+          $immediateActions['withdraw'][] = $actions_w;
+          break;
+        case "Deposit" :
+          $actions_d[ 'deposit' ] += round($investItem[ 'annual_value' ]);
+          $actions_d[ 'deposit_name' ] = ($investItem[ 'object_name' ]);
+          $immediateActions['deposit'][] = $actions_d;
+          break;
+        default:
+          $actions[ 'save' ] += round($investItem[ 'annual_value' ]);
+          $actions[ 'save_name' ] = ($investItem[ 'object_name' ]);
+          $immediateActions['save'][] = $actions;
+          break;
+      }
+    }
+    return $immediateActions;
   }
 
 
@@ -139,32 +168,33 @@ $fullGoals = [];
     $page_content[ 'balance' ] = $this->getAssets($data);
     $page_content[ 'expenses' ] = $this->getExpenses($data);
     $page_content[ 'risks' ] = $this->getAppropriateRisks($data);
+    $page_content[ 'with_draw' ] = $this->getImmediateAction($data);
 
     return $page_content;
   }
 
-  public function specifyDate($array) {
-    $year = [];
-    if (!empty($array)) {
-      foreach ($array as $key => $value) {
-        switch ($value) {
-          case 'age':
-            $year_one = date("Y") + $value[ 'age' ];
-            break;
-        }
-        $year = $year_one;
-      }
-    }
-
-  }
+//  public function specifyDate($array) {
+//    $year = [];
+//    if (!empty($array)) {
+//      foreach ($array as $key => $value) {
+//        switch ($value) {
+//          case 'age':
+//            $year_one = date("Y") + $value[ 'age' ];
+//            break;
+//        }
+//        $year = $year_one;
+//      }
+//    }
+//
+//  }
 
   public function getGridYears($goals, $person_age) {
     $years = [];
     foreach ($goals as $key => $goal_item) {
       $it = $goals[ $key ];
       if (!empty($it)) {
-        if (is_array($it[0])) {
-        foreach ($it as $item) {
+        if (is_array($it[ 0 ])) {
+          foreach ($it as $item) {
             if (array_key_exists('age', $item)) {
               $years[] = (string) (date('Y', strtotime($person_age)) + $item[ 'age' ]);
             }
@@ -172,33 +202,21 @@ $fullGoals = [];
               $dt = new DateTime($item[ 'start_date' ]);
               $years[] = $dt->format('Y');
             }
-//            if (array_key_exists('end_date', $item)) {
-//              $dt = new DateTime($item[ 'end_date' ]);
-//              $years[] = $dt->format('Y');
-//            }
             if (array_key_exists('target_date', $item)) {
               $dt = new DateTime($item[ 'target_date' ]);
               $years[] = $dt->format('Y');
             }
-          }}
-          else {
-//            if($key == "emergency_funds"){
-//              $dt = new DateTime($it[ 'start_date' ]);
-//              $years[] = $dt->format('Y');
-//            }
-//            if (array_key_exists('months', $it)) {
-//              $datetime = new \DateTime();
-//              $datetime->modify('+' . $it[ 'months' ] . ' months');
-//              $years[] = $datetime->format('Y');
-//            }
-            if (array_key_exists('start_date', $it)) {
-              $dt = new DateTime($it[ 'start_date' ]);
-              $years[] = $dt->format('Y');
-            }
+          }
+        }
+        else {
+          if (array_key_exists('start_date', $it)) {
+            $dt = new DateTime($it[ 'start_date' ]);
+            $years[] = $dt->format('Y');
           }
         }
       }
-      $result = array_unique($years);
+    }
+    $result = array_unique($years);
     return custom_sort($result);
   }
 
