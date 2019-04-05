@@ -60,7 +60,9 @@
             <div class="col-md-12 grey-bordered m-top-20">
                 <div class="col-md-6 text-center right-border">
                     <p class="text-center">Your Financial Wellness Score:</p>
-                    <p class="big-text green-text">88</p>
+                    <p class="big-text"
+                       style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                      <?php echo $content[ 'wellness' ][ 'wellness_score' ]; ?></p>
                     <p class="text-center col-md-12 text-muted no-pad-bottom">
                         Overall indicator of the likelihood
                         of achieving all your goals</p>
@@ -68,11 +70,15 @@
                 <div class="col-md-6 text-center">
                     <p class="text-center">Financial Summary: </p>
                     <p class="col-md-6">Assets</p>
-                    <p class="col-md-6">+ $1,185,001</p>
+                    <p class="col-md-6" style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                      <?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'assets' ]) : '- $' . number_format($content[ 'balance' ][ 'assets' ]); ?>
+                    </p>
                     <p class="col-md-6">Liabilities</p>
-                    <p class="col-md-6 border-bottom-grey">- $32,896</p>
+                    <p class="col-md-6 border-bottom-grey"
+                       style="color: <?php echo ($content[ 'balance' ][ 'liabilities' ] < 0)? 'red' : ''; ?>">
+                      <?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'liabilities' ]) : '- $' . number_format((-1)*$content[ 'balance' ][ 'liabilities' ]); ?></p>
                     <p class="col-md-6">Net Worth:</p>
-                    <p class="col-md-6">$1,152,105</p>
+                    <p class="col-md-6"><?php echo '+ $'. number_format(($content[ 'balance' ][ 'assets' ] + $content[ 'balance' ][ 'liabilities' ])); ?></p>
 
                 </div>
             </div>
@@ -119,46 +125,49 @@
                       <?php foreach ($content[ 'priority' ] as $pr_item) { ?>
                           <tr>
                             <?php foreach ($content[ 'year_grid' ] as $grid_item) { ?>
+                                <?php  $is_single = true; ?>
                                 <td class="<?php echo $pr_item . "-" . $grid_item; ?>">
-                                  <?php foreach ($content[ 'goals_list' ] as $goal_item) {
-                                    if (!empty($goal_item)) {
-                                      foreach ($goal_item as $value){
+                                  <?php foreach ($content[ 'goals_list' ] as $key => $goal_item) {
+
+                                      foreach ($goal_item as $value) {
                                         $period = defineYear($value, $content[ 'person_age' ]);
 
-                                      if ($period == $grid_item && $value['priority'] == $pr_item) { ?>
-                                          <!-- goal item-->
-                                          <div class="goal-item tipContainer drag"
-                                               id="item1">
-                                              <div class="tipContent">
-                                                  <div class="goal-icon col-md-5">
+                                        if ($period == $grid_item && $value[ 'priority' ] == $pr_item) { ?>
+                                            <!-- goal item-->
+                                            <div class="goal-item tipContainer drag"
+                                                 id="<?php echo $value[ 'name' ]; ?>" style="margin-top: <?php echo (!$is_single)? '45px' : '';?>">
+                                                <div class="tipContent">
+                                                    <div class="goal-icon col-md-5">
 
-                                                      <img src="<?php echo $value['image_url'] != null ?  $value['image_url'] :'assets/img/goal-car-icon.PNG'?>"
-                                                           alt="">
-                                                      <div class="goal-name"><strong><?php echo $value['name']; ?></strong>
-                                                      </div>
-                                                  </div>
-                                                  <div class="goal-price col-md-7 text-right">
-                                                      <strong>$30k</strong></div>
-                                                  <div class="col-md-12">
-                                                      <div class="row">
-                                                          <div class="status-line text-left"
-                                                               style="padding-left: 20%">
-                                                              <img src="assets/img/more-big.png"
-                                                                   alt="">
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-12 likelihood">
-                                                      <strong><?php echo $value['percent_expenses'] . '%'?> Likelihood</strong>
-                                                  </div>
-                                              </div>
-                                          </div>
-<!--end of goal item-->
-
-
-                                      <?php }
+                                                        <img src="<?php echo $value[ 'image_url' ] != NULL ? $value[ 'image_url' ] : 'assets/img/'.$key.'.png' ?>"
+                                                             alt="">
+                                                        <div class="goal-name">
+                                                            <strong><?php echo $value[ 'name' ]; ?></strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="goal-price col-md-7 text-right">
+                                                        <strong><?php echo $value['amount'] ? numberFormatK($value['amount']) : '';?></strong>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="status-line text-left"
+                                                                 style="padding-left: 20%">
+                                                                <img src="assets/img/more-big.png"
+                                                                     alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 likelihood">
+                                                        <strong>
+                                                          <?php echo (isset($value[ 'percent_expenses' ])) ? $value[ 'percent_expenses' ] . '% Likelihood' : '' ;?>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end of goal item-->
+                                          <?php $is_single = FALSE;?>
+                                        <?php }
                                       }
-                                    }
                                   } ?>
 
                                 </td>
@@ -181,212 +190,6 @@
                         </table>
                     </div>
                 </div>
-
-                <!--                        <colgroup>-->
-                <!--                            <col width="100"/>-->
-                <!--                            <col width="100"/>-->
-                <!--                            <col width="100"/>-->
-                <!--                            <col width="100"/>-->
-                <!--                            <col width="100"/>-->
-                <!--                            <col width="100"/>-->
-                <!--                            <col width="100"/>-->
-                <!--                        </colgroup>-->
-                <!--                        <tr>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer drag" id="item1">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-car-icon.PNG" alt="">-->
-                <!--                                            <div class="goal-name"><strong>Car</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$30k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 20%">-->
-                <!--                                                    <img src="assets/img/more-big.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>88% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td>-->
-                <!---->
-                <!--                            </td>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer drag" id="item2">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-icon-home.PNG" alt="">-->
-                <!--                                            <div class="goal-name"><strong>Car</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$30k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 10%">-->
-                <!--                                                    <img src="assets/img/more-big.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>88% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td></td>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer draggable">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-icon-home.PNG" alt="">-->
-                <!--                                            <div class="goal-name"><strong>House</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$30k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 30%">-->
-                <!--                                                    <img src="assets/img/more-big.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>86% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td></td>-->
-                <!--                            <td>-->
-                <!---->
-                <!--                            </td>-->
-                <!--                        </tr>-->
-                <!--                        <tr>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer drag" id="item24">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-icon2.PNG" alt="">-->
-                <!--                                            <div class="goal-name"><strong>Wedding</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$30k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 40%">-->
-                <!--                                                    <img src="assets/img/redq-2x.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>46% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer drag" id="item26">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-icon-home.PNG" alt="">-->
-                <!--                                            <div class="goal-name"><strong>Car</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$30k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 10%">-->
-                <!--                                                    <img src="assets/img/yelloq-2x.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>88% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer drag" id="item28">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-icon-home.PNG" alt="">-->
-                <!--                                            <div class="goal-name"><strong>Car</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$30k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 10%">-->
-                <!--                                                    <img src="assets/img/more-big.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>88% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td></td>-->
-                <!--                            <td></td>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer draggable">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-edu-icon.PNG" alt="">-->
-                <!--                                            <div class="goal-name"><strong>College</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$2.7k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left">-->
-                <!--                                                    <img src="assets/img/more-big.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>97% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td></td>-->
-                <!--                        </tr>-->
-                <!--                        <tr>-->
-                <!--                            <td></td>-->
-                <!--                            <td></td>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer drag" id="item22">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-5">-->
-                <!--                                            <img src="assets/img/goal-name.png" alt="">-->
-                <!--                                            <div class="goal-name"><strong>Airplane</strong></div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-7 text-right"><strong>$80k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 53%">-->
-                <!--                                                    <img src="assets/img/yelloq-2x.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>53% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td></td>-->
-                <!--                            <td>-->
-                <!--                                <div class="goal-item tipContainer drag" id="item21">-->
-                <!--                                    <div class="tipContent">-->
-                <!--                                        <div class="goal-icon col-md-6">-->
-                <!--                                            <img src="assets/img/goal-name.png" alt="">-->
-                <!--                                            <p class="goal-name"><strong>Goal Name</strong></p>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="goal-price col-md-6 text-right"><strong>$80k</strong></div>-->
-                <!--                                        <div class="col-md-12">-->
-                <!--                                            <div class="row">-->
-                <!--                                                <div class="status-line text-left" style="padding-left: 53%">-->
-                <!--                                                    <img src="assets/img/yelloq-2x.png" alt="">-->
-                <!--                                                </div>-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="col-md-12 likelihood"><strong>53% Likelihood</strong></div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </td>-->
-                <!--                            <td></td>-->
-                <!--                            <td></td>-->
-                <!--                        </tr>-->
-                <!--                    </table>-->
-                <!--                </div>-->
-
             </div>
         </div>
         <div class="container m-top-20">
@@ -430,7 +233,7 @@
                         <div class="col-md-3">
                             <div class="row">
 
-                                <strong>$4,000</strong></div>
+                                <strong><$4,000</strong></div>
                         </div>
                         <div class="col-md-9 sub-title-2">
                             <div class="row">
@@ -548,8 +351,8 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="col-md-10 pinked-bg">
-                            <strong>$105/month</strong>
+                        <div class="col-md-9 pinked-bg">
+                            <strong><?php echo '$'.$content['expenses'].'/month';?></strong>
                             <p>
                                 Discretionary
                                 Expenses
@@ -585,10 +388,11 @@
                             </div>
                         </div>
                     </div>
+                    <?php foreach ($content['risks'] as $riskItem){?>
                     <div class="col-md-6">
                         <div class="row">
                             <strong>
-                                Brokerage Account
+                                <?php echo $riskItem['name'];?>
                             </strong>
                             <p>
                                 <small>Name of Account</small>
@@ -597,58 +401,12 @@
                     </div>
                     <div class="col-md-6">
                         <div class="row risk-values">
-                            <div style="width: 50%; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
-                            <div style="width: 50%; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
+                            <div style="width: <?php echo $riskItem['value'].'%'?>; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
+                            <div style="width: <?php echo (100 - $riskItem['value']).'%'?>; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <strong>
-                                SEP-IRA
-                            </strong>
-                            <p>
-                                <small>Name of Account</small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row risk-values">
-                            <div style="width: 50%; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
-                            <div style="width: 50%; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <strong>
-                                401 (k)
-                            </strong>
-                            <p>
-                                <small>Name of Account</small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row risk-values">
-                            <div style="width: 30%; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
-                            <div style="width: 70%; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <strong>
-                                Education Savings
-                            </strong>
-                            <p>
-                                <small>Name of Account</small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row risk-values">
-                            <div style="width: 80%; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
-                            <div style="width: 20%; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
-                        </div>
-                    </div>
+                      <?php }?>
+
                 </div>
             </div>
         </div>

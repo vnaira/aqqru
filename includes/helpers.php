@@ -78,30 +78,67 @@ function defineYear($goal, $person) {
         $dt = new DateTime($item);
         $period[] = $dt->format('Y');
       }
-      if ($key == 'end_date') {
-        $dt = new DateTime($item);
-        $period[] = $dt->format('Y');
-      }
+//      if ($key == 'end_date') {
+//        $dt = new DateTime($item);
+//        $period[] = $dt->format('Y');
+//      }
       if ( $key == 'target_date') {
         $dt = new DateTime($item);
         $period[] = $dt->format('Y');
       }
-      if ( $key == 'months') {
-        $datetime = new \DateTime();
-        $datetime->modify('+' . $item . ' months');
-        $period[] = $datetime->format('Y');
-      }
+//      if ( $key == 'months') {
+//        $datetime = new \DateTime();
+//        $datetime->modify('+' . $item . ' months');
+//        $period[] = $datetime->format('Y');
+//      }
     }
   }
   return min($period);
 }
 
-function getPriority($goals){
-  if (!empty($goal)) {
-    foreach ($goal as $item) {
+/**
+ * Generate color value with RGB values
+ * @param $wellnessState
+ *
+ * @return array
+ */
+function generateColor($wellnessState) {
 
-    }
+  $red = [231.0, 78.0, 78.0];
+  $yellow = [255.0, 185.0, 0.0];
+  $green = [78.0, 211.0, 177.0];
+
+  if (!empty($wellnessState)) {
+    $currentRed = $wellnessState[ 0 ] * $red[ 0 ] + $wellnessState[ 1 ] * $yellow[ 0 ] + $wellnessState[ 2 ] * $green[ 0 ];
+    $currentGreen = $wellnessState[ 0 ] * $red[ 1 ] + $wellnessState[ 1 ] * $yellow[ 1 ] + $wellnessState[ 2 ] * $green[ 1 ];
+    $currentBlue = $wellnessState[ 0 ] * $red[ 2 ] + $wellnessState[ 1 ] * $yellow[ 2 ] + $wellnessState[ 2 ] * $green[ 2 ];
   }
+
+  return 'rgb(' . $currentRed . ',' . $currentGreen . ',' . $currentBlue . ','.'1)';
+
 }
 
+/**
+ * Count round thausand to a K style
+ * @param $number
+ */
+function numberFormatK($number) {
+
+  $k = 1000;
+  $suf = '';
+  if ($number > $k) {
+    $echoxcount = round($number / $k);
+    $suf = 'K';
+  }
+  else {
+    if ($number == $k) {
+      $echoxcount = 1;
+      $suf = 'K';
+    }
+    else {
+      $echoxcount = $number;
+    }
+  }
+  return '$'.$echoxcount.$suf;
+}
 ?>

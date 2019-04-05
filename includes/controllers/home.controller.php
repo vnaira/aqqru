@@ -33,14 +33,112 @@ class HomeController {
     return $data;
   }
 
+  /**
+   * Get Financial summary assets
+   * @param $data
+   *
+   * @return number
+   */
+  public function getAssets($data) {
+    $balance_sheet = $data[ 'results' ][ 'current_financials' ][ 'balance_sheet' ];
+    $balance = [];
+    $asset = 0;
+    $liability = 0;
+    if (!empty($balance_sheet)) {
+      foreach ($balance_sheet as $balance_item) {
+        if ($balance_item['category'] == "Assets") {
+          $asset += $balance_item['value'];
+        }
+        else {
+          $liability += $balance_item['value'];
+        }
+      }
+    }
+    $balance[ 'assets' ] = $asset;
+    $balance[ 'liabilities' ] = $liability;
+    return $balance;
+  }
+
+  /**
+   * Get achievability from results and set it to corresponding goal
+   * @param $data
+   *
+   * @return array
+   */
+  public function setAchievability($goals, $results) {
+$fullGoals = [];
+    if (!empty($results) && !empty($goals)) {
+      foreach ($goals as $index => $goal_item) {
+        if (!empty($goal_item)) {
+          foreach ($goal_item as $key => $item) {
+            foreach ($results as $resultItem) {
+              if ($item[ 'id' ] == $resultItem[ 'id' ]) {
+                $item[ 'achievability' ] = $resultItem[ 'achievability' ];
+                $goal_item[ $key ] = $item;
+              }
+            }
+          }
+          $fullGoals[ $index ] = $goal_item;
+        }
+      }
+    }
+    return $fullGoals;
+  }
+
+
+  public function getImmediateAction($data){
+
+  }
+
+
+  public function getExpenses($data) {
+    $incomes = $data[ 'results' ][ 'current_financials' ][ 'income_statement' ];
+    $expenses = 0;
+    if (!empty($incomes)) {
+      foreach ($incomes as $incomeItem) {
+        $expenses += $incomeItem[ 'current_month_value' ];
+      }
+    }
+    return round($expenses)/ count($incomes);
+  }
+
+  /**
+   * @param $data
+   *
+   * @return array
+   */
+  public function getAppropriateRisks($data) {
+    $risks = $data[ 'results' ][ 'guidance' ][ 'investment_allocation' ];
+    $apprRisks = [];
+    $riskIt = [];
+    if (!empty($risks)) {
+      foreach ($risks as $riskItem) {
+        $riskIt[ 'name' ] = $riskItem[ 'object_name' ];
+        $riskIt[ 'value' ] = round($riskItem[ 'value' ] * 100);
+        $apprRisks[] = $riskIt;
+      }
+    }
+    return $apprRisks;
+  }
+
+
   public function renderData($data) {
     $this->goals = $this->modifyGoalsList($data[ 'avatar' ][ 'goals' ]);
     $page_content = [];
+
     $page_content[ 'person_name' ] = $this->getPersonName($data[ 'avatar' ]);
     $page_content[ 'year_grid' ] = $this->getGridYears($this->goals,$this->getPersonAge($data[ 'avatar' ]));
     $page_content[ 'priority' ] = $this->getPriorityList();
-    $page_content[ 'goals_list' ] = $this->modifyGoalsList($this->goals);
+
+    $page_content[ 'goals_list' ] = $this->setAchievability($this->goals, $data[ 'results' ][ 'goal_results' ]);
     $page_content[ 'person_age' ] = $this->getPersonAge($data[ 'avatar' ]);
+    $page_content[ 'wellness' ] = [
+      'wellness_score' => $this->content[ 'results' ][ 'avatar_results' ][ 'wellness_score' ],
+      'wellness_state' => generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ])
+    ];
+    $page_content[ 'balance' ] = $this->getAssets($data);
+    $page_content[ 'expenses' ] = $this->getExpenses($data);
+    $page_content[ 'risks' ] = $this->getAppropriateRisks($data);
 
     return $page_content;
   }
@@ -62,7 +160,7 @@ class HomeController {
 
   public function getGridYears($goals, $person_age) {
     $years = [];
-    foreach ($goals as $key => $item) {
+    foreach ($goals as $key => $goal_item) {
       $it = $goals[ $key ];
       if (!empty($it)) {
         if (is_array($it[0])) {
@@ -74,10 +172,10 @@ class HomeController {
               $dt = new DateTime($item[ 'start_date' ]);
               $years[] = $dt->format('Y');
             }
-            if (array_key_exists('end_date', $item)) {
-              $dt = new DateTime($item[ 'end_date' ]);
-              $years[] = $dt->format('Y');
-            }
+//            if (array_key_exists('end_date', $item)) {
+//              $dt = new DateTime($item[ 'end_date' ]);
+//              $years[] = $dt->format('Y');
+//            }
             if (array_key_exists('target_date', $item)) {
               $dt = new DateTime($item[ 'target_date' ]);
               $years[] = $dt->format('Y');
@@ -100,7 +198,8 @@ class HomeController {
           }
         }
       }
-    return custom_sort($years);
+      $result = array_unique($years);
+    return custom_sort($result);
   }
 
   public function getPriorityList() {
