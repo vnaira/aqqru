@@ -105,14 +105,19 @@ class HomeController {
           $immediateActions['withdraw'][] = $actions_w;
           break;
         case "Deposit" :
-          $actions_d[ 'deposit' ] += round($investItem[ 'annual_value' ]);
-          $actions_d[ 'deposit_name' ] = ($investItem[ 'object_name' ]);
-          $immediateActions['deposit'][] = $actions_d;
+          $actionId = $this->getPayOfDebits($investItem[ 'object_id' ]);
+//          $actions_d[ 'deposit' ] = $investItem[ 'object_id' ];
+          if($actionId){
+            $actions_d[ 'deposit' ] += round($investItem[ 'annual_value' ]);
+            $actions_d[ 'deposit_name' ] = ($investItem[ 'object_name' ]);
+            $immediateActions['deposit'][] = $actions_d;
+          }else {
+            $actions[ 'save' ] += round($investItem[ 'annual_value' ]);
+            $actions[ 'save_name' ] = ($investItem[ 'object_name' ]);
+            $immediateActions['save'][] = $actions;
+          }
           break;
         default:
-          $actions[ 'save' ] += round($investItem[ 'annual_value' ]);
-          $actions[ 'save_name' ] = ($investItem[ 'object_name' ]);
-          $immediateActions['save'][] = $actions;
           break;
       }
     }
@@ -120,6 +125,25 @@ class HomeController {
   }
 
 
+  public function getPayOfDebits($id) {
+
+    $lifeObject = $this->content[ 'avatar' ][ 'life_objects' ];
+    if (!empty($lifeObject)) {
+      foreach ($lifeObject as $key => $lifeItem) {
+        if (!empty($lifeItem)) {
+          foreach ($lifeItem as $item) {
+            if ($id == $item[ 'id' ] && ($key == 'student_loans' || $key == 'personal_loans' || $key == 'credit_cards')) {
+              return TRUE;
+            }
+          }
+        }
+
+      }
+    }
+    return FALSE;
+  }
+
+  
   public function getExpenses($data) {
     $incomes = $data[ 'results' ][ 'current_financials' ][ 'income_statement' ];
     $expenses = 0;
@@ -173,20 +197,6 @@ class HomeController {
     return $page_content;
   }
 
-//  public function specifyDate($array) {
-//    $year = [];
-//    if (!empty($array)) {
-//      foreach ($array as $key => $value) {
-//        switch ($value) {
-//          case 'age':
-//            $year_one = date("Y") + $value[ 'age' ];
-//            break;
-//        }
-//        $year = $year_one;
-//      }
-//    }
-//
-//  }
 
   public function getGridYears($goals, $person_age) {
     $years = [];

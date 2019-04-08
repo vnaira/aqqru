@@ -70,15 +70,16 @@
                 <div class="col-md-6 text-center">
                     <p class="text-center">Financial Summary: </p>
                     <p class="col-md-6">Assets</p>
-                    <p class="col-md-6" style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                    <p class="col-md-6"
+                       style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
                       <?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'assets' ]) : '- $' . number_format($content[ 'balance' ][ 'assets' ]); ?>
                     </p>
                     <p class="col-md-6">Liabilities</p>
                     <p class="col-md-6 border-bottom-grey"
-                       style="color: <?php echo ($content[ 'balance' ][ 'liabilities' ] < 0)? 'red' : ''; ?>">
-                      <?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'liabilities' ]) : '- $' . number_format((-1)*$content[ 'balance' ][ 'liabilities' ]); ?></p>
+                       style="color: <?php echo ($content[ 'balance' ][ 'liabilities' ] < 0) ? 'red' : ''; ?>">
+                      <?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'liabilities' ]) : '- $' . number_format((-1) * $content[ 'balance' ][ 'liabilities' ]); ?></p>
                     <p class="col-md-6">Net Worth:</p>
-                    <p class="col-md-6"><?php echo '+ $'. number_format(($content[ 'balance' ][ 'assets' ] + $content[ 'balance' ][ 'liabilities' ])); ?></p>
+                    <p class="col-md-6"><?php echo '+ $' . number_format(($content[ 'balance' ][ 'assets' ] + $content[ 'balance' ][ 'liabilities' ])); ?></p>
 
                 </div>
             </div>
@@ -125,49 +126,50 @@
                       <?php foreach ($content[ 'priority' ] as $pr_item) { ?>
                           <tr>
                             <?php foreach ($content[ 'year_grid' ] as $grid_item) { ?>
-                                <?php  $is_single = true; ?>
+                              <?php $is_single = TRUE; ?>
                                 <td class="<?php echo $pr_item . "-" . $grid_item; ?>">
                                   <?php foreach ($content[ 'goals_list' ] as $key => $goal_item) {
 
-                                      foreach ($goal_item as $value) {
-                                        $period = defineYear($value, $content[ 'person_age' ]);
+                                    foreach ($goal_item as $value) {
+                                      $period = defineYear($value, $content[ 'person_age' ]);
 
-                                        if ($period == $grid_item && $value[ 'priority' ] == $pr_item) { ?>
-                                            <!-- goal item-->
-                                            <div class="goal-item tipContainer drag"
-                                                 id="<?php echo $value[ 'name' ]; ?>" style="margin-top: <?php echo (!$is_single)? '45px' : '';?>">
-                                                <div class="tipContent">
-                                                    <div class="goal-icon col-md-5">
+                                      if ($period == $grid_item && $value[ 'priority' ] == $pr_item) { ?>
+                                          <!-- goal item-->
+                                          <div class="goal-item tipContainer drag"
+                                               id="<?php echo $value[ 'name' ]; ?>"
+                                               style="margin-top: <?php echo (!$is_single) ? '45px' : ''; ?>">
+                                              <div class="tipContent">
+                                                  <div class="goal-icon col-md-5">
 
-                                                        <img src="<?php echo $value[ 'image_url' ] != NULL ? $value[ 'image_url' ] : 'assets/img/'.$key.'.png' ?>"
-                                                             alt="">
-                                                        <div class="goal-name">
-                                                            <strong><?php echo $value[ 'name' ]; ?></strong>
-                                                        </div>
-                                                    </div>
-                                                    <div class="goal-price col-md-7 text-right">
-                                                        <strong><?php echo $value['amount'] ? numberFormatK($value['amount']) : '';?></strong>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="status-line text-left"
-                                                                 style="padding-left: 20%">
-                                                                <img src="assets/img/more-big.png"
-                                                                     alt="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12 likelihood">
-                                                        <strong>
-                                                          <?php echo (isset($value[ 'achievability' ])) ? $value[ 'achievability' ] . '% Likelihood' : '' ;?>
-                                                        </strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--end of goal item-->
-                                          <?php $is_single = FALSE;?>
-                                        <?php }
-                                      }
+                                                      <img src="<?php echo $value[ 'image_url' ] != NULL ? $value[ 'image_url' ] : 'assets/img/' . $key . '.png' ?>"
+                                                           alt="">
+                                                      <div class="goal-name">
+                                                          <strong><?php echo $value[ 'name' ]; ?></strong>
+                                                      </div>
+                                                  </div>
+                                                  <div class="goal-price col-md-7 text-right">
+                                                      <strong><?php echo $value[ 'amount' ] ? numberFormatK($value[ 'amount' ]) : ''; ?></strong>
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                      <div class="row">
+                                                          <div class="status-line text-left"
+                                                               style="padding-left: 20%">
+                                                              <img src="assets/img/more-big.png"
+                                                                   alt="">
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-md-12 likelihood">
+                                                      <strong>
+                                                        <?php echo (isset($value[ 'achievability' ])) ? $value[ 'achievability' ] . '% Likelihood' : ''; ?>
+                                                      </strong>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <!--end of goal item-->
+                                        <?php $is_single = FALSE; ?>
+                                      <?php }
+                                    }
                                   } ?>
 
                                 </td>
@@ -230,30 +232,21 @@
                         <div class="col-md-9 sub-title-2 m-bot-20">
                             <h4 class="">WITHDRAW FUNDS</h4>
                         </div>
-                        <?php foreach ($content['with_draw']['withdraw'] as $draw_item){?>
-                        <div class="col-md-3">
-                            <div class="row">
+                      <?php foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
+                          <div class="col-md-3">
+                              <div class="row">
 
-                                <strong><?php echo '$'.number_format($draw_item['withdraw']);?></strong></div>
-                        </div>
-                        <div class="col-md-9 sub-title-2">
-                            <div class="row">
-                                <strong><?php echo $draw_item['withdraw_name'];?></strong>
-                                <p>(annual amount: $10k)</p>
-                            </div>
-                        </div>
-  <?php }?>
-<!--                        <div class="col-md-3">-->
-<!--                            <div class="row">-->
-<!--                                <strong>$1,000</strong>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-9 sub-title-2">-->
-<!--                            <div class="row">-->
-<!--                                <strong>Charles Schwab </strong>-->
-<!--                                <p>(annual amount: $10k)</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                                  <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
+                              </div>
+                          </div>
+                          <div class="col-md-9 sub-title-2">
+                              <div class="row">
+                                  <strong><?php echo $draw_item[ 'withdraw_name' ]; ?></strong>
+                                  <p>(annual amount: $10k)</p>
+                              </div>
+                          </div>
+                      <?php } ?>
+
                     </div>
                     <div class="com-md-1 m-top-90 padd-container">
                         <img src="assets/img/arrow-right.PNG" alt=""
@@ -268,75 +261,72 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="grey-bg col-md-11">
-                        <div class="step col-md-3">2</div>
-                        <div class="col-md-9 sub-title-2 m-bot-20">
-                            <h4 class="">PAYOFF DEBT</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <strong>$1,000</strong>
+                  <?php if (!empty($content[ 'with_draw' ][ 'deposit' ])) { ?>
+                      <div class="grey-bg col-md-11">
+                          <div class="step col-md-3">2</div>
+                          <div class="col-md-9 sub-title-2 m-bot-20">
+                              <h4 class="">PAYOFF DEBT</h4>
+                          </div>
+                        <?php foreach ($content[ 'deposit' ] as $depositItem) { ?>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <strong><?php echo $depositItem[ 'deposit' ]; ?></strong>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-9 sub-title-2">
-                            <div class="row">
-                                <p><strong>Visa CC</strong>
-                                    <span>ending 0078</span></p>
+                            <div class="col-md-9 sub-title-2">
+                                <div class="row">
+                                    <p>
+                                        <strong><?php echo $depositItem[ 'deposit_name' ]; ?></strong>
+                                        <span>ending 0078</span></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <strong>$500</strong>
+                        <?php } ?>
+                          <!--                        <div class="col-md-3">-->
+                          <!--                            <div class="row">-->
+                          <!--                                <strong>$500</strong>-->
+                          <!--                            </div>-->
+                          <!--                        </div>-->
+                          <!--                        <div class="col-md-9 sub-title-2">-->
+                          <!--                            <div class="row">-->
+                          <!--                                <p><strong>Mastercard CC</strong> <span>ending 0098</span>-->
+                          <!--                                </p>-->
+                          <!--                            </div>-->
+                          <!--                        </div>-->
+                          <!--                        <div class="col-md-3">-->
+                          <!--                            <div class="row">-->
+                          <!--                                <strong>$500</strong>-->
+                          <!--                            </div>-->
+                          <!--                        </div>-->
+                          <!--                        <div class="col-md-9 sub-title-2">-->
+                          <!--                            <div class="row">-->
+                          <!--                                <p><strong>Discover CC</strong> <span>ending 2214</span>-->
+                          <!--                                </p>-->
+                          <!--                            </div>-->
+                          <!--                        </div>-->
+                      </div>
+                  <?php } ?>
+                  <?php if (!empty($content[ 'with_draw' ][ 'save' ])) { ?>
+                      <div class="grey-bg col-md-11 m-top-20">
+                          <div class="step col-md-3">3</div>
+                          <div class="col-md-9 sub-title-2 m-bot-20">
+                              <h4 class="">SAVE AND INVEST</h4>
+                          </div>
+                        <?php foreach ($content[ 'with_draw' ][ 'save' ] as $saveItem) { ?>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <strong><?php echo '$' . number_format($saveItem[ 'save' ]); ?></strong>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-9 sub-title-2">
-                            <div class="row">
-                                <p><strong>Mastercard CC</strong> <span>ending 0098</span>
-                                </p>
+                            <div class="col-md-9 sub-title-2">
+                                <div class="row">
+                                    <p>
+                                        <strong><?php echo $saveItem[ 'save_name' ]; ?></strong>
+                                        <span>(annual amount: $10k)</span></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <strong>$500</strong>
-                            </div>
-                        </div>
-                        <div class="col-md-9 sub-title-2">
-                            <div class="row">
-                                <p><strong>Discover CC</strong> <span>ending 2214</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grey-bg col-md-11 m-top-20">
-                        <div class="step col-md-3">3</div>
-                        <div class="col-md-9 sub-title-2 m-bot-20">
-                            <h4 class="">DEPOSIT FUNDS</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="row">
-
-                                <strong>$1,000</strong></div>
-                        </div>
-                        <div class="col-md-9 sub-title-2">
-                            <div class="row">
-                                <p><strong>SEP IRA</strong>
-                                    <span>(annual amount: $10k)</span></p>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <strong>$1,000</strong>
-                            </div>
-                        </div>
-                        <div class="col-md-9 sub-title-2">
-                            <div class="row">
-                                <p><strong>Fidelity 401(k)</strong>
-                                    <span> (annually: $1.5k)</span></p>
-                            </div>
-                        </div>
-
-                    </div>
+                        <?php } ?>
+                      </div>
+                  <?php } ?>
                 </div>
             </div>
         </div>
@@ -354,7 +344,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="col-md-9 pinked-bg">
-                            <strong><?php echo '$'.$content['expenses'].'/month';?></strong>
+                            <strong><?php echo '$' . $content[ 'expenses' ] . '/month'; ?></strong>
                             <p>
                                 Discretionary
                                 Expenses
@@ -390,24 +380,24 @@
                             </div>
                         </div>
                     </div>
-                    <?php foreach ($content['risks'] as $riskItem){?>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <strong>
-                                <?php echo $riskItem['name'];?>
-                            </strong>
-                            <p>
-                                <small>Name of Account</small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row risk-values">
-                            <div style="width: <?php echo $riskItem['value'].'%'?>; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
-                            <div style="width: <?php echo (100 - $riskItem['value']).'%'?>; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
-                        </div>
-                    </div>
-                      <?php }?>
+                  <?php foreach ($content[ 'risks' ] as $riskItem) { ?>
+                      <div class="col-md-6">
+                          <div class="row">
+                              <strong>
+                                <?php echo $riskItem[ 'name' ]; ?>
+                              </strong>
+                              <p>
+                                  <small>Name of Account</small>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="row risk-values">
+                              <div style="width: <?php echo $riskItem[ 'value' ] . '%' ?>; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
+                              <div style="width: <?php echo (100 - $riskItem[ 'value' ]) . '%' ?>; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
+                          </div>
+                      </div>
+                  <?php } ?>
 
                 </div>
             </div>
