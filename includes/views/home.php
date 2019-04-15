@@ -5,6 +5,10 @@
             <span><?php echo date("M Y"); ?></span>
         </p>
     </div>
+<div class="col-md-12 green-text-area">
+<p>We believe in financial goal planning built for all of us.</p>
+<p><strong>But this guide’s just for you.</strong></p>
+</div>
     </div>
     <section id="includes" class="">
 
@@ -185,7 +189,9 @@
                             <tr>
                               <?php foreach ($content[ 'year_grid' ] as $grid_item) { ?>
                                   <td class="text-right">
-                                      <div class="col-md-12"><?php echo $grid_item; ?></div>
+                                      <div class="col-md-12">
+                                          <strong><?php echo $grid_item; ?></strong>
+                                      </div>
                                   </td>
                               <?php } ?>
                             </tr>
@@ -261,72 +267,81 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                  <?php if (!empty($content[ 'with_draw' ][ 'deposit' ])) { ?>
-                      <div class="grey-bg col-md-11">
-                          <div class="step col-md-3">2</div>
-                          <div class="col-md-9 sub-title-2 m-bot-20">
-                              <h4 class="">PAYOFF DEBT</h4>
-                          </div>
+
+                    <div class="grey-bg col-md-11">
+                        <div class="step col-md-3">2</div>
+                        <div class="col-md-9 sub-title-2 m-bot-20">
+                            <h4 class="">PAYOFF DEBT</h4>
+                        </div>
+                      <?php if (!empty($content[ 'with_draw' ][ 'deposit' ])) { ?>
                         <?php foreach ($content[ 'deposit' ] as $depositItem) { ?>
-                            <div class="col-md-3">
-                                <div class="row">
-                                    <strong><?php echo $depositItem[ 'deposit' ]; ?></strong>
-                                </div>
-                            </div>
-                            <div class="col-md-9 sub-title-2">
-                                <div class="row">
-                                    <p>
-                                        <strong><?php echo $depositItem[ 'deposit_name' ]; ?></strong>
-                                        <span>ending 0078</span></p>
-                                </div>
-                            </div>
-                        <?php } ?>
-                          <!--                        <div class="col-md-3">-->
-                          <!--                            <div class="row">-->
-                          <!--                                <strong>$500</strong>-->
-                          <!--                            </div>-->
-                          <!--                        </div>-->
-                          <!--                        <div class="col-md-9 sub-title-2">-->
-                          <!--                            <div class="row">-->
-                          <!--                                <p><strong>Mastercard CC</strong> <span>ending 0098</span>-->
-                          <!--                                </p>-->
-                          <!--                            </div>-->
-                          <!--                        </div>-->
-                          <!--                        <div class="col-md-3">-->
-                          <!--                            <div class="row">-->
-                          <!--                                <strong>$500</strong>-->
-                          <!--                            </div>-->
-                          <!--                        </div>-->
-                          <!--                        <div class="col-md-9 sub-title-2">-->
-                          <!--                            <div class="row">-->
-                          <!--                                <p><strong>Discover CC</strong> <span>ending 2214</span>-->
-                          <!--                                </p>-->
-                          <!--                            </div>-->
-                          <!--                        </div>-->
-                      </div>
-                  <?php } ?>
-                  <?php if (!empty($content[ 'with_draw' ][ 'save' ])) { ?>
-                      <div class="grey-bg col-md-11 m-top-20">
-                          <div class="step col-md-3">3</div>
-                          <div class="col-md-9 sub-title-2 m-bot-20">
-                              <h4 class="">SAVE AND INVEST</h4>
+                              <div class="col-md-3">
+                                  <div class="row">
+                                      <strong><?php echo $depositItem[ 'deposit' ]; ?></strong>
+                                  </div>
+                              </div>
+                              <div class="col-md-9 sub-title-2">
+                                  <div class="row">
+                                      <p>
+                                          <strong><?php echo $depositItem[ 'deposit_name' ]; ?></strong>
+                                          <span>ending 0078</span></p>
+                                  </div>
+                              </div>
+                        <?php }
+                      }
+                      else { ?>
+                          <div class="col-md-3">
+                              <div class="row">
+
+                              </div>
                           </div>
+                          <div class="col-md-9 sub-title-2">
+                              <div class="row">
+                                  <p>Well done!
+                                  </p>
+                                  <p>No deposits necessary.</p>
+                              </div>
+                          </div>
+                      <?php } ?>
+                    </div>
+
+
+                    <div class="grey-bg col-md-11 m-top-20">
+                        <div class="step col-md-3">3</div>
+                        <div class="col-md-9 sub-title-2 m-bot-20">
+                            <h4 class="">SAVE AND INVEST</h4>
+                        </div>
+                      <?php if (!empty($content[ 'with_draw' ][ 'save' ])) { ?>
                         <?php foreach ($content[ 'with_draw' ][ 'save' ] as $saveItem) { ?>
-                            <div class="col-md-3">
-                                <div class="row">
-                                    <strong><?php echo '$' . number_format($saveItem[ 'save' ]); ?></strong>
-                                </div>
-                            </div>
-                            <div class="col-md-9 sub-title-2">
-                                <div class="row">
-                                    <p>
-                                        <strong><?php echo $saveItem[ 'save_name' ]; ?></strong>
-                                        <span>(annual amount: $10k)</span></p>
-                                </div>
-                            </div>
-                        <?php } ?>
-                      </div>
-                  <?php } ?>
+                              <div class="col-md-3">
+                                  <div class="row">
+                                      <strong><?php echo '$' . number_format($saveItem[ 'save' ]); ?></strong>
+                                  </div>
+                              </div>
+                              <div class="col-md-9 sub-title-2">
+                                  <div class="row">
+                                      <p>
+                                          <strong><?php echo $saveItem[ 'save_name' ]; ?></strong>
+                                          <span>(annual amount: $10k)</span></p>
+                                  </div>
+                              </div>
+                        <?php }
+                      } else { ?>
+
+                          <div class="col-md-3">
+                              <div class="row">
+
+                              </div>
+                          </div>
+                          <div class="col-md-9 sub-title-2">
+                              <div class="row">
+                                  <p>Well done!</p>
+                                  <p>No invests necessary.</p>
+                              </div>
+                          </div>
+                      <?php } ?>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1426,6 +1441,132 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!--==========================
+         Financial Summary
+       ============================-->
+    <section id="fin-summary" class="page-break">
+        <div class="container padd-container ">
+            <div class="section-title">
+                <div class="col-md-12 m-top-40">
+                    <div class="row">
+                        <h1 id="header-title" class="border-bottom-grey"
+                            style="border-color: #000">Finally, your Financial
+                            Summary</h1>
+                        <div class="light-grey-bg p-20">
+                            <p><strong>We’re almost done!</strong> But before we
+                                go, let’s take a closer look at your current
+                                financial situation.</p>
+                            <p>
+                                We put this all together based on the info you
+                                gave us. Check out your net worth and your
+                                monthly cash flow. These numbers will give you a
+                                good idea of where you’re doing well and where
+                                you might want to improve.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 m-top-20">
+                <div class="row">
+                    <div class="pull-left grey-bordered-custom ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="green-bg-title">
+                                <h2 class="col-md-12">Net Worth</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                <p class="col-md-12 p-top-10">
+                                    Your Net Worth is the difference between
+                                    yourassets (what you own) and liabilities
+                                    (what you owe).
+                                </p>
+                                <h4 class="col-md-12 table-name">Assets</h4>
+                                    <div class="col-md-12">
+                                <table class="table-responsive" width="100%">
+                                    <tr>
+                                        <td></td>
+                                        <td>Value</td>
+                                        <td>Liquid Value</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cash</strong></td>
+                                        <td>$5,000</td>
+                                        <td>$5,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Education</strong></td>
+                                        <td>$5</td>
+                                        <td>$0</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Investments</strong></td>
+                                        <td>$5,000</td>
+                                        <td>$5,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>TOTAL</strong></td>
+                                        <td><strong style="color:#4FD3B1">$1,185,001</strong></td>
+                                        <td><strong style="color:#4FD3B1">$1,185,001</strong></td>
+
+                                    </tr>
+                                </table>
+                                    </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right grey-bordered-custom ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="green-bg-title">
+                                    <h2 class="col-md-12">Net Worth</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <p class="col-md-12 p-top-10">
+                                        Your Net Worth is the difference between
+                                        yourassets (what you own) and liabilities
+                                        (what you owe).
+                                    </p>
+                                    <h4 class="col-md-12">Assets</h4>
+                                    <div class="col-md-12">
+                                        <table class="table-responsive" width="100%">
+                                            <tr>
+                                                <td></td>
+                                                <td>Value</td>
+                                                <td>Liquid Value</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Cash</strong></td>
+                                                <td>$5,000</td>
+                                                <td>$5,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Education</strong></td>
+                                                <td>$5</td>
+                                                <td>$0</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Investments</strong></td>
+                                                <td>$5,000</td>
+                                                <td>$5,000</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
     </section>
 
 

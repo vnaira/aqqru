@@ -18,6 +18,7 @@
 
         <!-- Main Stylesheet File -->
         <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="assets/css/circle.css" />
 
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -27,6 +28,9 @@
 </head> 
 <body>
 <div class="container">
-    <div class="col-md-12 m-top-40">
-        <h1 id="header-title" class="border-bottom-grey"><?php echo $title?></h1>
+    <div class="col-md-12 p-top-10">
+        <img src="assets/img/logos.png" alt="">
+    </div>
+    <div class="col-md-12">
+        <h1 id="header-title" class="border-bottom-green"><?php echo $title?></h1>
     </div>

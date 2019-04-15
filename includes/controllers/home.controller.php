@@ -143,7 +143,7 @@ class HomeController {
     return FALSE;
   }
 
-  
+
   public function getExpenses($data) {
     $incomes = $data[ 'results' ][ 'current_financials' ][ 'income_statement' ];
     $expenses = 0;
