@@ -187,7 +187,8 @@ class HomeController {
     $page_content[ 'person_age' ] = $this->getPersonAge($data[ 'avatar' ]);
     $page_content[ 'wellness' ] = [
       'wellness_score' => $this->content[ 'results' ][ 'avatar_results' ][ 'wellness_score' ],
-      'wellness_state' => generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ])
+      'wellness_state' => 'rgb'.generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ]),
+      'wellness_state_name' => fromRGB(generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ]))
     ];
     $page_content[ 'balance' ] = $this->getAssets($data);
     $page_content[ 'expenses' ] = $this->getExpenses($data);

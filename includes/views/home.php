@@ -1,8 +1,8 @@
 <?php render('_header', ['title' => $title]) ?>
     <div class="col-md-12 p-top-10">
         <p>
-            <span><?php echo $content[ 'person_name' ]; ?></span>
-            <span><?php echo date("M Y"); ?></span>
+            <strong><?php echo $content[ 'person_name' ]; ?></strong>
+            <strong><?php echo date("M Y"); ?></strong>
         </p>
     </div>
 <div class="col-md-12 green-text-area">
@@ -12,9 +12,9 @@
     </div>
     <section id="includes" class="">
 
-        <div class="container padd-section">
+        <div class="container padd-section m-top-300">
             <div class="col-md-12">
-                <p>This report includes: </p>
+                <p><strong>This report includes: </strong></p>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -55,44 +55,215 @@
                 </div>
             </div>
         </div>
+    </section>
 
-
-        <div class="container">
-            <div class="row-title col-md-12">
-                <h3>Financial Overview</h3>
+    <!--==========================
+          Welcome section
+        ============================-->
+    <section id="welcome" class="page-break">
+        <div class="container padd-section">
+            <div class="col-md-12 border-bottom-grey">
+                <h1>Welcome to your </h1>
+                <h1 class="m-bot-20">Financial Planning Guide </h1>
             </div>
-            <div class="col-md-12 grey-bordered m-top-20">
-                <div class="col-md-6 text-center right-border">
-                    <p class="text-center">Your Financial Wellness Score:</p>
-                    <p class="big-text"
-                       style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
-                      <?php echo $content[ 'wellness' ][ 'wellness_score' ]; ?></p>
-                    <p class="text-center col-md-12 text-muted no-pad-bottom">
-                        Overall indicator of the likelihood
-                        of achieving all your goals</p>
-                </div>
-                <div class="col-md-6 text-center">
-                    <p class="text-center">Financial Summary: </p>
-                    <p class="col-md-6">Assets</p>
-                    <p class="col-md-6"
-                       style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
-                      <?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'assets' ]) : '- $' . number_format($content[ 'balance' ][ 'assets' ]); ?>
+            <div class="col-md-12 border-bottom-grey green-text-area">
+                <p class="p-top-20">Hey there! We made something for you.</p>
+            </div>
+            <div class="col-md-12 m-top-20">
+                <div class="row">
+                    <p>This is your Financial Planning Guide. It’s here to do
+                        two things:</p>
+                    <div class="row m-top-20">
+                        <div class="col-md-1">
+                            <img src="assets/img/arrow-green.png" alt="">
+                        </div>
+                        <div class="col-md-11">
+                            <h3>Show you where you’re at.</h3>
+                            <p>(Your net worth, your monthly cash flow. All that
+                                good stuff.)</p>
+                        </div>
+                    </div>
+                    <div class="row m-top-20">
+                        <div class="col-md-1">
+                            <img src="assets/img/arrow-green.png" alt="">
+                        </div>
+                        <div class="col-md-11">
+                            <h3>Get you where you want to be.</h3>
+                            <p>(Your goals and aspirations. What really matters.)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <p class="col-md-6 m-top-20">
+                        We’ll start by giving you a clear and honest picture of your current financial situation: what’s working, and what could be working better. Then, we’ll lay out the goals you told us about. We’ll let you know if you’re on track to reach them. Finally, we’ll give you simple, step-by-step instructions to get you closer to the things you care about—whatever they are.
                     </p>
-                    <p class="col-md-6">Liabilities</p>
-                    <p class="col-md-6 border-bottom-grey"
-                       style="color: <?php echo ($content[ 'balance' ][ 'liabilities' ] < 0) ? 'red' : ''; ?>">
-                      <?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'liabilities' ]) : '- $' . number_format((-1) * $content[ 'balance' ][ 'liabilities' ]); ?></p>
-                    <p class="col-md-6">Net Worth:</p>
-                    <p class="col-md-6"><?php echo '+ $' . number_format(($content[ 'balance' ][ 'assets' ] + $content[ 'balance' ][ 'liabilities' ])); ?></p>
-
+                    <p class="m-top-20 col-md-12 green-text">
+                        Sound good? Great. Let’s get started.
+                    </p>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!--==========================
+          Financial overview
+        ============================-->
+    <section id="fin-overview" class="page-break">
+
+        <div class="container">
+            <div class="row-title col-md-12">
+                <h2>Financial Overview</h2>
+            </div>
+            <div class="col-md-12 light-grey-bg p-top-20 p-bot-20">
+                <div class="col-md-12">
+                    <p class="p-top-20"><strong>First things first.</strong>Here’s
+                        a quick look at your finances. We’ll get more in-depth
+                        later.</p>
+                </div>
+            </div>
+            <div class="col-md-12 m-top-40">
+                <h4 class="text-center m-bot-20">Your Financial Wellness
+                    Score:</h4>
+                <p class="text-center grey-text">This number shows you how
+                    likely you are to achieve all your goals </p>
+                <p class="text-center grey-text">(on a scale from 1 to 100. A
+                    higher number means a better score).</p>
+
+                <div class="clearfix">
+                    <div class="col-md-4 col-md-push-4 m-top-40 p-left6">
+                        <style>
+                            .c100:after { border: 1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> }
+                        </style>
+                        <div class="c100 big p<?php echo $content[ 'wellness' ][ 'wellness_score' ];
+                        echo ' color_' . $content[ 'wellness' ][ 'wellness_state_name' ]; ?>"
+                             style="border:1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                            <span style="color:<?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> "><?php echo $content[ 'wellness' ][ 'wellness_score' ]; ?></span>
+                            <div class="slice">
+                                <div class="bar"
+                                     style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
+                                <div class="fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4 col-md-push-4 m-top-20 text-center">
+                        <p class="green-text no-m-bottom font18">Wow!</p>
+                        <p class="green-text no-m-bottom font18">Nice number you
+                            got there.</p>
+                        <p class="green-text font18">We’ll help you keep it
+                            up.</p>
+                    </div>
+                </div>
+                <div class="col-md-12 m-top-90">
+                    <h4 class="text-center">Financial Summary: </h4>
+
+                    <div class="col-md-12 light-grey-bg p-bot-10 m-top-20">
+                        <div class="col-md-6 text-right">
+                            <div class="col-md-3 col-md-offset-3">
+                                <p class="big-line m-top-10">
+                            <strong>What I own:</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-4 m-top-10">
+                                <p class="big-line">
+                            <span style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                            <?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'assets' ]) : '- $' . number_format($content[ 'balance' ][ 'assets' ]); ?>
+                            </span>
+                                </p>
+                            </div>
+                            <div class="col-md-2 m-top-10">
+                            <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? 'green' : 'red' ;?>.png" alt="" class="img-responsive pull-right">
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 5px">
+                            <p class="no-m-bottom">Your assets (like cash and savings) </p>
+                            <p class="no-m-bottom">are what you own. </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 light-grey-bg p-bot-10 m-top-20">
+                        <div class="col-md-6 text-right">
+                            <div class="col-md-3 col-md-offset-3">
+                                <p class="big-line m-top-10">
+                                    <strong>What I own:</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-4 m-top-10">
+                                <p class="big-line">
+                            <span style="color: <?php echo ($content[ 'balance' ][ 'liabilities' ] < 0) ? 'red' : ''; ?>">
+                             <?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'liabilities' ]) : '- $' . number_format((-1) * $content[ 'balance' ][ 'liabilities' ]); ?>
+                            </span>
+                                </p>
+                            </div>
+                            <div class="col-md-2 m-top-10">
+                                <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? 'green' : 'red' ;?>.png" alt="" class="img-responsive pull-right">
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 5px">
+                            <p class="no-m-bottom">Your liabilities (mortgage, student</p>
+                            <p class="no-m-bottom">loans) are what you owe.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <hr style="background: #F9F9FB; width: 100%; height: 2px; margin: 10px 0;">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 light-grey-bg p-bot-10">
+                        <div class="col-md-6 text-right">
+                            <div class="col-md-3 col-md-offset-3">
+                                <p class="big-line m-top-10">
+                                    <strong>Net Worth:</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-4 m-top-10">
+                                <p class="big-line">
+                            <span style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                            <?php echo '+ $' . number_format(($content[ 'balance' ][ 'assets' ] + $content[ 'balance' ][ 'liabilities' ])); ?>
+                            </span>
+                                </p>
+                            </div>
+                            <div class="col-md-2 m-top-10">
+                                <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? 'green' : 'red' ;?>.png" alt="" class="img-responsive pull-right">
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 5px">
+                            <p class="no-m-bottom">We find your net worth by subtracting</p>
+                            <p class="no-m-bottom">what you owe from what you own.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <p class="text-center grey-text m-top-40 ">Voilà!</p>
+        </div>
+    </section>
+
+
 
         <!--==========================
           Goals Summary
         ============================-->
-        <div class="container">
+    <section id="goal-summary" class="page-break">
+
+    <div class="container">
+    <div class="row-title col-md-12">
+        <h2>Financial Overview</h2>
+    </div>
+    <div class="col-md-12 light-grey-bg p-top-20 p-bot-20">
+        <div class="col-md-12">
+            <p class="p-top-20"><strong>Here’s the important stuff: your goals. </strong></p>
+            <p>We talked about which ones matter most to you. Based on that info, we made you this guide. Your goals are color-coded based on priority (high, medium, or low). Priority is also indicated along the side. And your timeline is at the bottom.</p>
+        <p>
+            For each goal, you’ll see a dollar amount, a slider, and a percentage. The dollar amount represents the total amount of money you’ll need to reach that goal. The slider and the percentage tell you how likely you are to achieve it. Remember: this is all based on your current financial situation. We can help make those percentages higher!
+        </p>
+        </div>
+    </div>
             <p class="text-center m-top-20">Goals Summary</p>
         </div>
         <div class="container">
@@ -201,12 +372,17 @@
             </div>
         </div>
         <div class="container m-top-20">
+            <div class="col-md-12">
             <strong><i class="fa fa-question-circle"></i> Likelihood
                 Scores</strong>
-            <p class="text-muted">These are based on WTI Technology and predict
+            </div>
+            <p class="text-muted col-md-7">These are based on WTI Technology and predict
                 how likely you are to
                 achieve your goals at specific milestones throughout your
                 life</p>
+            <p class="col-md-5 text-right">
+                <strong>Page 5</strong>
+            </p>
         </div>
     </section>
 
@@ -222,18 +398,15 @@
                     immediate action: <?php echo date("M Y"); ?></h3>
             </div>
             <div class="col-md-12">
-                <p>Take these steps now to increase the likelihood to meet your
-                    financial goals and secure a brighter
-                    future.</p>
+                <p>Let’s get to work! Here are some steps you can take right now to get you closer to meeting your goals.</p>
             </div>
             <div class="col-md-12 grey-bordered">
-                <h4 class="green-title">Transfer Funds</h4>
-                <p>Each month, we’ll recommend that you transfer funds between
-                    your accounts to keep your assets
-                    working as effectively as possible. For December, we
-                    recommend:</p>
+
                 <div class="col-md-6">
-                    <div class="grey-bg col-md-11 m-top-90">
+                    <h4 class="green-title">Transfer Funds</h4>
+                    <p>Each month, we’ll recommend that you transfer funds between your accounts to keep your money working for you.</p>
+                    <p class="m-top-40"><strong>For <?php echo date("F")?>, we recommend:</strong></p>
+                    <div class="grey-bg col-md-11 m-top-40">
                         <div class="step col-md-3">1</div>
                         <div class="col-md-9 sub-title-2 m-bot-20">
                             <h4 class="">WITHDRAW FUNDS</h4>
@@ -254,21 +427,15 @@
                       <?php } ?>
 
                     </div>
-                    <div class="com-md-1 m-top-90 padd-container">
+                    <div class="col-md-1 m-top-20 padd-container">
                         <img src="assets/img/arrow-right.PNG" alt=""
                              class="center-block">
                     </div>
-                    <div class="col-md-12 m-top-60">
-                        <strong><i class="fa fa-question-circle"></i> Why don’t
-                            these numbers balance?</strong>
-                        <p class="text-muted">We have excluded income and
-                            spending from this
-                            equation as these are not actionable suggestions</p>
-                    </div>
+
                 </div>
                 <div class="col-md-6">
 
-                    <div class="grey-bg col-md-11">
+                    <div class="grey-bg col-md-11 m-top-90">
                         <div class="step col-md-3">2</div>
                         <div class="col-md-9 sub-title-2 m-bot-20">
                             <h4 class="">PAYOFF DEBT</h4>
@@ -341,29 +508,47 @@
                           </div>
                       <?php } ?>
                     </div>
-
                 </div>
+                    <div class="col-md-12 m-top-60">
+                    <div class="col-md-6">
+                        <strong><i class="fa fa-question-circle"></i> Why don’t
+                            these numbers balance?</strong>
+                        <p class="text-muted">We have excluded income and
+                            spending from this
+                            equation as these are not actionable suggestions</p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong><i class="fa fa-question-circle"></i> Will this really make a difference?</strong>
+                        <p class="text-muted">Yes! These numbers may look small, but compounding is a powerful tool.</p>
+                    </div>
+                    </div>
+
             </div>
         </div>
         <div class="container m-top-40">
             <div class="half-block">
                 <div class="col-md-12">
                     <h4 class="green-title">Trim Everyday Expenses</h4>
-                    <p>A small reduction in expenses greatly improves
-                        your chances to reach your goals.
+                    <p>We’ll help you keep an eye on your spending.
                     </p>
                     <div class="col-md-6">
                         <div class="row">
-                            <h4 class="sub-title-2">REDUCE</h4>
+                            <h4 class="sub-title-2">MAINTAIN</h4>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="col-md-9 pinked-bg">
+                            <?php if(!empty($content[ 'expenses' ])){?>
                             <strong><?php echo '$' . $content[ 'expenses' ] . '/month'; ?></strong>
                             <p>
                                 Discretionary
                                 Expenses
                             </p>
+                            <?php } else {?>
+                                <p>
+                                    Nice! Keep it up.
+                                </p>
+  <?php }?>
                         </div>
                     </div>
                 </div>
@@ -373,11 +558,8 @@
             </div>
             <div class="half-block">
                 <div class="col-md-12">
-                    <h4 class="green-title">Take Appropriate Risk</h4>
-                    <p>Depending on your goals, age, and market
-                        conditions, we suggest adjusting your accounts
-                        to balance long term growth and conservative
-                        income-generating assets.</p>
+                    <h4 class="green-title">Make Smart Investments</h4>
+                    <p>Adjust your accounts to balance long term growth and conservative income-generating assets.</p>
                     <div class="col-md-6"></div>
                     <div class="col-md-6">
                         <div class="col-md-6">
@@ -416,6 +598,9 @@
 
                 </div>
             </div>
+            <div class="col-md-12 m-top-40">
+                <p class="text-right"><strong>Page 5</strong></p>
+            </div>
         </div>
     </section>
 
@@ -423,24 +608,51 @@
       Tips
     ============================-->
     <section id="tips" class="page-break">
-        <div class="container padd-container">
-            <div class="section-title">
-                <h3 class="text-left"><span><img src="assets/img/tips.PNG"
-                                                 alt="" class=""></span>
-                    Tips to improve your finances
-                </h3>
+        <div class="container">
+            <div class="col-md-10 padd-container">
+                <div class="section-title">
+                    <h3 class="text-left"><span><img src="assets/img/tips.PNG"
+                                                     alt="" class=""></span>
+                        Tips to improve your finances
+                    </h3>
+                </div>
+                <div class="col-md-12">
+                    <p class="sub-title-3 m-bot-20">Consider Alternatives:
+                        <strong>
+                            Changing your goals</strong> as life unfolds
+                    </p>
+                    <p>By considering alternative scenarios, you may make it
+                        more
+                        likely that you can reach the goals most
+                        important to
+                        you. These examples compare the likelihood for meeting
+                        each
+                        of your goals with a new prediction if you
+                        decide
+                        to change your goals accordingly.</p>
+                </div>
             </div>
-            <div class="col-md-12">
-                <p class="sub-title-3 m-bot-20">Consider Alternatives: <strong>
-                        Changing your goals</strong> as life unfolds
-                </p>
-                <p>By considering alternative scenarios, you may make it more
-                    likely that you can reach the goals most
-                    important to
-                    you. These examples compare the likelihood for meeting each
-                    of your goals with a new prediction if you
-                    decide
-                    to change your goals accordingly.</p>
+            <div class="col-md-2 light-grey-bg">
+                <div class="col-md-11 text-center m-top-40">
+                <p>Your Financial Wellness Score:</p>
+                </div>
+                <div class="">
+                    <div class="m-top-40 p-left6">
+                        <style>
+                            .c100:after { border: 1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> }
+                        </style>
+                        <div class="c100 p<?php echo $content[ 'wellness' ][ 'wellness_score' ];
+                        echo ' color_' . $content[ 'wellness' ][ 'wellness_state_name' ]; ?>"
+                             style="border:1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                            <span style="color:<?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> "><?php echo $content[ 'wellness' ][ 'wellness_score' ]; ?></span>
+                            <div class="slice">
+                                <div class="bar"
+                                     style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
+                                <div class="fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12 grey-bordered m-top-20">
                 <h4 class="green-title"><strong style="color:#000">Alternative
@@ -800,6 +1012,9 @@
                     </p>
                 </div>
             </div>
+            <div class="col-md-12 m-top-40">
+                <p class="text-right"><strong>Page 6</strong></p>
+            </div>
         </div>
     </section>
 
@@ -807,22 +1022,42 @@
       Tips to improve
     ============================-->
     <section id="tip" class="page-break">
-        <div class="container padd-container">
-            <div class="section-title">
-                <h3 class="text-left"><span><img src="assets/img/tips.PNG"
-                                                 alt="" class=""></span>
-                    Tips to improve your finances
-                </h3>
+        <div class="container">
+            <div class="col-md-10 padd-container">
+                <div class="section-title">
+                    <h3 class="text-left"><span><img src="assets/img/tips.PNG"
+                                                     alt="" class=""></span>
+                        Tips to improve your finances
+                    </h3>
+                </div>
+                <div class="col-md-12">
+                    <p class="sub-title-3 m-bot-20 font18">Other Potential <strong>
+                            Tradeoffs :</strong> More ways to get there
+                    </p>
+                    <p>Your goals make a good team. And adjusting your expectations can help them work together. Let’s look at how your ability to meet all your goals can change when you’re flexible about some of them.
+                </div>
             </div>
-            <div class="col-md-12">
-                <p class="sub-title-3 m-bot-20">Other Potential <strong>
-                        Tradeoffs :</strong> More paths to a brighter
-                    future
-                </p>
-                <p>Adjusting your expectations for some goals may make it more
-                    or less likely that you’ll achieve all of
-                    your goals.
-                    Consider tradeoffs such as these:</p>
+            <div class="col-md-2 light-grey-bg">
+                <div class="col-md-11 text-center m-top-40">
+                    <p>Your Financial Wellness Score:</p>
+                </div>
+                <div class="">
+                    <div class="m-top-40 p-left6">
+                        <style>
+                            .c100:after { border: 1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> }
+                        </style>
+                        <div class="c100 p<?php echo $content[ 'wellness' ][ 'wellness_score' ];
+                        echo ' color_' . $content[ 'wellness' ][ 'wellness_state_name' ]; ?>"
+                             style="border:1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
+                            <span style="color:<?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> "><?php echo $content[ 'wellness' ][ 'wellness_score' ]; ?></span>
+                            <div class="slice">
+                                <div class="bar"
+                                     style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
+                                <div class="fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12 grey-bordered m-top-20 no-pad-bottom">
                 <h4 class="green-title"><strong style="color:#000">Tradeoff
@@ -1016,6 +1251,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12 m-top-40">
+                <p class="text-right"><strong>Page 7</strong></p>
+            </div>
         </div>
     </section>
 
@@ -1033,7 +1271,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="sub-title-3 m-bot-20">“What if”? The effects of
+                    <p class="sub-title-3 m-bot-20 font18">"What if"? The effects of
                         <strong> unpredictable change</strong></p>
                     <p>Changes in the overall economy, increasing volatility in
                         financial markets, and disruptions in your
@@ -1238,6 +1476,9 @@
                     </p>
                 </div>
             </div>
+            <div class="col-md-12 m-top-40">
+                <p class="text-right"><strong>Page 8</strong></p>
+            </div>
         </div>
     </section>
 
@@ -1440,6 +1681,9 @@
                     </p>
                 </div>
             </div>
+            <div class="col-md-12 m-top-40">
+                <p class="text-right"><strong>Page 9</strong></p>
+            </div>
         </div>
     </section>
 
@@ -1524,7 +1768,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="green-bg-title">
-                                    <h2 class="col-md-12">Net Worth</h2>
+                                    <h2 class="col-md-12">Cash Flow</h2>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -1565,7 +1809,9 @@
                     </div>
                 </div>
 
-
+                <div class="col-md-12 m-top-40">
+                    <p class="text-right"><strong>Page 10</strong></p>
+                </div>
             </div>
     </section>
 

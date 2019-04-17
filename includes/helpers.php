@@ -114,10 +114,24 @@ function generateColor($wellnessState) {
     $currentBlue = $wellnessState[ 0 ] * $red[ 2 ] + $wellnessState[ 1 ] * $yellow[ 2 ] + $wellnessState[ 2 ] * $green[ 2 ];
   }
 
-  return 'rgb(' . $currentRed . ',' . $currentGreen . ',' . $currentBlue . ','.'1)';
+  return '(' . $currentRed . ',' . $currentGreen . ',' . $currentBlue . ')';
 
 }
 
+/**
+ * Convert from rgb to hex
+ * @param $G
+ * @param $B
+ *
+ * @return string
+ */
+function fromRGB($rgb)
+{
+  $rgbarr = explode(",",$rgb,3);
+  $hex = substr(sprintf("#%02x%02x%02x", $rgbarr[0], $rgbarr[1], $rgbarr[2]), 1);
+
+  return  $hex;
+}
 /**
  * Count round thausand to a K style
  * @param $number
