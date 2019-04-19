@@ -5,10 +5,10 @@
             <strong><?php echo date("M Y"); ?></strong>
         </p>
     </div>
-<div class="col-md-12 green-text-area">
-<p>We believe in financial goal planning built for all of us.</p>
-<p><strong>But this guide’s just for you.</strong></p>
-</div>
+    <div class="col-md-12 green-text-area">
+        <p>We believe in financial goal planning built for all of us.</p>
+        <p><strong>But this guide’s just for you.</strong></p>
+    </div>
     </div>
     <section id="includes" class="">
 
@@ -89,16 +89,24 @@
                         </div>
                         <div class="col-md-11">
                             <h3>Get you where you want to be.</h3>
-                            <p>(Your goals and aspirations. What really matters.)</p>
+                            <p>(Your goals and aspirations. What really
+                                matters.)</p>
                         </div>
                     </div>
                     <div class="row">
-                    <p class="col-md-6 m-top-20">
-                        We’ll start by giving you a clear and honest picture of your current financial situation: what’s working, and what could be working better. Then, we’ll lay out the goals you told us about. We’ll let you know if you’re on track to reach them. Finally, we’ll give you simple, step-by-step instructions to get you closer to the things you care about—whatever they are.
-                    </p>
-                    <p class="m-top-20 col-md-12 green-text">
-                        Sound good? Great. Let’s get started.
-                    </p>
+                        <p class="col-md-6 m-top-20">
+                            We’ll start by giving you a clear and honest picture
+                            of your current financial situation: what’s working,
+                            and what could be working better. Then, we’ll lay
+                            out the goals you told us about. We’ll let you know
+                            if you’re on track to reach them. Finally, we’ll
+                            give you simple, step-by-step instructions to get
+                            you closer to the things you care about—whatever
+                            they are.
+                        </p>
+                        <p class="m-top-20 col-md-12 green-text">
+                            Sound good? Great. Let’s get started.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -162,7 +170,7 @@
                         <div class="col-md-6 text-right">
                             <div class="col-md-3 col-md-offset-3">
                                 <p class="big-line m-top-10">
-                            <strong>What I own:</strong>
+                                    <strong>What I own:</strong>
                                 </p>
                             </div>
                             <div class="col-md-4 m-top-10">
@@ -173,11 +181,13 @@
                                 </p>
                             </div>
                             <div class="col-md-2 m-top-10">
-                            <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? 'green' : 'red' ;?>.png" alt="" class="img-responsive pull-right">
+                                <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? 'green' : 'red'; ?>.png"
+                                     alt="" class="img-responsive pull-right">
                             </div>
                         </div>
                         <div class="col-md-6" style="margin-top: 5px">
-                            <p class="no-m-bottom">Your assets (like cash and savings) </p>
+                            <p class="no-m-bottom">Your assets (like cash and
+                                savings) </p>
                             <p class="no-m-bottom">are what you own. </p>
                         </div>
                     </div>
@@ -197,11 +207,13 @@
                                 </p>
                             </div>
                             <div class="col-md-2 m-top-10">
-                                <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? 'green' : 'red' ;?>.png" alt="" class="img-responsive pull-right">
+                                <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? 'green' : 'red'; ?>.png"
+                                     alt="" class="img-responsive pull-right">
                             </div>
                         </div>
                         <div class="col-md-6" style="margin-top: 5px">
-                            <p class="no-m-bottom">Your liabilities (mortgage, student</p>
+                            <p class="no-m-bottom">Your liabilities (mortgage,
+                                student</p>
                             <p class="no-m-bottom">loans) are what you owe.</p>
                         </div>
 
@@ -228,12 +240,15 @@
                                 </p>
                             </div>
                             <div class="col-md-2 m-top-10">
-                                <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? 'green' : 'red' ;?>.png" alt="" class="img-responsive pull-right">
+                                <img src="assets/img/arrow-<?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? 'green' : 'red'; ?>.png"
+                                     alt="" class="img-responsive pull-right">
                             </div>
                         </div>
                         <div class="col-md-6" style="margin-top: 5px">
-                            <p class="no-m-bottom">We find your net worth by subtracting</p>
-                            <p class="no-m-bottom">what you owe from what you own.</p>
+                            <p class="no-m-bottom">We find your net worth by
+                                subtracting</p>
+                            <p class="no-m-bottom">what you owe from what you
+                                own.</p>
                         </div>
                     </div>
                 </div>
@@ -245,25 +260,35 @@
     </section>
 
 
-
-        <!--==========================
-          Goals Summary
-        ============================-->
+    <!--==========================
+      Goals Summary
+    ============================-->
     <section id="goal-summary" class="page-break">
 
-    <div class="container">
-    <div class="row-title col-md-12">
-        <h2>Financial Overview</h2>
-    </div>
-    <div class="col-md-12 light-grey-bg p-top-20 p-bot-20">
-        <div class="col-md-12">
-            <p class="p-top-20"><strong>Here’s the important stuff: your goals. </strong></p>
-            <p>We talked about which ones matter most to you. Based on that info, we made you this guide. Your goals are color-coded based on priority (high, medium, or low). Priority is also indicated along the side. And your timeline is at the bottom.</p>
-        <p>
-            For each goal, you’ll see a dollar amount, a slider, and a percentage. The dollar amount represents the total amount of money you’ll need to reach that goal. The slider and the percentage tell you how likely you are to achieve it. Remember: this is all based on your current financial situation. We can help make those percentages higher!
-        </p>
-        </div>
-    </div>
+        <div class="container">
+            <div class="row-title col-md-12">
+                <h2>Financial Overview</h2>
+            </div>
+            <div class="col-md-12 light-grey-bg p-top-20 p-bot-20">
+                <div class="col-md-12">
+                    <p class="p-top-20"><strong>Here’s the important stuff: your
+                            goals. </strong></p>
+                    <p>We talked about which ones matter most to you. Based on
+                        that info, we made you this guide. Your goals are
+                        color-coded based on priority (high, medium, or low).
+                        Priority is also indicated along the side. And your
+                        timeline is at the bottom.</p>
+                    <p>
+                        For each goal, you’ll see a dollar amount, a slider, and
+                        a percentage. The dollar amount represents the total
+                        amount of money you’ll need to reach that goal. The
+                        slider and the percentage tell you how likely you are to
+                        achieve it. Remember: this is all based on your current
+                        financial situation. We can help make those percentages
+                        higher!
+                    </p>
+                </div>
+            </div>
             <p class="text-center m-top-20">Goals Summary</p>
         </div>
         <div class="container">
@@ -373,10 +398,11 @@
         </div>
         <div class="container m-top-20">
             <div class="col-md-12">
-            <strong><i class="fa fa-question-circle"></i> Likelihood
-                Scores</strong>
+                <strong><i class="fa fa-question-circle"></i> Likelihood
+                    Scores</strong>
             </div>
-            <p class="text-muted col-md-7">These are based on WTI Technology and predict
+            <p class="text-muted col-md-7">These are based on WTI Technology and
+                predict
                 how likely you are to
                 achieve your goals at specific milestones throughout your
                 life</p>
@@ -398,14 +424,18 @@
                     immediate action: <?php echo date("M Y"); ?></h3>
             </div>
             <div class="col-md-12">
-                <p>Let’s get to work! Here are some steps you can take right now to get you closer to meeting your goals.</p>
+                <p>Let’s get to work! Here are some steps you can take right now
+                    to get you closer to meeting your goals.</p>
             </div>
             <div class="col-md-12 grey-bordered">
 
                 <div class="col-md-6">
                     <h4 class="green-title">Transfer Funds</h4>
-                    <p>Each month, we’ll recommend that you transfer funds between your accounts to keep your money working for you.</p>
-                    <p class="m-top-40"><strong>For <?php echo date("F")?>, we recommend:</strong></p>
+                    <p>Each month, we’ll recommend that you transfer funds
+                        between your accounts to keep your money working for
+                        you.</p>
+                    <p class="m-top-40"><strong>For <?php echo date("F") ?>, we
+                            recommend:</strong></p>
                     <div class="grey-bg col-md-11 m-top-40">
                         <div class="step col-md-3">1</div>
                         <div class="col-md-9 sub-title-2 m-bot-20">
@@ -493,7 +523,8 @@
                                   </div>
                               </div>
                         <?php }
-                      } else { ?>
+                      }
+                      else { ?>
 
                           <div class="col-md-3">
                               <div class="row">
@@ -509,7 +540,7 @@
                       <?php } ?>
                     </div>
                 </div>
-                    <div class="col-md-12 m-top-60">
+                <div class="col-md-12 m-top-60">
                     <div class="col-md-6">
                         <strong><i class="fa fa-question-circle"></i> Why don’t
                             these numbers balance?</strong>
@@ -518,10 +549,12 @@
                             equation as these are not actionable suggestions</p>
                     </div>
                     <div class="col-md-6">
-                        <strong><i class="fa fa-question-circle"></i> Will this really make a difference?</strong>
-                        <p class="text-muted">Yes! These numbers may look small, but compounding is a powerful tool.</p>
+                        <strong><i class="fa fa-question-circle"></i> Will this
+                            really make a difference?</strong>
+                        <p class="text-muted">Yes! These numbers may look small,
+                            but compounding is a powerful tool.</p>
                     </div>
-                    </div>
+                </div>
 
             </div>
         </div>
@@ -538,17 +571,17 @@
                     </div>
                     <div class="col-md-6">
                         <div class="col-md-9 pinked-bg">
-                            <?php if(!empty($content[ 'expenses' ])){?>
-                            <strong><?php echo '$' . $content[ 'expenses' ] . '/month'; ?></strong>
-                            <p>
-                                Discretionary
-                                Expenses
-                            </p>
-                            <?php } else {?>
-                                <p>
-                                    Nice! Keep it up.
-                                </p>
-  <?php }?>
+                          <?php if (!empty($content[ 'expenses' ])) { ?>
+                              <strong><?php echo '$' . $content[ 'expenses' ] . '/month'; ?></strong>
+                              <p>
+                                  Discretionary
+                                  Expenses
+                              </p>
+                          <?php } else { ?>
+                              <p>
+                                  Nice! Keep it up.
+                              </p>
+                          <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -559,7 +592,8 @@
             <div class="half-block">
                 <div class="col-md-12">
                     <h4 class="green-title">Make Smart Investments</h4>
-                    <p>Adjust your accounts to balance long term growth and conservative income-generating assets.</p>
+                    <p>Adjust your accounts to balance long term growth and
+                        conservative income-generating assets.</p>
                     <div class="col-md-6"></div>
                     <div class="col-md-6">
                         <div class="col-md-6">
@@ -634,7 +668,7 @@
             </div>
             <div class="col-md-2 light-grey-bg">
                 <div class="col-md-11 text-center m-top-40">
-                <p>Your Financial Wellness Score:</p>
+                    <p>Your Financial Wellness Score:</p>
                 </div>
                 <div class="">
                     <div class="m-top-40 p-left6">
@@ -1031,10 +1065,14 @@
                     </h3>
                 </div>
                 <div class="col-md-12">
-                    <p class="sub-title-3 m-bot-20 font18">Other Potential <strong>
+                    <p class="sub-title-3 m-bot-20 font18">Other Potential
+                        <strong>
                             Tradeoffs :</strong> More ways to get there
                     </p>
-                    <p>Your goals make a good team. And adjusting your expectations can help them work together. Let’s look at how your ability to meet all your goals can change when you’re flexible about some of them.
+                    <p>Your goals make a good team. And adjusting your
+                        expectations can help them work together. Let’s look at
+                        how your ability to meet all your goals can change when
+                        you’re flexible about some of them.
                 </div>
             </div>
             <div class="col-md-2 light-grey-bg">
@@ -1271,7 +1309,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="sub-title-3 m-bot-20 font18">"What if"? The effects of
+                    <p class="sub-title-3 m-bot-20 font18">"What if"? The
+                        effects of
                         <strong> unpredictable change</strong></p>
                     <p>Changes in the overall economy, increasing volatility in
                         financial markets, and disruptions in your
@@ -1719,48 +1758,56 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="green-bg-title">
-                                <h2 class="col-md-12">Net Worth</h2>
+                                    <h2 class="col-md-12">Net Worth</h2>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                <p class="col-md-12 p-top-10">
-                                    Your Net Worth is the difference between
-                                    yourassets (what you own) and liabilities
-                                    (what you owe).
-                                </p>
-                                <h4 class="col-md-12 table-name">Assets</h4>
-                                    <div class="col-md-12">
-                                <table class="table-responsive" width="100%">
-                                    <tr>
-                                        <td></td>
-                                        <td>Value</td>
-                                        <td>Liquid Value</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Cash</strong></td>
-                                        <td>$5,000</td>
-                                        <td>$5,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Education</strong></td>
-                                        <td>$5</td>
-                                        <td>$0</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Investments</strong></td>
-                                        <td>$5,000</td>
-                                        <td>$5,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>TOTAL</strong></td>
-                                        <td><strong style="color:#4FD3B1">$1,185,001</strong></td>
-                                        <td><strong style="color:#4FD3B1">$1,185,001</strong></td>
+                                    <p class="col-md-12 p-top-10">
+                                        Your Net Worth is the difference between
+                                        yourassets (what you own) and
+                                        liabilities
+                                        (what you owe).
+                                    </p>
+                                </div>
+                              <?php if (!empty($content[ 'networth' ][ 'assets' ])) { ?>
+                                  <div class="col-md-12">
+                                      <h4 class="col-md-12 table-name">
+                                          Assets</h4>
+                                      <div class="col-md-12">
+                                          <table class="table-responsive"
+                                                 width="100%">
+                                              <tr>
+                                                  <td></td>
+                                                  <td>Value</td>
+                                                  <td>Liquid Value</td>
+                                              </tr>
+                                              <?php foreach ($content[ 'networth' ][ 'assets' ] as $asItem) {
+                                                  if(is_array($asItem)){
+                                              ?>
+                                              <tr>
+                                                  <td><strong><?php echo $asItem['name'];?></strong></td>
+                                                  <td><?php echo $asItem['value'];?></td>
+                                                  <td><?php echo $asItem['liquid_value'];?></td>
+                                              </tr>
+                                              <?php } else {?>
+                                              <tr class="total">
+                                                  <td><strong>TOTAL</strong>
+                                                  </td>
+                                                  <td>
+                                                      <strong style="color:#4FD3B1">$1,185,001</strong>
+                                                  </td>
+                                                  <td>
+                                                      <strong style="color:#4FD3B1">$1,185,001</strong>
+                                                  </td>
 
-                                    </tr>
-                                </table>
-                                    </div>
-                            </div>
+                                              </tr>
+                                              <? } }?>
+                                          </table>
+                                      </div>
+                                  </div>
+                              <?php } ?>
+
                             </div>
                         </div>
                     </div>
@@ -1774,13 +1821,13 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <p class="col-md-12 p-top-10">
-                                        Your Net Worth is the difference between
-                                        yourassets (what you own) and liabilities
-                                        (what you owe).
+                                        Your Cash Flow is the difference between
+                                        your income and expenses
                                     </p>
                                     <h4 class="col-md-12">Assets</h4>
                                     <div class="col-md-12">
-                                        <table class="table-responsive" width="100%">
+                                        <table class="table-responsive"
+                                               width="100%">
                                             <tr>
                                                 <td></td>
                                                 <td>Value</td>
@@ -1792,12 +1839,14 @@
                                                 <td>$5,000</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Education</strong></td>
+                                                <td><strong>Education</strong>
+                                                </td>
                                                 <td>$5</td>
                                                 <td>$0</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Investments</strong></td>
+                                                <td><strong>Investments</strong>
+                                                </td>
                                                 <td>$5,000</td>
                                                 <td>$5,000</td>
                                             </tr>

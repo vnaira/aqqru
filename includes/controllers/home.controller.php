@@ -194,6 +194,8 @@ class HomeController {
     $page_content[ 'expenses' ] = $this->getExpenses($data);
     $page_content[ 'risks' ] = $this->getAppropriateRisks($data);
     $page_content[ 'with_draw' ] = $this->getImmediateAction($data);
+    $page_content['networth']= $this->getNetWorth($data);
+    $page_content['cashflow']= $this->getCashFlow($data);
 
     return $page_content;
   }
@@ -237,7 +239,6 @@ class HomeController {
 
 
   public function handleRequest() {
-
     $this->page_content = $this->renderData($this->content);
 
     if (empty($this->content)) {
@@ -249,6 +250,79 @@ class HomeController {
       'content' => $this->page_content,
       'dates' => '',
     ]);
+  }
+
+  /**
+   * Get Net Worth values
+   * @param $data
+   *
+   * @return array
+   */
+  public function getCashFlow($data) {
+    $netWorth = [];
+    $worthData = $data[ 'results' ][ 'current_financials' ][ 'income_statement' ];
+    if (!empty($worthData)) {
+      $cFlowIncomeMonth = 0;
+      $cFlowIncomeAnnual = 0;
+      $cFlowexpenseMonth = 0;
+      $cFlowexpenseAnnual = 0;
+      $cFlowTaxMonth = 0;
+      $cFlowTaxAnnual = 0;
+      foreach ($worthData as $worthItem) {
+        if ($worthItem[ 'category' ] == 'Income') {
+          $netWorth[ 'income' ][] = $worthItem;
+          $cFlowIncomeMonth += $worthItem['current_month_value'];
+          $cFlowIncomeAnnual += $worthItem['annual_value'];
+        }
+        if ($worthItem[ 'category' ] == 'Expense') {
+          $netWorth[ 'expense' ][] = $worthItem;
+          $cFlowexpenseMonth += $worthItem['current_month_value'];
+          $cFlowexpenseAnnual += $worthItem['annual_value'];
+        }
+        if ($worthItem[ 'category' ] == 'Tax') {
+          $netWorth[ 'tax' ][] = $worthItem;
+          $cFlowTaxMonth += $worthItem['current_month_value'];
+          $cFlowTaxAnnual += $worthItem['annual_value'];
+        }
+      }
+      $netWorth[ 'income' ]['monthly'] = $cFlowIncomeMonth;
+      $netWorth[ 'income' ]['annual'] = $cFlowIncomeAnnual;
+      $netWorth[ 'expense' ]['monthly'] = $cFlowexpenseMonth;
+      $netWorth[ 'expense' ]['annual'] = $cFlowexpenseAnnual;
+      $netWorth[ 'tax' ]['monthly'] = $cFlowTaxMonth;
+      $netWorth[ 'tax' ]['annual'] = $cFlowTaxAnnual;
+      return $netWorth;
+    }
+    return null;
+  }
+
+  public function getNetWorth($data){
+    $cashFlow = [];
+    $cahsData = $data[ 'results' ][ 'current_financials' ][ 'balance_sheet' ];
+    if (!empty($cahsData)) {
+      $netWorthValue = 0;
+      $netWorthLiquid = 0;
+      $netWorthLValue = 0;
+      $netWorthLiLiquid = 0;
+      foreach ($cahsData as $worthItem) {
+        if ($worthItem[ 'category' ] == 'Assets') {
+          $cashFlow[ 'assets' ][] = $worthItem;
+          $netWorthValue += $worthItem['value'];
+          $netWorthLiquid += $worthItem['liquid_value'];
+        }
+        if ($worthItem[ 'category' ] == 'Liabilities') {
+          $cashFlow[ 'liability' ][] = $worthItem;
+          $netWorthLValue += $worthItem['value'];
+          $netWorthLiLiquid += $worthItem['liquid_value'];
+        }
+      }
+      $cashFlow[ 'assets' ]['month'] = $netWorthValue;
+      $cashFlow[ 'assets' ]['annual'] = $netWorthLiquid;
+      $cashFlow[ 'liability' ]['month'] = $netWorthLValue;
+      $cashFlow[ 'liability' ]['month'] = $netWorthLiLiquid;
+      return $cashFlow;
+    }
+    return null;
   }
 }
 

@@ -284,6 +284,7 @@ color:#808080;
   background: #f3f1f1;
   height: 2px;
 }
+.total td{ border-top:1px solid #f3f1f1;}
 .scale-line{
     background: url("../img/line-bg.png") repeat-x;
     height: 25px;
