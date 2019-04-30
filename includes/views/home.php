@@ -1516,7 +1516,9 @@
                 </div>
             </div>
             <div class="col-md-12 m-top-40">
-                <p class="text-right"><strong>Page 8</strong></p>
+                <div class="row">
+                    <p class="text-right"><strong>Page 8</strong></p>
+                </div>
             </div>
         </div>
     </section>
@@ -1721,7 +1723,9 @@
                 </div>
             </div>
             <div class="col-md-12 m-top-40">
-                <p class="text-right"><strong>Page 9</strong></p>
+                <div class="row">
+                    <p class="text-right"><strong>Page 9</strong></p>
+                </div>
             </div>
         </div>
     </section>
@@ -1775,39 +1779,131 @@
                                       <h4 class="col-md-12 table-name">
                                           Assets</h4>
                                       <div class="col-md-12">
-                                          <table class="table-responsive"
+                                          <table class="table-responsive table-summ"
                                                  width="100%">
                                               <tr>
                                                   <td></td>
-                                                  <td>Value</td>
-                                                  <td>Liquid Value</td>
+                                                  <td class="text-right">Value
+                                                  </td>
+                                                  <td class="text-right">Liquid
+                                                      Value
+                                                  </td>
                                               </tr>
-                                              <?php foreach ($content[ 'networth' ][ 'assets' ] as $asItem) {
-                                                  if(is_array($asItem)){
-                                              ?>
-                                              <tr>
-                                                  <td><strong><?php echo $asItem['name'];?></strong></td>
-                                                  <td><?php echo $asItem['value'];?></td>
-                                                  <td><?php echo $asItem['liquid_value'];?></td>
-                                              </tr>
-                                              <?php } else {?>
+                                            <?php foreach ($content[ 'networth' ][ 'assets' ] as $asItem) {
+                                              if (is_array($asItem)) {
+                                                ?>
+                                                  <tr>
+                                                      <td>
+                                                          <strong><?php echo $asItem[ 'name' ]; ?></strong>
+                                                      </td>
+                                                      <td class="text-right"><?php echo '$' . number_format(round(abs($asItem[ 'value' ]))); ?></td>
+                                                      <td class="text-right"><?php echo '$' . number_format(round(abs($asItem[ 'liquid_value' ]))); ?></td>
+                                                  </tr>
+                                              <?php }
+                                            } ?>
                                               <tr class="total">
                                                   <td><strong>TOTAL</strong>
                                                   </td>
-                                                  <td>
-                                                      <strong style="color:#4FD3B1">$1,185,001</strong>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'networth' ][ 'assets' ][ 'monthly' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'networth' ][ 'assets' ][ 'monthly' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'networth' ][ 'assets' ][ 'monthly' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
                                                   </td>
-                                                  <td>
-                                                      <strong style="color:#4FD3B1">$1,185,001</strong>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'networth' ][ 'assets' ][ 'annual' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'networth' ][ 'assets' ][ 'annual' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'networth' ][ 'assets' ][ 'annual' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
                                                   </td>
-
                                               </tr>
-                                              <? } }?>
                                           </table>
                                       </div>
                                   </div>
-                              <?php } ?>
-
+                              <? } ?>
+                                <!--                                liability-->
+                              <?php if (!empty($content[ 'networth' ][ 'liability' ])) { ?>
+                                  <div class="col-md-12">
+                                      <h4 class="col-md-12 table-name m-top-20">
+                                          Liabilities </h4>
+                                      <div class="col-md-12">
+                                          <table class="table-responsive table-summ"
+                                                 width="100%">
+                                              <tr>
+                                                  <td></td>
+                                                  <td class="text-right">Value
+                                                  </td>
+                                                  <td class="text-right">Liquid
+                                                      Value
+                                                  </td>
+                                              </tr>
+                                            <?php foreach ($content[ 'networth' ][ 'liability' ] as $asItem) {
+                                              if (is_array($asItem)) {
+                                                ?>
+                                                  <tr>
+                                                      <td>
+                                                          <strong><?php echo $asItem[ 'name' ]; ?></strong>
+                                                      </td>
+                                                      <td class="text-right"><?php echo ($asItem[ 'value' ] >= 0) ? '$' . number_format(round($asItem[ 'value' ])) : '-$' . number_format(round(abs($asItem[ 'value' ]))); ?></td>
+                                                      <td class="text-right"><?php echo ($asItem[ 'liquid_value' ] >= 0) ? '$' . number_format(round($asItem[ 'liquid_value' ])) : '-$' . number_format(round(abs($asItem[ 'liquid_value' ]))); ?></td>
+                                                  </tr>
+                                              <?php }
+                                            } ?>
+                                              <tr class="total">
+                                                  <td><strong>TOTAL</strong>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'networth' ][ 'liability' ][ 'monthly' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'networth' ][ 'liability' ][ 'monthly' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'networth' ][ 'liability' ][ 'monthly' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'networth' ][ 'liability' ][ 'annual' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'networth' ][ 'liability' ][ 'annual' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'networth' ][ 'liability' ][ 'annual' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                      </div>
+                                  </div>
+                              <? } ?>
+                            </div>
+                            <div class="col-md-12 m-top-20 m-bot-20">
+                                <div class="col-md-12">
+                                    <h2 class="col-md-12 green-text">Total Net
+                                        Worth</h2>
+                                    <p class="col-md-12 green-text">
+                                        <small>Since the value of your assets is
+                                            always changing, your net worth can
+                                            vary from day to day.
+                                        </small>
+                                    </p>
+                                    <h2 class="col-md-12 green-text">
+                                      <?php echo '$' . number_format($content[ 'networth' ][ 'assets' ][ 'monthly' ] + $content[ 'networth' ][ 'liability' ][ 'monthly' ]); ?>
+                                    </h2>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1824,44 +1920,311 @@
                                         Your Cash Flow is the difference between
                                         your income and expenses
                                     </p>
-                                    <h4 class="col-md-12">Assets</h4>
-                                    <div class="col-md-12">
-                                        <table class="table-responsive"
-                                               width="100%">
-                                            <tr>
-                                                <td></td>
-                                                <td>Value</td>
-                                                <td>Liquid Value</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Cash</strong></td>
-                                                <td>$5,000</td>
-                                                <td>$5,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Education</strong>
-                                                </td>
-                                                <td>$5</td>
-                                                <td>$0</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Investments</strong>
-                                                </td>
-                                                <td>$5,000</td>
-                                                <td>$5,000</td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                </div>
+                              <?php if (!empty($content[ 'cashflow' ][ 'income' ])) { ?>
+                                  <div class="col-md-12">
+                                      <h4 class="col-md-12 table-name">
+                                          Income</h4>
+                                      <div class="col-md-12">
+                                          <table class="table-responsive table-summ"
+                                                 width="100%">
+                                              <tr>
+                                                  <td></td>
+                                                  <td class="text-right">Value
+                                                  </td>
+                                                  <td class="text-right">Liquid
+                                                      Value
+                                                  </td>
+                                              </tr>
+                                            <?php foreach ($content[ 'cashflow' ][ 'income' ] as $asItem) {
+                                              if (is_array($asItem)) {
+                                                ?>
+                                                  <tr>
+                                                      <td>
+                                                          <strong><?php echo $asItem[ 'name' ]; ?></strong>
+                                                      </td>
+                                                      <td class="text-right"><?php echo '$' . number_format(round(abs($asItem[ 'current_month_value' ]))); ?></td>
+                                                      <td class="text-right"><?php echo '$' . number_format(round(abs($asItem[ 'annual_value' ]))); ?></td>
+                                                  </tr>
+                                              <?php }
+                                            } ?>
+                                              <tr class="total">
+                                                  <td><strong>TOTAL</strong>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'cashflow' ][ 'income' ][ 'monthly' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'income' ][ 'monthly' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'cashflow' ][ 'income' ][ 'monthly' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'cashflow' ][ 'income' ][ 'annual' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'income' ][ 'annual' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'cashflow' ][ 'income' ][ 'annual' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                      </div>
+                                  </div>
+                              <? } ?>
+
+                                <!--expense-->
+                              <?php if (!empty($content[ 'cashflow' ][ 'expense' ])) { ?>
+                                  <div class="col-md-12">
+                                      <h4 class="col-md-12 table-name m-top-20">
+                                          Expenses</h4>
+                                      <div class="col-md-12">
+                                          <table class="table-responsive table-summ"
+                                                 width="100%">
+                                              <tr>
+                                                  <td></td>
+                                                  <td class="text-right">Value
+                                                  </td>
+                                                  <td class="text-right">Liquid
+                                                      Value
+                                                  </td>
+                                              </tr>
+                                            <?php foreach ($content[ 'cashflow' ][ 'expense' ] as $asItem) {
+                                              if (is_array($asItem)) {
+                                                ?>
+                                                  <tr>
+                                                      <td>
+                                                          <strong><?php echo $asItem[ 'name' ]; ?></strong>
+                                                      </td>
+                                                      <td class="text-right"><?php echo ($asItem[ 'current_month_value' ] >= 0) ? '$' . number_format(round($asItem[ 'current_month_value' ])) : '-$' . number_format(round(abs($asItem[ 'current_month_value' ]))); ?></td>
+                                                      <td class="text-right"><?php echo ($asItem[ 'annual_value' ] >= 0) ? '$' . number_format(round($asItem[ 'annual_value' ])) : '-$' . number_format(round(abs($asItem[ 'annual_value' ]))); ?></td>
+                                                  </tr>
+                                              <?php }
+                                            } ?>
+                                              <tr class="total">
+                                                  <td><strong>TOTAL</strong>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'cashflow' ][ 'expense' ][ 'monthly' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'tax' ][ 'monthly' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'cashflow' ][ 'expense' ][ 'monthly' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'cashflow' ][ 'expense' ][ 'annual' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'expense' ][ 'annual' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'cashflow' ][ 'expense' ][ 'annual' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                      </div>
+                                  </div>
+                              <? } ?>
+                                <!--tax-->
+                              <?php if (!empty($content[ 'cashflow' ][ 'expense' ])) { ?>
+                                  <div class="col-md-12">
+                                      <h4 class="col-md-12 table-name m-top-20">
+                                          Taxes</h4>
+                                      <div class="col-md-12">
+                                          <table class="table-responsive table-summ"
+                                                 width="100%">
+                                              <tr>
+                                                  <td></td>
+                                                  <td class="text-right">Value
+                                                  </td>
+                                                  <td class="text-right">Liquid
+                                                      Value
+                                                  </td>
+                                              </tr>
+                                            <?php foreach ($content[ 'cashflow' ][ 'tax' ] as $asItem) {
+                                              if (is_array($asItem)) {
+                                                ?>
+                                                  <tr>
+                                                      <td>
+                                                          <strong><?php echo $asItem[ 'name' ]; ?></strong>
+                                                      </td>
+                                                      <td class="text-right">
+                                                        <?php echo ($asItem[ 'current_month_value' ] >= 0) ? '$' . number_format(round($asItem[ 'current_month_value' ])) : '-$' . number_format(round(abs($asItem[ 'current_month_value' ]))); ?></td>
+                                                      <td class="text-right">
+                                                        <?php echo ($asItem[ 'annual_value' ] >= 0) ? '$' . number_format(round($asItem[ 'annual_value' ])) : '-$' . number_format(round(abs($asItem[ 'annual_value' ]))); ?></td>
+                                                  </tr>
+                                              <?php }
+                                            } ?>
+                                              <tr class="total">
+                                                  <td><strong>TOTAL</strong>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'cashflow' ][ 'tax' ][ 'monthly' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'tax' ][ 'monthly' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'cashflow' ][ 'tax' ][ 'monthly' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                                  <td class="text-right">
+                                                    <?php if ($content[ 'cashflow' ][ 'tax' ][ 'annual' ] < 0) { ?>
+                                                        <strong style="color:#E64E50">
+                                                          <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'tax' ][ 'annual' ])); ?>
+                                                        </strong>
+                                                    <?php } else { ?>
+                                                        <strong style="color:#4FD3B1">
+                                                          <?php echo '+$' . number_format($content[ 'cashflow' ][ 'tax' ][ 'annual' ]); ?>
+                                                        </strong>
+                                                    <?php } ?>
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                      </div>
+                                  </div>
+                              <? } ?>
+                            </div>
+                            <div class="col-md-12 m-top-20 m-bot-20">
+                                <div class="col-md-12">
+                                    <h2 class="col-md-12 green-text">Monthly
+                                        Savings</h2>
+                                    <p class="col-md-12 green-text">
+                                        <small>This number should be about the
+                                            same every month.
+                                        </small>
+                                    </p>
+                                    <h2 class="col-md-12 green-text">
+                                      <?php echo '$' . number_format($content[ 'cashflow' ][ 'income' ][ 'monthly' ] + $content[ 'cashflow' ][ 'tax' ][ 'monthly' ] + $content[ 'cashflow' ][ 'expense' ][ 'monthly' ]); ?>
+                                    </h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-12 m-top-40">
+            <div class="col-md-12 m-top-40">
+                <div class="row">
                     <p class="text-right"><strong>Page 10</strong></p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!--==========================
+              wrapping up
+            ============================-->
+    <section id="prapping-up" class="page-break">
+        <div class="container padd-section">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Wrapping it up</h1>
+                </div>
+                <div class="col-md-12 green-text-area">
+                    <p class="no-m-bottom">We've come a long way together. </p>
+                    <p class="no-m-bottom">And guess what? We’re finally
+                        done! </p>
+                </div>
+            </div>
+            <div class="col-md-12 m-top-20 p-bot-20 light-grey-bg left-black-border">
+                <div class="col-md-12 green-text-area">
+                    <p class="m-top-20">To sum it up, this guide gave
+                        you... </p>
+                </div>
+                <div class="col-md-12">
+                    <div class="row m-top-20">
+                        <div class="col-md-12">
+                            <h4><img src="assets/img/arrow-green.png" alt=""> An
+                                understanding of your current financial position
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row m-top-20">
+                        <div class="col-md-12">
+                            <h4><img src="assets/img/arrow-green.png" alt=""> A
+                                visualization of your life goals (big and small)
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row m-top-20">
+                        <div class="col-md-12">
+                            <h4><img src="assets/img/arrow-green.png" alt="">
+                                Specific actions you can take to improve your
+                                finances and move toward those goals</h4>
+                        </div>
+                    </div>
+                    <div class="row m-top-20">
+                        <div class="col-md-12">
+                            <h4><img src="assets/img/arrow-green.png" alt=""> A
+                                breakdown of all the moving parts that affect
+                                your financial wellness</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 m-top-20 p-bot-20 light-grey-bg left-black-border">
+                <div class="col-md-12 green-text-area">
+                    <p class="m-top-20">So, what’s next for us?</p>
+                    <p>Well, let’s...</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="row m-top-20">
+                        <div class="col-md-12">
+                            <h4><img src="assets/img/arrow-green.png" alt="">
+                                Take care of those recommendations we gave you
+                                back on page X</h4>
+                        </div>
+                    </div>
+                    <div class="row m-top-20">
+                        <div class="col-md-12">
+                            <h4><img src="assets/img/arrow-green.png" alt="">
+                                Set up a check-in once you’ve completed step one
+                                (or a month from now—whichever comes first)</h4>
+                        </div>
+                    </div>
+                    <div class="row m-top-20">
+                        <div class="col-md-12">
+                            <h4><img src="assets/img/arrow-green.png" alt="">
+                                Open up accounts and complete any necessary
+                                documentation</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 m-top-40">
+                <div class="row">
+                    <p class="green-text"><strong>Remember: we’re here for you.</strong></p>
+                    <p class="green-text">
+                        <small>This report was the first step toward the life
+                            you want. But what matters now is that we follow
+                            through with the plan we laid out—and keep talking
+                            to each other.
+                        </small>
+                    </p>
+                    <p class="green-text"><strong>You’re on your way. Let’s keep
+                        moving.</strong></p>
+                </div>
+            </div>
+            <div class="col-md-12 m-top-40">
+                <div class="row">
+                    <p class="text-right"><strong>Page 11</strong></p>
+                </div>
+            </div>
+        </div>
     </section>
 
 

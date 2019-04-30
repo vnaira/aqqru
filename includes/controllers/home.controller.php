@@ -285,12 +285,12 @@ class HomeController {
           $cFlowTaxAnnual += $worthItem['annual_value'];
         }
       }
-      $netWorth[ 'income' ]['monthly'] = $cFlowIncomeMonth;
-      $netWorth[ 'income' ]['annual'] = $cFlowIncomeAnnual;
-      $netWorth[ 'expense' ]['monthly'] = $cFlowexpenseMonth;
-      $netWorth[ 'expense' ]['annual'] = $cFlowexpenseAnnual;
-      $netWorth[ 'tax' ]['monthly'] = $cFlowTaxMonth;
-      $netWorth[ 'tax' ]['annual'] = $cFlowTaxAnnual;
+      $netWorth[ 'income' ]['monthly'] = round($cFlowIncomeMonth);
+      $netWorth[ 'income' ]['annual'] = round($cFlowIncomeAnnual);
+      $netWorth[ 'expense' ]['monthly'] = round($cFlowexpenseMonth);
+      $netWorth[ 'expense' ]['annual'] = round($cFlowexpenseAnnual);
+      $netWorth[ 'tax' ]['monthly'] = round($cFlowTaxMonth);
+      $netWorth[ 'tax' ]['annual'] = round($cFlowTaxAnnual);
       return $netWorth;
     }
     return null;
@@ -316,10 +316,10 @@ class HomeController {
           $netWorthLiLiquid += $worthItem['liquid_value'];
         }
       }
-      $cashFlow[ 'assets' ]['month'] = $netWorthValue;
-      $cashFlow[ 'assets' ]['annual'] = $netWorthLiquid;
-      $cashFlow[ 'liability' ]['month'] = $netWorthLValue;
-      $cashFlow[ 'liability' ]['month'] = $netWorthLiLiquid;
+      $cashFlow[ 'assets' ]['monthly'] = round($netWorthValue);
+      $cashFlow[ 'assets' ]['annual'] = round($netWorthLiquid);
+      $cashFlow[ 'liability' ]['monthly'] = round($netWorthLValue);
+      $cashFlow[ 'liability' ]['annual'] = round($netWorthLiLiquid);
       return $cashFlow;
     }
     return null;

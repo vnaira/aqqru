@@ -267,10 +267,14 @@ color:#808080;
   background: #F5F5F9;
   border-radius: 10px;
 }
+.table-summ tr{height: 30px}
 .trade-table tr td{border: 0 none!important;}
 .light-grey-bg{
   background: #F9F9FB;
   padding-top: 10px;
+}
+.left-black-border{
+  border-left: 11px solid #02153C;
 }
 .no-pad-bottom{
   padding-bottom: 0;
@@ -627,13 +631,6 @@ color:#808080;
 
 /* Video Section
 --------------------------------*/
-#video {
-  background: url(../img/video-bg.jpg) center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 400px;
-  overflow: hidden;
-}
 
 #video .overlay {
   background: rgba(0, 0, 0, 0.85);
