@@ -242,6 +242,74 @@ color:#808080;
   border-radius: 10px;
   padding-top: 10px;
 }
+.pink-bg{
+  background: #FDF6F7;
+  border-top:4px solid #D55672;
+  min-height: 135px;
+}
+.pink-bg h4{
+  color:#D55672;
+  background: #FDF6F7;
+}
+.pink-bg h4:before{
+  content: url(../img/recommend-small.png);
+}
+.pink-title{
+  background: #D55672;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.pink-title h2{
+  color:#fff;
+}
+.panel-border{
+  border: 0 none;
+  box-shadow: none!important;
+  border-top: 2px solid #eee;
+}
+.no-top-border{
+  border-top: 0 none!important;
+}
+.text-on-pannel {
+  background: #fff none repeat scroll 0 0;
+  height: auto;
+  margin-left: -15px;
+  padding: 3px 15px 3px 5px;
+  position: absolute;
+  margin-top: -47px;
+}
+
+.panel {
+  /* for text on pannel */
+  margin-top: 27px !important;
+}
+
+.panel-body {
+  padding-top: 26px !important;
+  padding-bottom: 0!important;
+}
+.deposit-value{
+  min-height: 220px;
+}
+.end-of-arrow{
+  background: url("../img/grow-up-small_.png");
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: -3px;
+}
+.small-value{
+  background: url("../img/grow-up-small.png") repeat-x;
+  display: inline-block;
+  height: 8px;
+}
+.goal-status-color{
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  border-radius: 30px;
+  display: inline-block;
+}
 .half-block{
   width: 49%;
   float: left;
@@ -254,7 +322,7 @@ color:#808080;
   float: left;
 }
 .risk-values{
-  height: 50px;
+  height: 30px;
   padding-top: 10px;
 }
 .goal-row{
@@ -276,6 +344,31 @@ color:#808080;
 .left-black-border{
   border-left: 11px solid #02153C;
 }
+.pay-of-div{
+  min-height: 350px;
+}
+.htitle span {
+  width: auto;
+  height: 50px;
+  position: relative;
+  z-index: 1;
+
+}
+.pink-text{
+  color:#D55672;
+}
+.htitle span:before {
+   content : "";
+   position: absolute;
+   left    : 0;
+   top  : 0;
+   height  : 1px;
+   width   : 30px;
+   border-bottom:4px solid #000;
+   margin-top:1.5em;
+ }
+
+
 .no-pad-bottom{
   padding-bottom: 0;
 }
@@ -297,7 +390,16 @@ color:#808080;
 
 .page-break  { display:block; page-break-before:always; }
 .big-line{line-height: 2}
-.status-image img{margin-right: -5px}
+.status-image {
+  width: 21px;
+  height: 20px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 7px;
+  color:#fff;
+  font-size: 11px;
+  text-align: center;
+}
 .goals-table tr td{
   height: 240px;
   border:1px solid #fff;
@@ -314,6 +416,7 @@ color:#808080;
     border-radius: 10px;
     box-shadow: 0 0 20px 0 #ccc;
     background: white;
+  padding-right: 10px;
 }
 .tipContainer:before {
     content: '';

@@ -67,20 +67,18 @@
                 <h1 class="m-bot-20">Financial Planning Guide </h1>
             </div>
             <div class="col-md-12 border-bottom-grey green-text-area">
-                <p class="p-top-20">Hey there! We made something for you.</p>
+                <p class="p-top-20">An all-in-one roadmap to financial wellness.</p>
             </div>
             <div class="col-md-12 m-top-20">
                 <div class="row">
-                    <p>This is your Financial Planning Guide. It’s here to do
-                        two things:</p>
+                    <p>This guide is designed to do two things:</p>
                     <div class="row m-top-20">
                         <div class="col-md-1">
                             <img src="assets/img/arrow-green.png" alt="">
                         </div>
                         <div class="col-md-11">
-                            <h3>Show you where you’re at.</h3>
-                            <p>(Your net worth, your monthly cash flow. All that
-                                good stuff.)</p>
+                            <h3>Summarize your finances as they stand right now. </h3>
+                            <p>(Your net worth, monthly cash flow, etc.)</p>
                         </div>
                     </div>
                     <div class="row m-top-20">
@@ -88,27 +86,22 @@
                             <img src="assets/img/arrow-green.png" alt="">
                         </div>
                         <div class="col-md-11">
-                            <h3>Get you where you want to be.</h3>
-                            <p>(Your goals and aspirations. What really
-                                matters.)</p>
+                            <h3>Help you reach your goals.</h3>
+                            <p>(Major purchases, long term savings, etc.)</p>
                         </div>
                     </div>
                     <div class="row">
                         <p class="col-md-6 m-top-20">
-                            We’ll start by giving you a clear and honest picture
-                            of your current financial situation: what’s working,
-                            and what could be working better. Then, we’ll lay
-                            out the goals you told us about. We’ll let you know
-                            if you’re on track to reach them. Finally, we’ll
-                            give you simple, step-by-step instructions to get
-                            you closer to the things you care about—whatever
-                            they are.
+                            <strong>We'll start by giving you a clear and honest picture of your current financial situation: what’s working, and what could be working better. Then, we’ll lay out the goals you told us about. We’ll let you know if you’re on track to reach them. Finally, we’ll give you simple, step-by-step instructions to get you closer to the things you care about—whatever they are.</strong>
                         </p>
                         <p class="m-top-20 col-md-12 green-text">
-                            Sound good? Great. Let’s get started.
+                            Let's get started!
                         </p>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-12 m-top-20">
+                <p class="text-right"><strong>Page 2</strong></p>
             </div>
         </div>
     </section>
@@ -257,6 +250,9 @@
         <div class="col-md-12">
             <p class="text-center grey-text m-top-40 ">Voilà!</p>
         </div>
+        <div class="col-md-12 m-top-20">
+            <p class="text-right"><strong>Page 3</strong></p>
+        </div>
     </section>
 
 
@@ -271,21 +267,9 @@
             </div>
             <div class="col-md-12 light-grey-bg p-top-20 p-bot-20">
                 <div class="col-md-12">
-                    <p class="p-top-20"><strong>Here’s the important stuff: your
-                            goals. </strong></p>
-                    <p>We talked about which ones matter most to you. Based on
-                        that info, we made you this guide. Your goals are
-                        color-coded based on priority (high, medium, or low).
-                        Priority is also indicated along the side. And your
-                        timeline is at the bottom.</p>
-                    <p>
-                        For each goal, you’ll see a dollar amount, a slider, and
-                        a percentage. The dollar amount represents the total
-                        amount of money you’ll need to reach that goal. The
-                        slider and the percentage tell you how likely you are to
-                        achieve it. Remember: this is all based on your current
-                        financial situation. We can help make those percentages
-                        higher!
+                    <p class="p-top-20"><strong>This is what really matters: your goals. </strong></p>
+                    <p>We talked about how important they all are. Based on that information, we made you this guide. The priority of your goals (most important, important, or least important) is indicated along the side. You’ll find your timeline at the bottom.</p>
+                    <p>For each goal, we included a dollar amount, a slider, and a percentage. The dollar amount represents the total amount of money you’ll need to reach that goal. The slider and the percentage tell you how likely you are to achieve it based on your current financial situation!
                     </p>
                 </div>
             </div>
@@ -303,17 +287,17 @@
                                 </div>
                             </td>
                             <td class="left-side-title">
-                                <p class="rotate-text high-text">HIGH</p>
+                                <p class="rotate-text high-text">MOST IMPORTANT</p>
                             </td>
                         </tr>
                         <tr>
                             <td class="left-side-title">
-                                <p class="rotate-text mid-text">MEDIUM</p>
+                                <p class="rotate-text mid-text">IMPORTANT</p>
                             </td>
                         </tr>
                         <tr>
                             <td class="left-side-title">
-                                <p class="rotate-text low-text">LOW</p>
+                                <p class="rotate-text low-text">LEAST IMPORTANT</p>
                             </td>
                         </tr>
                     </table>
@@ -337,7 +321,7 @@
                                           <!-- goal item-->
                                           <div class="goal-item tipContainer drag"
                                                id="<?php echo $value[ 'name' ]; ?>"
-                                               style="margin-top: <?php echo (!$is_single) ? '45px' : ''; ?>">
+                                               style="margin-top: <?php echo (!$is_single) ? '50px' : '0'; ?>">
                                               <div class="tipContent">
                                                   <div class="goal-icon col-md-5">
 
@@ -354,8 +338,7 @@
                                                       <div class="row">
                                                           <div class="status-line text-left"
                                                                style="padding-left: 20%">
-                                                              <img src="assets/img/more-big.png"
-                                                                   alt="">
+                                                              <span class="goal-status-color" style="background: #4FD3B1; margin-left: <?php echo ($value[ 'achievability' ] - 10).'%'?>"></span>
                                                           </div>
                                                       </div>
                                                   </div>
@@ -381,15 +364,16 @@
                 </div>
                 <div class="col-md-12">
                     <div class="grid-container2">
-                        <table width="90%">
+                        <table width="93%">
                             <tr>
                               <?php foreach ($content[ 'year_grid' ] as $grid_item) { ?>
                                   <td class="text-right">
-                                      <div class="col-md-12">
+                                      <div class="">
                                           <strong><?php echo $grid_item; ?></strong>
                                       </div>
                                   </td>
                               <?php } ?>
+                                <td></td>
                             </tr>
                         </table>
                     </div>
@@ -418,221 +402,243 @@
     <section id="recommend" class="page-break">
         <div class="container padd-container">
             <div class="section-title">
-                <h3 class="text-left"><span><img src="assets/img/recommend.PNG"
-                                                 alt="" class=""></span>Recommendations
-                    for
-                    immediate action: <?php echo date("M Y"); ?></h3>
+                <h3 class="text-left">
+                    <span>
+                        <img src="assets/img/recommend.PNG" alt="" class="">
+                    </span>
+                    Recommendation for immediate
+                    action: <?php echo date("M Y"); ?></h3>
             </div>
             <div class="col-md-12">
-                <p>Let’s get to work! Here are some steps you can take right now
-                    to get you closer to meeting your goals.</p>
+                <div class="row">
+                    <p>Let's get to work! Here are some steps you can take right
+                        now to get you closer to meeting your goals.</p></div>
             </div>
-            <div class="col-md-12 grey-bordered">
 
-                <div class="col-md-6">
-                    <h4 class="green-title">Transfer Funds</h4>
-                    <p>Each month, we’ll recommend that you transfer funds
-                        between your accounts to keep your money working for
-                        you.</p>
-                    <p class="m-top-40"><strong>For <?php echo date("F") ?>, we
-                            recommend:</strong></p>
-                    <div class="grey-bg col-md-11 m-top-40">
-                        <div class="step col-md-3">1</div>
-                        <div class="col-md-9 sub-title-2 m-bot-20">
-                            <h4 class="">WITHDRAW FUNDS</h4>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="panel panel-border">
+                        <div class="panel-body">
+                            <h4 class="text-on-pannel">Recommendation
+                                Categories</h4>
                         </div>
-                      <?php foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
-                          <div class="col-md-3">
-                              <div class="row">
-
-                                  <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
-                              </div>
-                          </div>
-                          <div class="col-md-9 sub-title-2">
-                              <div class="row">
-                                  <strong><?php echo $draw_item[ 'withdraw_name' ]; ?></strong>
-                                  <p>(annual amount: $10k)</p>
-                              </div>
-                          </div>
-                      <?php } ?>
-
                     </div>
-                    <div class="col-md-1 m-top-20 padd-container">
-                        <img src="assets/img/arrow-right.PNG" alt=""
-                             class="center-block">
-                    </div>
-
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="pink-bg col-md-12">
 
-                    <div class="grey-bg col-md-11 m-top-90">
-                        <div class="step col-md-3">2</div>
-                        <div class="col-md-9 sub-title-2 m-bot-20">
-                            <h4 class="">PAYOFF DEBT</h4>
+                        <h4>Open Accounts & Transfer Funds</h4>
+                        <div class="col-md-12">
+                            <p>Each month, we'll recommend that you open
+                                accounts and/or transfer funds between your
+                                existing accounts to keep your money working for
+                                you. </p>
                         </div>
-                      <?php if (!empty($content[ 'with_draw' ][ 'deposit' ])) { ?>
-                        <?php foreach ($content[ 'deposit' ] as $depositItem) { ?>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pink-bg col-md-12">
+                        <h4>Track Everyday Expenses</h4>
+                        <div class="col-md-12">
+                            <p>We’ll help you keep an eye on your spending.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pink-bg col-md-12">
+                        <h4>Make Smart Investments</h4>
+                        <div class="col-md-12">
+                            <p>Adjust your accounts to balance long term growth
+                                and conservative income-generating assets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 m-top-20">
+                <div class="row">
+                    <div class="panel panel-border">
+                        <div class="panel-body">
+                            <h4 class="text-on-pannel">This month's
+                                recommendations</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 pink-title">
+                <h2>Where to focus this month:</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="light-grey-bg col-md-12 pay-of-div">
+
+                        <h4 class="htitle col-md-12 pink-text"><span>WITHDRAW FUNDS</span>
+                        </h4>
+                        <div class="col-md-12 m-top-20">
+                          <?php foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
+                              <div class="col-md-12">
+                                  <div class="row">
+                                      <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
+                                  </div>
+                              </div>
+                              <div class="col-md-12 sub-title-2">
+                                  <div class="row">
+                                      <strong><?php echo $draw_item[ 'withdraw_name' ]; ?></strong>
+                                      <p>(annual amount: $10k)</p>
+                                  </div>
+                              </div>
+                          <?php } ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="light-grey-bg col-md-12 pay-of-div">
+                        <h4 class="htitle col-md-12 pink-text"><span>PAY OFF DEBT</span>
+                        </h4>
+                        <div class="col-md-12 m-top-20">
+                          <?php if (!empty($content[ 'with_draw' ][ 'deposit' ])) { ?>
+                            <?php foreach ($content[ 'deposit' ] as $depositItem) { ?>
+                                  <div class="col-md-12">
+                                      <div class="row">
+                                          <strong><?php echo $depositItem[ 'deposit' ]; ?></strong>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-12 sub-title-2">
+                                      <div class="row">
+                                          <p>
+                                              <strong><?php echo $depositItem[ 'deposit_name' ]; ?></strong>
+                                              <span>ending 0078</span></p>
+                                      </div>
+                                  </div>
+                            <?php }
+                          }
+                          else { ?>
                               <div class="col-md-3">
                                   <div class="row">
-                                      <strong><?php echo $depositItem[ 'deposit' ]; ?></strong>
+
                                   </div>
                               </div>
-                              <div class="col-md-9 sub-title-2">
+                              <div class="col-md-12 sub-title-2">
                                   <div class="row">
-                                      <p>
-                                          <strong><?php echo $depositItem[ 'deposit_name' ]; ?></strong>
-                                          <span>ending 0078</span></p>
+                                      <p>Well done!
+                                      </p>
+                                      <p>No deposits necessary.</p>
                                   </div>
                               </div>
-                        <?php }
-                      }
-                      else { ?>
-                          <div class="col-md-3">
-                              <div class="row">
+                          <?php } ?>
 
-                              </div>
-                          </div>
-                          <div class="col-md-9 sub-title-2">
-                              <div class="row">
-                                  <p>Well done!
-                                  </p>
-                                  <p>No deposits necessary.</p>
-                              </div>
-                          </div>
-                      <?php } ?>
-                    </div>
-
-
-                    <div class="grey-bg col-md-11 m-top-20">
-                        <div class="step col-md-3">3</div>
-                        <div class="col-md-9 sub-title-2 m-bot-20">
-                            <h4 class="">SAVE AND INVEST</h4>
-                        </div>
-                      <?php if (!empty($content[ 'with_draw' ][ 'save' ])) { ?>
-                        <?php foreach ($content[ 'with_draw' ][ 'save' ] as $saveItem) { ?>
-                              <div class="col-md-3">
-                                  <div class="row">
-                                      <strong><?php echo '$' . number_format($saveItem[ 'save' ]); ?></strong>
-                                  </div>
-                              </div>
-                              <div class="col-md-9 sub-title-2">
-                                  <div class="row">
-                                      <p>
-                                          <strong><?php echo $saveItem[ 'save_name' ]; ?></strong>
-                                          <span>(annual amount: $10k)</span></p>
-                                  </div>
-                              </div>
-                        <?php }
-                      }
-                      else { ?>
-
-                          <div class="col-md-3">
-                              <div class="row">
-
-                              </div>
-                          </div>
-                          <div class="col-md-9 sub-title-2">
-                              <div class="row">
-                                  <p>Well done!</p>
-                                  <p>No invests necessary.</p>
-                              </div>
-                          </div>
-                      <?php } ?>
-                    </div>
-                </div>
-                <div class="col-md-12 m-top-60">
-                    <div class="col-md-6">
-                        <strong><i class="fa fa-question-circle"></i> Why don’t
-                            these numbers balance?</strong>
-                        <p class="text-muted">We have excluded income and
-                            spending from this
-                            equation as these are not actionable suggestions</p>
-                    </div>
-                    <div class="col-md-6">
-                        <strong><i class="fa fa-question-circle"></i> Will this
-                            really make a difference?</strong>
-                        <p class="text-muted">Yes! These numbers may look small,
-                            but compounding is a powerful tool.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="container m-top-40">
-            <div class="half-block">
-                <div class="col-md-12">
-                    <h4 class="green-title">Trim Everyday Expenses</h4>
-                    <p>We’ll help you keep an eye on your spending.
-                    </p>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <h4 class="sub-title-2">MAINTAIN</h4>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="col-md-9 pinked-bg">
-                          <?php if (!empty($content[ 'expenses' ])) { ?>
-                              <strong><?php echo '$' . $content[ 'expenses' ] . '/month'; ?></strong>
-                              <p>
-                                  Discretionary
-                                  Expenses
-                              </p>
-                          <?php } else { ?>
-                              <p>
-                                  Nice! Keep it up.
-                              </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="light-grey-bg col-md-12 pay-of-div ">
+                        <h4 class="htitle col-md-12 pink-text"><span>Make Smart Investments</span>
+                        </h4>
+                        <div class="col-md-12 m-top-20">
+                            <div class="">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <small>INCOME</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row text-right">
+                                        <small>GROWTH</small>
+                                    </div>
+                                </div>
+                            </div>
+                          <?php foreach ($content[ 'risks' ] as $riskItem) { ?>
+                              <div class="col-md-12">
+                                  <div class="row risk-values">
+                                      <div style="width: <?php echo $riskItem[ 'value' ] . '%' ?>; background: #000; height: 10px; border-radius: 5px; float: left"></div>
+                                      <div style="width: <?php echo (100 - $riskItem[ 'value' ]) . '%' ?>; background: #D55672; height: 10px; border-radius: 5px; float: left"></div>
+                                  </div>
+                              </div>
+                              <div class="col-md-12">
+                                  <div class="row">
+                                      <strong>
+                                        <?php echo $riskItem[ 'name' ]; ?>
+                                      </strong>
+                                      <p>
+                                          <small>Name of Account</small>
+                                      </p>
+                                  </div>
+                              </div>
                           <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="middle-block">
-                <div class="col-md-12"></div>
+
+            <div class="col-md-12 green-bg-title m-top-40">
+                <h2>Don’t worry about these this month:</h2>
             </div>
-            <div class="half-block">
-                <div class="col-md-12">
-                    <h4 class="green-title">Make Smart Investments</h4>
-                    <p>Adjust your accounts to balance long term growth and
-                        conservative income-generating assets.</p>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <strong>
-                                    <small>INCOME</small>
-                                </strong>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row text-right">
-                                <strong class="">
-                                    <small>GROWTH</small>
-                                </strong>
-                            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="light-grey-bg col-md-12 deposit-value">
+                        <h4 class="htitle col-md-12 green-text"><span>DEPOSIT FUNDS</span>
+                        </h4>
+                        <div class="col-md-12 m-top-20">
+                          <?php foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
+                              <div class="col-md-12">
+                                  <div class="row">
+                                      <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
+                                  </div>
+                              </div>
+                              <div class="col-md-12 sub-title-2">
+                                  <div class="row">
+                                      <strong><?php echo $draw_item[ 'withdraw_name' ]; ?></strong>
+                                      <p>(annual amount: $10k)</p>
+                                  </div>
+                              </div>
+                          <?php } ?>
                         </div>
                     </div>
-                  <?php foreach ($content[ 'risks' ] as $riskItem) { ?>
-                      <div class="col-md-6">
-                          <div class="row">
-                              <strong>
-                                <?php echo $riskItem[ 'name' ]; ?>
-                              </strong>
-                              <p>
-                                  <small>Name of Account</small>
-                              </p>
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="row risk-values">
-                              <div style="width: <?php echo $riskItem[ 'value' ] . '%' ?>; background: #A074CC; height: 10px; border-radius: 5px; float: left"></div>
-                              <div style="width: <?php echo (100 - $riskItem[ 'value' ]) . '%' ?>; background: #CB81B2; height: 10px; border-radius: 5px; float: left"></div>
-                          </div>
-                      </div>
-                  <?php } ?>
-
+                </div>
+                <div class="col-md-4">
+                    <div class="light-grey-bg col-md-12 deposit-value">
+                        <h4 class="htitle col-md-12 green-text"><span>EVERYDAY  EXPENSES</span>
+                        </h4>
+                        <div class="col-md-12 m-top-20">
+                                <div class="">
+                                  <?php if (!empty($content[ 'expenses' ])) { ?>
+                                      <strong><?php echo '$' . $content[ 'expenses' ] . '/month'; ?></strong>
+                                      <p>
+                                          Discretionary
+                                          Expenses
+                                      </p>
+                                  <?php } else { ?>
+                                      <strong>
+                                          Nice! Keep it up.
+                                      </strong>
+                                  <?php } ?>
+                                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-12 m-top-40">
+
+            <div class="row m-top-60">
+                <div class="col-md-12">
+                    <strong><i class="fa fa-question-circle"></i> Will this
+                        really make a difference?</strong>
+                    <p class="text-muted">Yes! These numbers may look small,
+                        but compounding is a powerful tool.</p>
+                </div>
+                <div class="col-md-12">
+                    <strong><i class="fa fa-question-circle"></i> Why don’t
+                        these numbers balance?</strong>
+                    <p class="text-muted">We have excluded income and
+                        spending from this
+                        equation as these are not actionable suggestions</p>
+                </div>
+            </div>
+            <div class="col-md-12">
                 <p class="text-right"><strong>Page 5</strong></p>
             </div>
         </div>
@@ -655,20 +661,16 @@
                         <strong>
                             Changing your goals</strong> as life unfolds
                     </p>
-                    <p>By considering alternative scenarios, you may make it
-                        more
-                        likely that you can reach the goals most
-                        important to
-                        you. These examples compare the likelihood for meeting
-                        each
-                        of your goals with a new prediction if you
-                        decide
-                        to change your goals accordingly.</p>
+                    <p>It's good to dream big. And it’s good to be flexible.
+                        Think about changing some of your goals—it might make it
+                        easier to achieve the ones that really matter. These
+                        examples show how your ability to meet all your goals
+                        can change if you adjust one of them. </p>
                 </div>
             </div>
             <div class="col-md-2 light-grey-bg">
                 <div class="col-md-11 text-center m-top-40">
-                    <p>Your Financial Wellness Score:</p>
+                    <p>Your Current Financial Wellness Score:</p>
                 </div>
                 <div class="">
                     <div class="m-top-40 p-left6">
@@ -689,9 +691,9 @@
                 </div>
             </div>
             <div class="col-md-12 grey-bordered m-top-20">
-                <h4 class="green-title"><strong style="color:#000">Alternative
-                        1: </strong>Buy house with cash instead of
-                    financing</h4>
+                <h4 class="green-title">
+                    <strong style="color:#000">Alternative 1: </strong>
+                    Buy house with cash instead of financing</h4>
                 <div class="row grey-title">
                     <div class="col-md-4 text-center">
                         <h4>YOUR GOALS</h4>
@@ -708,10 +710,9 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
-                                <img src="assets/img/yelloq.png" alt="">
-                            <img src="assets/img/grow-down-small.png" alt="">
-                            <img src="assets/img/more.png" alt=""></span>
+                                  style="margin-left: 57%; background: #4FD3B1">
+57
+                               </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -727,8 +728,9 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
-                            <img src="assets/img/more.png" alt=""></span>
+                                  style="margin-left: 100%; background: #4FD3B1">
+                                100
+                            </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -745,9 +747,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -764,10 +764,14 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+                                  style="margin-left: 3%; background: #D55672">
+3
+                            </span>
+                                <span class="small-value" style="width: 39%"></span>
+                                <span class="end-of-arrow"></span>
+                                <span class="status-image"
+                                      style="margin-left: 0%; background: #4FD3B1">
+43
                             </span>
                             </div>
                         </div>
@@ -784,11 +788,8 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
-                            </span>
+                                  style="margin-left: 0%; background: #D55672">
+                           0 </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -806,9 +807,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 37%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -827,7 +826,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 77%;">
-                               <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -845,7 +844,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 27%;">
-                            <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -876,9 +875,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 57%;">
-                                <img src="assets/img/yelloq.png" alt="">
-                            <img src="assets/img/grow-down-small.png" alt="">
-                            <img src="assets/img/more.png" alt=""></span>
+                               </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -895,7 +892,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 57%;">
-                            <img src="assets/img/more.png" alt=""></span>
+                            </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -912,9 +909,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -932,9 +927,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -952,9 +945,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -973,9 +964,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 37%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -994,9 +983,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 77%;">
-                                <img src="assets/img/yelloq.png" alt="">
-                            <img src="assets/img/grow-down-small.png" alt="">
-                            <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -1014,9 +1001,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 27%;">
-                             <img src="assets/img/yelloq.png" alt="">
-                            <img src="assets/img/grow-down-small.png" alt="">
-                            <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -1069,15 +1054,13 @@
                         <strong>
                             Tradeoffs :</strong> More ways to get there
                     </p>
-                    <p>Your goals make a good team. And adjusting your
-                        expectations can help them work together. Let’s look at
-                        how your ability to meet all your goals can change when
-                        you’re flexible about some of them.
+                    <p>Your goals make a good team. And adjusting your expectations can help them work together. Let’s look at how your ability to meet all your goals can change when you’re flexible about some of them.</p>
+                    <p>Note: In these charts, the colors of dots represent what your Financial Wellness Score would be if you made the adjustments indicated in both the X and the Y axes. For example: retiring at age 60 and contributing $200 monthly to cancer research would generate a high overall score, as indicated by the green dot.</p>
                 </div>
             </div>
             <div class="col-md-2 light-grey-bg">
                 <div class="col-md-11 text-center m-top-40">
-                    <p>Your Financial Wellness Score:</p>
+                    <p>Your Current Financial Wellness Score:</p>
                 </div>
                 <div class="">
                     <div class="m-top-40 p-left6">
@@ -1167,31 +1150,7 @@
 
                     </table>
                 </div>
-                <div class="row light-grey-bg">
-                    <div class="col-md-12">
-                        <p>
-                            <small><img src="assets/img/red-circle.PNG" alt=""
-                                        width="12"
-                                        class="stat-desc"><span>Less Likely</span>
-                                you’ll meet all your goals
-                            </small>
-                        </p>
-                        <p>
-                            <small><img src="assets/img/yellow-circle.PNG"
-                                        alt="" width="12"
-                                        class="stat-desc"><span>Same Likelihood</span>
-                                you’ll meet all your goals
-                            </small>
-                        </p>
-                        <p>
-                            <small><img src="assets/img/green-circle.PNG" alt=""
-                                        width="12"
-                                        class="stat-desc"><span>More Likely</span>
-                                you’ll meet all your goals
-                            </small>
-                        </p>
-                    </div>
-                </div>
+
             </div>
             <div class="col-md-12 grey-bordered m-top-20 no-pad-bottom">
                 <h4 class="green-title"><strong style="color:#000">Tradeoff
@@ -1263,6 +1222,8 @@
 
                     </table>
                 </div>
+            </div>
+            <div class="col-md-12 m-top-40">
                 <div class="row light-grey-bg">
                     <div class="col-md-12">
                         <p>
@@ -1495,8 +1456,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 m-top-20">
-                <div class="row">
+            <div class="col-md-12 m-top-20 light-grey-bg">
+                <div class="">
                     <p>
                         <small><span class="red-text">Less Likely:</span>Smaller
                             chance you’ll meet all your goals
@@ -2135,9 +2096,7 @@
                     <h1>Wrapping it up</h1>
                 </div>
                 <div class="col-md-12 green-text-area">
-                    <p class="no-m-bottom">We've come a long way together. </p>
-                    <p class="no-m-bottom">And guess what? We’re finally
-                        done! </p>
+                    <p class="no-m-bottom">Let’s do a quick review.</p>
                 </div>
             </div>
             <div class="col-md-12 m-top-20 p-bot-20 light-grey-bg left-black-border">
@@ -2178,15 +2137,14 @@
             </div>
             <div class="col-md-12 m-top-20 p-bot-20 light-grey-bg left-black-border">
                 <div class="col-md-12 green-text-area">
-                    <p class="m-top-20">So, what’s next for us?</p>
-                    <p>Well, let’s...</p>
+                    <p class="m-top-20">So, what’s next?</p>
                 </div>
                 <div class="col-md-12">
                     <div class="row m-top-20">
                         <div class="col-md-12">
                             <h4><img src="assets/img/arrow-green.png" alt="">
                                 Take care of those recommendations we gave you
-                                back on page X</h4>
+                                back on page 5</h4>
                         </div>
                     </div>
                     <div class="row m-top-20">
