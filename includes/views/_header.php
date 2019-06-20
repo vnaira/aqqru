@@ -27,7 +27,7 @@
 </head> 
 <body>
 <div class="container">
-    <div class="col-md-12 p-top-10">
+    <div class="col-md-12 p-top-10 m-top-90">
         <img src="assets/img/logos.png" alt="">
     </div>
     <div class="col-md-12">

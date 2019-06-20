@@ -7,7 +7,7 @@ if(empty($_GET)){
 		$c = new HomeController();
 	}
 	else throw new Exception('Wrong page!');
-	
+
 	$c->handleRequest();
 }
 catch(Exception $e) {

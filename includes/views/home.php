@@ -5,8 +5,8 @@
             <strong><?php echo date("M Y"); ?></strong>
         </p>
     </div>
-    <div class="col-md-12 green-text-area">
-        <p>We believe in financial goal planning built for all of us.</p>
+    <div class="col-md-12 green-text-area m-top-20">
+        <p style="font-size: 30px;">We believe in financial goal planning built for all of us.</p>
         <p><strong>But this guide’s just for you.</strong></p>
     </div>
     </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-1">
-                        <img src="assets/img/scenario.PNG" alt="img"
+                        <img src="assets/img/scenario.png" alt="img"
                              class="img-responsive center-block">
                     </div>
                     <div class="col-md-11">
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-12 m-top-20">
                 <div class="row">
-                    <p>This guide is designed to do two things:</p>
+                    <p><strong>This guide is designed to do two things:</strong></p>
                     <div class="row m-top-20">
                         <div class="col-md-1">
                             <img src="assets/img/arrow-green.png" alt="">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <p class="col-md-6 m-top-20">
+                        <p class="col-md-7 m-top-20">
                             <strong>We'll start by giving you a clear and honest picture of your current financial situation: what’s working, and what could be working better. Then, we’ll lay out the goals you told us about. We’ll let you know if you’re on track to reach them. Finally, we’ll give you simple, step-by-step instructions to get you closer to the things you care about—whatever they are.</strong>
                         </p>
                         <p class="m-top-20 col-md-12 green-text">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 m-top-20">
+            <div class="col-md-12 m-top-300">
                 <p class="text-right"><strong>Page 2</strong></p>
             </div>
         </div>
@@ -112,7 +112,7 @@
     <section id="fin-overview" class="page-break">
 
         <div class="container">
-            <div class="row-title col-md-12">
+            <div class="row-title col-md-12 m-top-40">
                 <h2>Financial Overview</h2>
             </div>
             <div class="col-md-12 light-grey-bg p-top-20 p-bot-20">
@@ -123,8 +123,8 @@
                 </div>
             </div>
             <div class="col-md-12 m-top-40">
-                <h4 class="text-center m-bot-20">Your Financial Wellness
-                    Score:</h4>
+                <h3 class="text-center m-bot-20">Your Financial Wellness
+                    Score:</h3>
                 <p class="text-center grey-text">This number shows you how
                     likely you are to achieve all your goals </p>
                 <p class="text-center grey-text">(on a scale from 1 to 100. A
@@ -156,12 +156,12 @@
                             up.</p>
                     </div>
                 </div>
-                <div class="col-md-12 m-top-90">
-                    <h4 class="text-center">Financial Summary: </h4>
+                <div class="col-md-12 m-top-40">
+                    <h3 class="text-center">Financial Summary: </h3>
 
                     <div class="col-md-12 light-grey-bg p-bot-10 m-top-20">
                         <div class="col-md-6 text-right">
-                            <div class="col-md-3 col-md-offset-3">
+                            <div class="col-md-4 col-md-offset-2">
                                 <p class="big-line m-top-10">
                                     <strong>What I own:</strong>
                                 </p>
@@ -187,7 +187,7 @@
 
                     <div class="col-md-12 light-grey-bg p-bot-10 m-top-20">
                         <div class="col-md-6 text-right">
-                            <div class="col-md-3 col-md-offset-3">
+                            <div class="col-md-4 col-md-offset-2">
                                 <p class="big-line m-top-10">
                                     <strong>What I own:</strong>
                                 </p>
@@ -220,7 +220,7 @@
 
                     <div class="col-md-12 light-grey-bg p-bot-10">
                         <div class="col-md-6 text-right">
-                            <div class="col-md-3 col-md-offset-3">
+                            <div class="col-md-4 col-md-offset-2">
                                 <p class="big-line m-top-10">
                                     <strong>Net Worth:</strong>
                                 </p>
@@ -262,7 +262,7 @@
     <section id="goal-summary" class="page-break">
 
         <div class="container">
-            <div class="row-title col-md-12">
+            <div class="row-title col-md-12 m-top-40">
                 <h2>Financial Overview</h2>
             </div>
             <div class="col-md-12 light-grey-bg p-top-20 p-bot-20">
@@ -385,13 +385,13 @@
                 <strong><i class="fa fa-question-circle"></i> Likelihood
                     Scores</strong>
             </div>
-            <p class="text-muted col-md-7">These are based on WTI Technology and
+            <p class="text-muted col-md-12">These are based on WTI Technology and
                 predict
                 how likely you are to
                 achieve your goals at specific milestones throughout your
                 life</p>
-            <p class="col-md-5 text-right">
-                <strong>Page 5</strong>
+            <p class="col-md-12 text-right">
+                <strong>Page 4</strong>
             </p>
         </div>
     </section>
@@ -402,12 +402,12 @@
     <section id="recommend" class="page-break">
         <div class="container padd-container">
             <div class="section-title">
-                <h3 class="text-left">
+                <h1 class="text-left">
                     <span>
-                        <img src="assets/img/recommend.PNG" alt="" class="">
+                        <img src="assets/img/recommends.png" alt="" class="">
                     </span>
                     Recommendation for immediate
-                    action: <?php echo date("M Y"); ?></h3>
+                    action: <?php echo date("M Y"); ?></h1>
             </div>
             <div class="col-md-12">
                 <div class="row">
@@ -651,10 +651,10 @@
         <div class="container">
             <div class="col-md-10 padd-container">
                 <div class="section-title">
-                    <h3 class="text-left"><span><img src="assets/img/tips.PNG"
+                    <h1 class="text-left"><span><img src="assets/img/tip.png"
                                                      alt="" class=""></span>
                         Tips to improve your finances
-                    </h3>
+                    </h1>
                 </div>
                 <div class="col-md-12">
                     <p class="sub-title-3 m-bot-20">Consider Alternatives:
@@ -669,7 +669,7 @@
                 </div>
             </div>
             <div class="col-md-2 light-grey-bg">
-                <div class="col-md-11 text-center m-top-40">
+                <div class="col-md-11 text-center m-top-40 scoped-p">
                     <p>Your Current Financial Wellness Score:</p>
                 </div>
                 <div class="">
@@ -711,7 +711,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 57%; background: #4FD3B1">
-57
+                                    57
                                </span>
                             </div>
                         </div>
@@ -874,7 +874,8 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
+                                  style="margin-left: 57%; background: #4FD3B1">
+                                    57
                                </span>
                             </div>
                         </div>
@@ -891,7 +892,8 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
+                                  style="margin-left: 100%; background: #4FD3B1">
+                                100
                             </span>
                             </div>
                         </div>
@@ -913,8 +915,8 @@
                             </span>
                             </div>
                         </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="green-text">More Likely</p>
+                        <div class="col-md-4 col-md-push-1"><p
+                                    class="green-text">More Likely</p>
                         </div>
                     </div>
                 </div>
@@ -926,8 +928,14 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-
+                                  style="margin-left: 3%; background: #D55672">
+3
+                            </span>
+                                <span class="small-value" style="width: 39%"></span>
+                                <span class="end-of-arrow"></span>
+                                <span class="status-image"
+                                      style="margin-left: 0%; background: #4FD3B1">
+43
                             </span>
                             </div>
                         </div>
@@ -944,9 +952,8 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-
-                            </span>
+                                  style="margin-left: 0%; background: #D55672">
+                           0 </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -988,7 +995,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
+                            <p class="text-muted">Little Change</p>
                         </div>
                     </div>
                 </div>
@@ -1006,7 +1013,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
+                            <p class="text-muted">Little Change</p>
                         </div>
                     </div>
                 </div>
@@ -1044,10 +1051,10 @@
         <div class="container">
             <div class="col-md-10 padd-container">
                 <div class="section-title">
-                    <h3 class="text-left"><span><img src="assets/img/tips.PNG"
+                    <h1 class="text-left"><span><img src="assets/img/tip.png"
                                                      alt="" class=""></span>
                         Tips to improve your finances
-                    </h3>
+                    </h1>
                 </div>
                 <div class="col-md-12">
                     <p class="sub-title-3 m-bot-20 font18">Other Potential
@@ -1059,7 +1066,7 @@
                 </div>
             </div>
             <div class="col-md-2 light-grey-bg">
-                <div class="col-md-11 text-center m-top-40">
+                <div class="col-md-11 text-center m-top-40 scoped-p">
                     <p>Your Current Financial Wellness Score:</p>
                 </div>
                 <div class="">
@@ -1081,8 +1088,8 @@
                 </div>
             </div>
             <div class="col-md-12 grey-bordered m-top-20 no-pad-bottom">
-                <h4 class="green-title"><strong style="color:#000">Tradeoff
-                        1: </strong> Retire later and/or contribute less
+                <h4 class="green-title"><strong style="color:#000">Tradeoff 1:
+                    </strong> Retire later and/or contribute less
                     to cancer research</h4>
                 <div class="row">
                     <div class="col-md-12 grey-line"></div>
@@ -1096,14 +1103,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-muted">Monthly
+                            <td class="text-muted" width="20%">Monthly
                                 Contribution
                             </td>
-                            <td> 56</td>
-                            <td> 58</td>
-                            <td> 60</td>
-                            <td> 62</td>
-                            <td> 64</td>
+                            <td width="16%"> 56</td>
+                            <td width="16%"> 58</td>
+                            <td width="16%"> 60</td>
+                            <td width="16%"> 62</td>
+                            <td width="16%"> 64</td>
                         </tr>
                         <tr>
                             <td>$1,000
@@ -1168,14 +1175,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-muted">Cost to start your
+                            <td class="text-muted" width="20%">Cost to start your
                                 own business
                             </td>
-                            <td>56</td>
-                            <td>58</td>
-                            <td>60</td>
-                            <td>62</td>
-                            <td>64</td>
+                            <td width="16%">56</td>
+                            <td width="16%">58</td>
+                            <td width="16%">60</td>
+                            <td width="16%">62</td>
+                            <td width="16%">64</td>
                         </tr>
                         <tr>
                             <td>$76,000
@@ -1263,10 +1270,10 @@
     <section id="scenario" class="page-break">
         <div class="container padd-container">
             <div class="section-title">
-                <h3 class="text-left"><span><img src="assets/img/scenario.PNG"
+                <h1 class="text-left"><span><img src="assets/img/scenarios.png"
                                                  alt="" class=""></span>
                     Scenarios that can impact your goals and expectations
-                </h3>
+                </h1>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -1309,10 +1316,9 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
-                                <img src="assets/img/yelloq.png" alt="">
-                            <img src="assets/img/grow-down-small.png" alt="">
-                            <img src="assets/img/more.png" alt=""></span>
+                                  style="margin-left: 57%; background: #4FD3B1">
+                                    57
+                               </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -1328,8 +1334,9 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
-                            <img src="assets/img/more.png" alt=""></span>
+                                  style="margin-left: 100%; background: #4FD3B1">
+                                100
+                            </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -1346,9 +1353,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -1365,10 +1370,14 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+                                  style="margin-left: 3%; background: #D55672">
+3
+                            </span>
+                                <span class="small-value" style="width: 39%"></span>
+                                <span class="end-of-arrow"></span>
+                                <span class="status-image"
+                                      style="margin-left: 0%; background: #4FD3B1">
+43
                             </span>
                             </div>
                         </div>
@@ -1385,11 +1394,8 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
-                            </span>
+                                  style="margin-left: 0%; background: #D55672">
+                           0 </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -1407,9 +1413,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 37%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+
                             </span>
                             </div>
                         </div>
@@ -1428,12 +1432,12 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 77%;">
-                               <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
+                            <p class="text-muted">Little Change</p>
                         </div>
                     </div>
                 </div>
@@ -1446,12 +1450,12 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 27%;">
-                            <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
+                            <p class="text-muted">Little Change</p>
                         </div>
                     </div>
                 </div>
@@ -1490,10 +1494,10 @@
     <section id="scenarios" class="page-break">
         <div class="container padd-container ">
             <div class="section-title">
-                <h3 class="text-left"><span><img src="assets/img/scenario.PNG"
+                <h1 class="text-left"><span><img src="assets/img/scenarios.png"
                                                  alt="" class=""></span>
                     Scenarios that can impact your goals and expectations
-                </h3>
+                </h1>
             </div>
             <div class="col-md-12 grey-bordered m-top-20">
                 <h4 class="green-title"><strong style="color:#000">Scenario
@@ -1516,10 +1520,9 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
-                                <img src="assets/img/yelloq.png" alt="">
-                            <img src="assets/img/grow-down-small.png" alt="">
-                            <img src="assets/img/more.png" alt=""></span>
+                                  style="margin-left: 57%; background: #4FD3B1">
+                                    57
+                               </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -1535,8 +1538,9 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 57%;">
-                            <img src="assets/img/more.png" alt=""></span>
+                                  style="margin-left: 100%; background: #4FD3B1">
+                                100
+                            </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
@@ -1553,9 +1557,7 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+20
                             </span>
                             </div>
                         </div>
@@ -1572,10 +1574,12 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+                                  style="margin-left: 3%; background: #D55672">3
+                            </span>
+                                <span class="small-value" style="width: 39%"></span>
+                                <span class="end-of-arrow"></span>
+                                <span class="status-image"
+                                      style="margin-left: 0%; background: #4FD3B1">43
                             </span>
                             </div>
                         </div>
@@ -1592,10 +1596,12 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 20%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+                                  style="margin-left: 3%; background: #D55672">3
+                            </span>
+                                <span class="small-value" style="width: 39%"></span>
+                                <span class="end-of-arrow"></span>
+                                <span class="status-image"
+                                      style="margin-left: 0%; background: #4FD3B1">43
                             </span>
                             </div>
                         </div>
@@ -1612,11 +1618,13 @@
                         </div>
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 37%;">
-                                <img src="assets/img/redq.png" alt="">
-                            <img src="assets/img/grow-up-small.png" alt="">
-                            <img src="assets/img/yelloq.png" alt="">
+                                 <span class="status-image"
+                                       style="margin-left: 10%; background: #D55672">10
+                            </span>
+                                <span class="small-value" style="width: 10%"></span>
+                                <span class="end-of-arrow"></span>
+                                <span class="status-image"
+                                      style="margin-left: 0%; background: #4FD3B1">20
                             </span>
                             </div>
                         </div>
@@ -1635,12 +1643,12 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 77%;">
-                               <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
+                            <p class="text-muted">Little Change</p>
                         </div>
                     </div>
                 </div>
@@ -1653,12 +1661,12 @@
                             <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
                                   style="margin-left: 27%;">
-                            <img src="assets/img/more.png" alt="">
+
                             </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
+                            <p class="text-muted">Little Change</p>
                         </div>
                     </div>
                 </div>
@@ -2107,30 +2115,30 @@
                 <div class="col-md-12">
                     <div class="row m-top-20">
                         <div class="col-md-12">
-                            <h4><img src="assets/img/arrow-green.png" alt=""> An
+                            <h3><img src="assets/img/arrow-green.png" alt=""> An
                                 understanding of your current financial position
-                            </h4>
+                            </h3>
                         </div>
                     </div>
                     <div class="row m-top-20">
                         <div class="col-md-12">
-                            <h4><img src="assets/img/arrow-green.png" alt=""> A
+                            <h3><img src="assets/img/arrow-green.png" alt=""> A
                                 visualization of your life goals (big and small)
-                            </h4>
+                            </h3>
                         </div>
                     </div>
                     <div class="row m-top-20">
                         <div class="col-md-12">
-                            <h4><img src="assets/img/arrow-green.png" alt="">
+                            <h3><img src="assets/img/arrow-green.png" alt="">
                                 Specific actions you can take to improve your
-                                finances and move toward those goals</h4>
+                                finances and move toward those goals</h3>
                         </div>
                     </div>
                     <div class="row m-top-20">
                         <div class="col-md-12">
-                            <h4><img src="assets/img/arrow-green.png" alt=""> A
+                            <h3><img src="assets/img/arrow-green.png" alt=""> A
                                 breakdown of all the moving parts that affect
-                                your financial wellness</h4>
+                                your financial wellness</h3>
                         </div>
                     </div>
                 </div>
@@ -2142,23 +2150,23 @@
                 <div class="col-md-12">
                     <div class="row m-top-20">
                         <div class="col-md-12">
-                            <h4><img src="assets/img/arrow-green.png" alt="">
+                            <h3><img src="assets/img/arrow-green.png" alt="">
                                 Take care of those recommendations we gave you
-                                back on page 5</h4>
+                                back on page 5</h3>
                         </div>
                     </div>
                     <div class="row m-top-20">
                         <div class="col-md-12">
-                            <h4><img src="assets/img/arrow-green.png" alt="">
+                            <h3><img src="assets/img/arrow-green.png" alt="">
                                 Set up a check-in once you’ve completed step one
-                                (or a month from now—whichever comes first)</h4>
+                                (or a month from now—whichever comes first)</h3>
                         </div>
                     </div>
                     <div class="row m-top-20">
                         <div class="col-md-12">
-                            <h4><img src="assets/img/arrow-green.png" alt="">
+                            <h3><img src="assets/img/arrow-green.png" alt="">
                                 Open up accounts and complete any necessary
-                                documentation</h4>
+                                documentation</h3>
                         </div>
                     </div>
                 </div>
