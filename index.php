@@ -3,7 +3,7 @@
 require_once "includes/main.php";
 
 try {
-if(empty($_GET)){
+if(!empty($_POST)){
 		$c = new HomeController();
 	}
 	else throw new Exception('Wrong page!');

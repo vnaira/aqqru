@@ -3,15 +3,9 @@
 /* These are helper functions */
 
 function render($template,$vars = array()){
-	
-	// This function takes the name of a template and
-	// a list of variables, and renders it.
-	
-	// This will create variables from the array:
+		// This will create variables from the array:
 	extract($vars);
-	
-	// It can also take an array of objects
-	// instead of a template name.
+
 	if(is_array($template)){
 		
 		// If an array was passed, it will loop
@@ -26,10 +20,6 @@ function render($template,$vars = array()){
 			
 			include "views/_$cl.php";
 		}
-		
-	}
-	else {
-		include "views/$template.php";
 	}
 }
 
@@ -78,19 +68,10 @@ function defineYear($goal, $person) {
         $dt = new DateTime($item);
         $period[] = $dt->format('Y');
       }
-//      if ($key == 'end_date') {
-//        $dt = new DateTime($item);
-//        $period[] = $dt->format('Y');
-//      }
       if ( $key == 'target_date') {
         $dt = new DateTime($item);
         $period[] = $dt->format('Y');
       }
-//      if ( $key == 'months') {
-//        $datetime = new \DateTime();
-//        $datetime->modify('+' . $item . ' months');
-//        $period[] = $datetime->format('Y');
-//      }
     }
   }
   return min($period);
