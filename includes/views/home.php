@@ -142,7 +142,7 @@
                             <div class="slice">
                                 <div class="bar"
                                      style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
-                                <div class="fill"></div>
+                                <div class="fill" style="border: 0.08em solid  <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
                             </div>
                         </div>
                     </div>
@@ -338,7 +338,7 @@
                                                       <div class="row">
                                                           <div class="status-line text-left"
                                                                style="padding-left: 20%">
-                                                              <span class="goal-status-color" style="background: #4FD3B1; margin-left: <?php echo ($value[ 'achievability' ] - 10).'%'?>"></span>
+                                                              <span class="goal-status-color" style="background:<?php echo $value[ 'state' ]?> ; margin-left: <?php echo ($value[ 'achievability' ] - 10).'%'?>"></span>
                                                           </div>
                                                       </div>
                                                   </div>
@@ -684,7 +684,7 @@
                             <div class="slice">
                                 <div class="bar"
                                      style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
-                                <div class="fill"></div>
+                                <div class="fill" style="border: 0.08em solid  <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
                             </div>
                         </div>
                     </div>
@@ -1081,7 +1081,7 @@
                             <div class="slice">
                                 <div class="bar"
                                      style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
-                                <div class="fill"></div>
+                                <div class="fill" style="border: 0.08em solid  <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
                             </div>
                         </div>
                     </div>

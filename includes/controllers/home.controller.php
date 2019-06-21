@@ -74,6 +74,7 @@ class HomeController {
             foreach ($results as $resultItem) {
               if ($item[ 'id' ] == $resultItem[ 'id' ]) {
                 $item[ 'achievability' ] = $resultItem[ 'achievability' ];
+                $item ['state'] = 'rgb'.generateColor($resultItem[ 'state' ]);
                 $goal_item[ $key ] = $item;
               }
             }
@@ -176,15 +177,15 @@ class HomeController {
 
 
   public function renderData($data) {
-    $this->goals = $this->modifyGoalsList($data[ 'avatar' ][ 'goals' ]);
+    $this->goals = $this->modifyGoalsList($data[ 'goals' ]);
     $page_content = [];
 
-    $page_content[ 'person_name' ] = $this->getPersonName($data[ 'avatar' ]);
-    $page_content[ 'year_grid' ] = $this->getGridYears($this->goals,$this->getPersonAge($data[ 'avatar' ]));
+    $page_content[ 'person_name' ] = $this->getPersonName($data);
+    $page_content[ 'year_grid' ] = $this->getGridYears($this->goals,$this->getPersonAge($data));
     $page_content[ 'priority' ] = $this->getPriorityList();
 
     $page_content[ 'goals_list' ] = $this->setAchievability($this->goals, $data[ 'results' ][ 'goal_results' ]);
-    $page_content[ 'person_age' ] = $this->getPersonAge($data[ 'avatar' ]);
+    $page_content[ 'person_age' ] = $this->getPersonAge($data);
     $page_content[ 'wellness' ] = [
       'wellness_score' => $this->content[ 'results' ][ 'avatar_results' ][ 'wellness_score' ],
       'wellness_state' => 'rgb'.generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ]),
