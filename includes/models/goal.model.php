@@ -10,19 +10,35 @@ class Goal {
 
   public static function getAll() {
 
-    $token = $GLOBALS['key'];
-    $ch = curl_init($GLOBALS['url']);
+    $data="";
+    if (isset($_POST[ "data" ])) {
+      $data = $_POST[ "data" ];
+    }
+    /*
+    controls the RESTful services
+    URL mapping
+    */
+    if (empty($data)) {
+      $statusCode = 404;
+      $rawData = ['error' => 'No data found!'];
+    }
+    else {
+      $statusCode = 200;
+    }
 
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json  charset=utf-8',
-      'Authorization: Bearer ' . $token
-    ));
-
-    $data = curl_exec($ch);
-    $info = curl_getinfo($ch);
-    curl_close($ch);
+//    $token = $GLOBALS['key'];
+//    $ch = curl_init($GLOBALS['url']);
+//
+//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//
+//    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+//      'Content-Type: application/json  charset=utf-8',
+//      'Authorization: Bearer ' . $token
+//    ));
+//
+//    $data = curl_exec($ch);
+//    $info = curl_getinfo($ch);
+//    curl_close($ch);
 
 //    $data = '{
 //  "avatar_id": "e64c5f6e-8469-49d9-a5d8-d7e7cd014ee8",

@@ -245,12 +245,15 @@ class HomeController {
     if (empty($this->content)) {
       throw new Exception("There is no such data!");
     }
-
+    ob_start();
     render('home', [
       'title' => 'Financial Planning Guide',
       'content' => $this->page_content,
       'dates' => '',
     ]);
+    $output = ob_get_contents();
+    ob_end_clean();
+    return $output;
   }
 
   /**
