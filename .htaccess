@@ -3,4 +3,4 @@ Options +FollowSymlinks
 RewriteEngine on
 
 # map neat URL to internal URL
-RewriteRule ^getAvatarResult$ index.php[nc,qsa]
+RewriteRule ^getAvatarResult$ form.php[nc,qsa]
