@@ -6,11 +6,46 @@ class HomeController {
 
   private $content;
   private $goals = [];
+  private $messageObject = [];
+  private $tradeoffs = [];
+  private $scenarioes = [];
 
   private $page_content = [];
 
   public function __construct() {
-    $this->content = Goal::getAll();
+    $this->messageObject = Goal::getAll();
+    $this->content = $this->messageObject['fullAvatar'];
+    $this->tradeoffs = $this->messageObject['tradeoffs'];
+    $this->scenarioes = $this->messageObject['scenarioes'];
+  }
+
+  public function renderData($data) {
+    $this->goals = $this->modifyGoalsList($data[ 'goal_results' ]);
+    $page_content = [];
+
+//    $page_content[ 'person_name' ] = $this->getPersonName($data);
+//    $page_content[ 'year_grid' ] = $this->getGridYears($this->goals,$this->getPersonAge($data));
+    $page_content[ 'priority' ] = $this->getPriorityList();
+
+    $page_content[ 'goals_list' ] = $this->setAchievability($this->goals, $data[ 'results' ][ 'goal_results' ]);
+    $page_content[ 'person_age' ] = $this->getPersonAge($data);
+    $page_content[ 'wellness' ] = [
+      'wellness_score' => $this->content[ 'avatar_results' ][ 'wellness_score' ],
+      'wellness_state' => 'rgb'.generateColor($this->content[ 'avatar_results' ][ 'wellness_state' ]),
+      'wellness_state_name' => fromRGB(generateColor($this->content[ 'avatar_results' ][ 'wellness_state' ]))
+    ];
+    $page_content[ 'balance' ] = $this->getAssets($data);
+    $page_content[ 'expenses' ] = $this->getExpenses($data);
+    $page_content[ 'risks' ] = $this->getAppropriateRisks($data);
+    $page_content[ 'with_draw' ] = $this->getImmediateAction($data);
+    $page_content['networth']= $this->getNetWorth($data);
+    $page_content['cashflow']= $this->getCashFlow($data);
+
+//    new in page content scenarioes and tradeoffs
+    $page_content['tradeoffs']= $this->tradeoffs;
+    $page_content['scenarioes']= $this->scenarioes;
+
+    return $page_content;
   }
 
   public function getPersonName($data) {
@@ -40,7 +75,7 @@ class HomeController {
    * @return number
    */
   public function getAssets($data) {
-    $balance_sheet = $data[ 'results' ][ 'current_financials' ][ 'balance_sheet' ];
+    $balance_sheet = $data[ 'current_financials' ][ 'balance_sheet' ];
     $balance = [];
     $asset = 0;
     $liability = 0;
@@ -97,7 +132,7 @@ class HomeController {
     $actions_w = [];
     $actions_d = [];
     $immediateActions = [];
-    $invesAllocation = $data[ 'results' ][ 'guidance' ][ 'capital_allocation' ];
+    $invesAllocation = $data[ 'guidence' ][ 'capital_allocation' ];
     foreach ($invesAllocation as $investItem) {
       switch ($investItem[ 'action_name' ]) {
         case "Withdraw":
@@ -146,7 +181,7 @@ class HomeController {
 
 
   public function getExpenses($data) {
-    $incomes = $data[ 'results' ][ 'current_financials' ][ 'income_statement' ];
+    $incomes = $data[ 'current_financials' ][ 'income_statement' ];
     $expenses = 0;
     if (!empty($incomes)) {
       foreach ($incomes as $incomeItem) {
@@ -162,7 +197,8 @@ class HomeController {
    * @return array
    */
   public function getAppropriateRisks($data) {
-    $risks = $data[ 'results' ][ 'guidance' ][ 'investment_allocation' ];
+    $risks = [];
+    $risks = $data[ 'guidence' ][ 'investment_allocation' ];
     $apprRisks = [];
     $riskIt = [];
     if (!empty($risks)) {
@@ -174,33 +210,6 @@ class HomeController {
     }
     return $apprRisks;
   }
-
-
-  public function renderData($data) {
-    $this->goals = $this->modifyGoalsList($data[ 'goals' ]);
-    $page_content = [];
-
-    $page_content[ 'person_name' ] = $this->getPersonName($data);
-    $page_content[ 'year_grid' ] = $this->getGridYears($this->goals,$this->getPersonAge($data));
-    $page_content[ 'priority' ] = $this->getPriorityList();
-
-    $page_content[ 'goals_list' ] = $this->setAchievability($this->goals, $data[ 'results' ][ 'goal_results' ]);
-    $page_content[ 'person_age' ] = $this->getPersonAge($data);
-    $page_content[ 'wellness' ] = [
-      'wellness_score' => $this->content[ 'results' ][ 'avatar_results' ][ 'wellness_score' ],
-      'wellness_state' => 'rgb'.generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ]),
-      'wellness_state_name' => fromRGB(generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ]))
-    ];
-    $page_content[ 'balance' ] = $this->getAssets($data);
-    $page_content[ 'expenses' ] = $this->getExpenses($data);
-    $page_content[ 'risks' ] = $this->getAppropriateRisks($data);
-    $page_content[ 'with_draw' ] = $this->getImmediateAction($data);
-    $page_content['networth']= $this->getNetWorth($data);
-    $page_content['cashflow']= $this->getCashFlow($data);
-
-    return $page_content;
-  }
-
 
   public function getGridYears($goals, $person_age) {
     $years = [];
@@ -264,7 +273,7 @@ class HomeController {
    */
   public function getCashFlow($data) {
     $netWorth = [];
-    $worthData = $data[ 'results' ][ 'current_financials' ][ 'income_statement' ];
+    $worthData = $data[ 'current_financials' ][ 'income_statement' ];
     if (!empty($worthData)) {
       $cFlowIncomeMonth = 0;
       $cFlowIncomeAnnual = 0;
@@ -302,7 +311,7 @@ class HomeController {
 
   public function getNetWorth($data){
     $cashFlow = [];
-    $cahsData = $data[ 'results' ][ 'current_financials' ][ 'balance_sheet' ];
+    $cahsData = $data[ 'current_financials' ][ 'balance_sheet' ];
     if (!empty($cahsData)) {
       $netWorthValue = 0;
       $netWorthLiquid = 0;

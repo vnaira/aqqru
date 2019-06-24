@@ -1500,9 +1500,8 @@
                 </h1>
             </div>
             <div class="col-md-12 grey-bordered m-top-20">
-                <h4 class="green-title"><strong style="color:#000">Scenario
-                        2: </strong>10 year US Treasury Bond rate raises
-                    by 3% in 12 months
+                <h4 class="green-title"><strong style="color:#000">Scenario 2:
+                    </strong>You lose your job and remain unemployed for 6 months
                 </h4>
                 <div class="row grey-title">
                     <div class="col-md-4 text-center">

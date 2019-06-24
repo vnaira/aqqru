@@ -11,8 +11,8 @@ class Goal {
   public static function getAll() {
 
     $data="";
-    if (isset($_POST[ "data" ])) {
-      $data = $_POST[ "data" ];
+    if (isset($_POST[ "message" ])) {
+      $data = $_POST[ "message" ];
     }
     /*
     controls the RESTful services
@@ -25,6 +25,8 @@ class Goal {
     else {
       $statusCode = 200;
     }
+    return json_decode($data,true);
+
 
 //    $token = $GLOBALS['key'];
 //    $ch = curl_init($GLOBALS['url']);
@@ -362,6 +364,6 @@ class Goal {
 //    }
 //  }
 //}';
-    return json_decode($data,true);
+//    return json_decode($data,true);
   }
 }
