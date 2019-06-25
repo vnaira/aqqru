@@ -20,19 +20,19 @@ class HomeController {
   }
 
   public function renderData($data) {
-    $this->goals = $this->modifyGoalsList($data[ 'goal_results' ]);
+    $this->goals = $this->modifyGoalsList($data[ 'goals' ]);
     $page_content = [];
 
-//    $page_content[ 'person_name' ] = $this->getPersonName($data);
-//    $page_content[ 'year_grid' ] = $this->getGridYears($this->goals,$this->getPersonAge($data));
+    $page_content[ 'person_name' ] = $this->getPersonName($data);
+    $page_content[ 'year_grid' ] = $this->getGridYears($this->goals,$this->getPersonAge($data));
     $page_content[ 'priority' ] = $this->getPriorityList();
 
     $page_content[ 'goals_list' ] = $this->setAchievability($this->goals, $data[ 'results' ][ 'goal_results' ]);
     $page_content[ 'person_age' ] = $this->getPersonAge($data);
     $page_content[ 'wellness' ] = [
-      'wellness_score' => $this->content[ 'avatar_results' ][ 'wellness_score' ],
-      'wellness_state' => 'rgb'.generateColor($this->content[ 'avatar_results' ][ 'wellness_state' ]),
-      'wellness_state_name' => fromRGB(generateColor($this->content[ 'avatar_results' ][ 'wellness_state' ]))
+      'wellness_score' => $this->content['results'][ 'avatar_results' ][ 'wellness_score' ],
+      'wellness_state' => 'rgb'.generateColor($this->content['results'][ 'avatar_results' ][ 'wellness_state' ]),
+      'wellness_state_name' => fromRGB(generateColor($this->content['results'][ 'avatar_results' ][ 'wellness_state' ]))
     ];
     $page_content[ 'balance' ] = $this->getAssets($data);
     $page_content[ 'expenses' ] = $this->getExpenses($data);
@@ -75,7 +75,7 @@ class HomeController {
    * @return number
    */
   public function getAssets($data) {
-    $balance_sheet = $data[ 'current_financials' ][ 'balance_sheet' ];
+    $balance_sheet = $data['results'][ 'current_financials' ][ 'balance_sheet' ];
     $balance = [];
     $asset = 0;
     $liability = 0;
@@ -132,7 +132,7 @@ class HomeController {
     $actions_w = [];
     $actions_d = [];
     $immediateActions = [];
-    $invesAllocation = $data[ 'guidence' ][ 'capital_allocation' ];
+    $invesAllocation = $data['results'][ 'guidence' ][ 'capital_allocation' ];
     foreach ($invesAllocation as $investItem) {
       switch ($investItem[ 'action_name' ]) {
         case "Withdraw":
@@ -181,7 +181,7 @@ class HomeController {
 
 
   public function getExpenses($data) {
-    $incomes = $data[ 'current_financials' ][ 'income_statement' ];
+    $incomes = $data['results'][ 'current_financials' ][ 'income_statement' ];
     $expenses = 0;
     if (!empty($incomes)) {
       foreach ($incomes as $incomeItem) {
@@ -198,7 +198,7 @@ class HomeController {
    */
   public function getAppropriateRisks($data) {
     $risks = [];
-    $risks = $data[ 'guidence' ][ 'investment_allocation' ];
+    $risks = $data['results'][ 'guidence' ][ 'investment_allocation' ];
     $apprRisks = [];
     $riskIt = [];
     if (!empty($risks)) {
@@ -216,7 +216,7 @@ class HomeController {
     foreach ($goals as $key => $goal_item) {
       $it = $goals[ $key ];
       if (!empty($it)) {
-        if (is_array($it[ 0 ])) {
+        if (is_array($it)) {
           foreach ($it as $item) {
             if (array_key_exists('age', $item)) {
               $years[] = (string) (date('Y', strtotime($person_age)) + $item[ 'age' ]);
@@ -273,7 +273,7 @@ class HomeController {
    */
   public function getCashFlow($data) {
     $netWorth = [];
-    $worthData = $data[ 'current_financials' ][ 'income_statement' ];
+    $worthData = $data['results'][ 'current_financials' ][ 'income_statement' ];
     if (!empty($worthData)) {
       $cFlowIncomeMonth = 0;
       $cFlowIncomeAnnual = 0;
@@ -311,7 +311,7 @@ class HomeController {
 
   public function getNetWorth($data){
     $cashFlow = [];
-    $cahsData = $data[ 'current_financials' ][ 'balance_sheet' ];
+    $cahsData = $data['results'][ 'current_financials' ][ 'balance_sheet' ];
     if (!empty($cahsData)) {
       $netWorthValue = 0;
       $netWorthLiquid = 0;
