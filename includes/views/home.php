@@ -1095,67 +1095,37 @@
                     <div class="col-md-12 grey-line"></div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table trade-table" border="0">
-                        <tr>
-                            <td></td>
-                            <td colspan="5" class="text-center text-muted">
-                                Retirement Age
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-muted" width="20%">Monthly
-                                Contribution
-                            </td>
-                            <td width="16%"> 56</td>
-                            <td width="16%"> 58</td>
-                            <td width="16%"> 60</td>
-                            <td width="16%"> 62</td>
-                            <td width="16%"> 64</td>
-                        </tr>
-                        <tr>
-                            <td>$1,000
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/orange-circle.png" alt="">
-                            </td>
-                            <td><img src="assets/img/yellow-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>$600
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/orange-circle.png" alt="">
-                            </td>
-                            <td><img src="assets/img/yellow-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>$200
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/orange-circle.png" alt="">
-                            </td>
-                            <td><img src="assets/img/yellow-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                        </tr>
+                  <?php if (!empty($content[ 'tradeoffs1' ])) { ?>
+                      <table class="table trade-table" border="0">
+                          <tr>
+                              <td></td>
+                              <td colspan="5" class="text-center text-muted">
+                                  Retirement Age
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="text-muted" width="20%">Monthly
+                                  Contribution
+                              </td>
+                            <?php foreach ($content[ 'tradeoffs1' ][ 0 ][ 'ages' ] as $tradeoffage) { ?>
+                                <td width="16%"><?php echo $tradeoffage; ?></td>
+                            <?php } ?>
+                          </tr>
+                        <?php foreach ($content[ 'tradeoffs1' ] as $troff1) { ?>
+                            <tr>
+                                <td><?php echo "$" . number_format($troff1[ 'amount' ]); ?>
+                                </td>
+                              <?php foreach ($troff1[ 'state' ] as $itState) { ?>
+                                  <td>
+                                      <span class="tradeoffState"
+                                            style="background: <?php echo "rgb" . $itState ?>"></span>
+                                  </td>
+                              <?php } ?>
+                            </tr>
+                        <?php } ?>
 
-                    </table>
+                      </table>
+                  <?php } ?>
                 </div>
 
             </div>
@@ -1167,67 +1137,37 @@
                     <div class="col-md-12 grey-line"></div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table trade-table" border="0">
-                        <tr>
-                            <td></td>
-                            <td colspan="5" class="text-center text-muted">
-                                Retirement Age
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-muted" width="20%">Cost to start your
-                                own business
-                            </td>
-                            <td width="16%">56</td>
-                            <td width="16%">58</td>
-                            <td width="16%">60</td>
-                            <td width="16%">62</td>
-                            <td width="16%">64</td>
-                        </tr>
-                        <tr>
-                            <td>$76,000
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/orange-circle.png" alt="">
-                            </td>
-                            <td><img src="assets/img/yellow-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>$66,00
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/orange-circle.png" alt="">
-                            </td>
-                            <td><img src="assets/img/yellow-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>$56,000
-                            </td>
-                            <td><img src="assets/img/red-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/orange-circle.png" alt="">
-                            </td>
-                            <td><img src="assets/img/yellow-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                            <td><img src="assets/img/green-circle.PNG" alt="">
-                            </td>
-                        </tr>
-
-                    </table>
+                  <?php if (!empty($content[ 'tradeoffs2' ])) { ?>
+                      <table class="table trade-table" border="0">
+                          <tr>
+                              <td></td>
+                              <td colspan="5" class="text-center text-muted">
+                                  Retirement Age
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="text-muted" width="20%">Cost to start
+                                  your
+                                  own business
+                              </td>
+                            <?php foreach ($content[ 'tradeoffs2' ][ 0 ][ 'ages' ] as $tradeoffage2) { ?>
+                                <td width="16%"><?php echo $tradeoffage2; ?></td>
+                            <?php } ?>
+                          </tr>
+                        <?php foreach ($content[ 'tradeoffs2' ] as $troff2) { ?>
+                            <tr>
+                                <td><?php echo "$" . number_format($troff2[ 'amount' ]); ?>
+                                </td>
+                              <?php foreach ($troff2[ 'state' ] as $itState2) { ?>
+                                  <td>
+                                      <span class="tradeoffState"
+                                            style="background: <?php echo "rgb" . $itState2 ?>"></span>
+                                  </td>
+                              <?php } ?>
+                            </tr>
+                        <?php } ?>
+                      </table>
+                  <?php } ?>
                 </div>
             </div>
             <div class="col-md-12 m-top-40">
@@ -1296,170 +1236,101 @@
                     </p>
                 </div>
             </div>
-            <div class="col-md-12 grey-bordered m-top-20">
-                <h4 class="green-title"><strong style="color:#000">Scenario
-                        1: </strong> S&P 500 Index drops 10% in the next
-                    12 months</h4>
-                <div class="row grey-title">
-                    <div class="col-md-4 text-center">
-                        <h4>YOUR GOALS</h4>
-                    </div>
-                    <div class="col-md-8 text-center">
-                        <h4>CHANGE IN LIKELIHOOD</h4>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Retire in 2042</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 57%; background: #4FD3B1">
-                                    57
+          <?php if (!empty($content[ 'scenarioes1' ])) { ?>
+              <div class="col-md-12 grey-bordered m-top-20">
+                  <h4 class="green-title"><strong style="color:#000">Scenario
+                          1: </strong> S&P 500 Index drops 10% in the next
+                      12 months</h4>
+                  <div class="row grey-title">
+                      <div class="col-md-4 text-center">
+                          <h4>YOUR GOALS</h4>
+                      </div>
+                      <div class="col-md-8 text-center">
+                          <h4>CHANGE IN LIKELIHOOD</h4>
+                      </div>
+                  </div>
+                <?php foreach ($content[ 'scenarioes1' ] as $scIt) { ?>
+                    <div class="col-md-12 goal-row">
+                        <div class="row">
+                            <div class="col-md-4 right-border">
+                                <p><?php echo $scIt[ 'name' ]; ?></p>
+                            </div>
+                          <?php
+                          $diff = abs($scIt[ 'old_achievability' ] - $scIt[ 'new_achievability' ]);
+                          if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ] || $diff < 10) {
+                            ?>
+                              <div class="col-md-4">
+                                  <div class="col-md-10 scale-line col-md-push-1">
+                                    <span class="status-image"
+                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] . "%" ?>; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                   <?php echo $scIt[ 'new_achievability' ] ?>
                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Send 2 daughers to college</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 100%; background: #4FD3B1">
-                                100
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="text-muted">Little Change</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Buy a new house</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 20%;">
 
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1"><p
-                                    class="green-text">More Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Buy a new car</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 3%; background: #D55672">
-3
-                            </span>
-                                <span class="small-value" style="width: 39%"></span>
-                                <span class="end-of-arrow"></span>
-                                <span class="status-image"
-                                      style="margin-left: 0%; background: #4FD3B1">
-43
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Start a business</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 0%; background: #D55672">
-                           0 </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Join Aurora Country Club
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 37%;">
+                                  </div>
+                              </div>
+                              <div class="col-md-4 col-md-push-1">
+                                  <p class="color:grey">Same Likelihood</p>
+                              </div>
+                          <?php }
+                          else {
+                            if ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) {
+                              ?>
 
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Fund cancer research initiative
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
+                                <div class="col-md-4">
+                                    <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 77%;">
-
+                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] ?>%; background: <?php echo "rgb".$scIt[ 'new_state' ]; ?>">
+                                    <?php echo $scIt[ 'new_achievability' ]; ?>
                             </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="text-muted">Little Change</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Buy airplane</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
+                                        <span class="start-of-arrow"></span>
+                                        <span class="small-value"
+                                              style="width: <?php echo $diff ?>%"></span>
+                                        <!--                  <span class="end-of-arrow"></span>-->
+                                        <span class="status-image"
+                                              style="margin-left: 0%; background: <?php echo "rgb".$scIt[ 'old_state' ]; ?>">
+                                        <?php echo $scIt[ 'old_achievability' ] ?>
+                                         </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-push-1">
+                                    <p class="color: <?php echo "rgb".$scIt[ 'new_state' ]; ?>">
+                                        Less Likely</p>
+                                </div>
+
+                            <?php }
+                            else {
+                                ?>
+
+                                  <div class="col-md-4">
+                                      <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: 27%;">
-
+                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] ?>%; background: <?php echo "rgb".$scIt[ 'old_state' ]; ?>">
+<?php echo $scIt[ 'old_achievability' ]; ?>
                             </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="text-muted">Little Change</p>
+                                          <!--                    <span class="start-of-arrow"></span>-->
+                                          <span class="small-value"
+                                                style="width: <?php echo $diff; ?>%"></span>
+                                          <span class="end-of-arrow"></span>
+                                          <span class="status-image"
+                                                style="margin-left: 0%; background: <?php echo "rgb".$scIt[ 'new_state' ]; ?>">
+<?php echo $scIt[ 'new_achievability' ] ?>
+                            </span>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4 col-md-push-1">
+                                      <p class="color: #4FD3B1">More Likely</p>
+                                  </div>
+
+                              <?php }
+
+                          } ?>
+
+
                         </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
+  <?php }?>
             <div class="col-md-12 m-top-20 light-grey-bg">
                 <div class="">
                     <p>
@@ -1511,164 +1382,101 @@
                         <h4>CHANGE IN LIKELIHOOD</h4>
                     </div>
                 </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Retire in 2042</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 57%; background: #4FD3B1">
-                                    57
+              <?php if (!empty($content[ 'scenarioes2' ])) { ?>
+                  <div class="col-md-12 grey-bordered m-top-20">
+                      <h4 class="green-title"><strong style="color:#000">Scenario
+                              1: </strong> S&P 500 Index drops 10% in the next
+                          12 months</h4>
+                      <div class="row grey-title">
+                          <div class="col-md-4 text-center">
+                              <h4>YOUR GOALS</h4>
+                          </div>
+                          <div class="col-md-8 text-center">
+                              <h4>CHANGE IN LIKELIHOOD</h4>
+                          </div>
+                      </div>
+                    <?php foreach ($content[ 'scenarioes2' ] as $scIt) { ?>
+                        <div class="col-md-12 goal-row">
+                            <div class="row">
+                                <div class="col-md-4 right-border">
+                                    <p><?php echo $scIt[ 'name' ]; ?></p>
+                                </div>
+                              <?php
+                              $diff = abs($scIt[ 'old_achievability' ] - $scIt[ 'new_achievability' ]);
+                              if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ] || $diff < 10) {
+                                ?>
+                                  <div class="col-md-4">
+                                      <div class="col-md-10 scale-line col-md-push-1">
+                                    <span class="status-image"
+                                          style="margin-left: <?php echo $scIt[ 'new_achievability' ] . "%" ?>; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                   <?php echo $scIt[ 'new_achievability' ] ?>
                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Send 2 daughers to college</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 100%; background: #4FD3B1">
-                                100
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="text-muted">Little Change</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Buy a new house</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 20%;">
-20
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1"><p
-                                    class="green-text">More Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Buy a new car</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 3%; background: #D55672">3
-                            </span>
-                                <span class="small-value" style="width: 39%"></span>
-                                <span class="end-of-arrow"></span>
-                                <span class="status-image"
-                                      style="margin-left: 0%; background: #4FD3B1">43
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Start a business</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 3%; background: #D55672">3
-                            </span>
-                                <span class="small-value" style="width: 39%"></span>
-                                <span class="end-of-arrow"></span>
-                                <span class="status-image"
-                                      style="margin-left: 0%; background: #4FD3B1">43
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Join Aurora Country Club
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                                 <span class="status-image"
-                                       style="margin-left: 10%; background: #D55672">10
-                            </span>
-                                <span class="small-value" style="width: 10%"></span>
-                                <span class="end-of-arrow"></span>
-                                <span class="status-image"
-                                      style="margin-left: 0%; background: #4FD3B1">20
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="red-text">Less Likely</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Fund cancer research initiative
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 77%;">
 
-                            </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="text-muted">Little Change</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 goal-row">
-                    <div class="row">
-                        <div class="col-md-4 right-border">
-                            <p>Buy airplane</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 27%;">
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4 col-md-push-1">
+                                      <p class="color:grey">Same Likelihood</p>
+                                  </div>
+                              <?php }
+                              else {
+                                if ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) {
+                                  ?>
 
+                                    <div class="col-md-4">
+                                        <div class="col-md-10 scale-line col-md-push-1">
+                            <span class="status-image"
+                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] ?>%; background: <?php echo "rgb".$scIt[ 'new_state' ]; ?>">
+                                    <?php echo $scIt[ 'new_achievability' ]; ?>
                             </span>
+                                            <span class="start-of-arrow"></span>
+                                            <span class="small-value"
+                                                  style="width: <?php echo $diff ?>%"></span>
+                                            <!--                  <span class="end-of-arrow"></span>-->
+                                            <span class="status-image"
+                                                  style="margin-left: 0%; background: <?php echo "rgb".$scIt[ 'old_state' ]; ?>">
+                                        <?php echo $scIt[ 'old_achievability' ] ?>
+                                         </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-md-push-1">
+                                        <p class="color: <?php echo "rgb".$scIt[ 'new_state' ]; ?>">
+                                            Less Likely</p>
+                                    </div>
+
+                                <?php }
+                                else {
+                                  ?>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-10 scale-line col-md-push-1">
+                            <span class="status-image"
+                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] ?>%; background: <?php echo "rgb".$scIt[ 'old_state' ]; ?>">
+<?php echo $scIt[ 'old_achievability' ]; ?>
+                            </span>
+                                            <!--                    <span class="start-of-arrow"></span>-->
+                                            <span class="small-value"
+                                                  style="width: <?php echo $diff; ?>%"></span>
+                                            <span class="end-of-arrow"></span>
+                                            <span class="status-image"
+                                                  style="margin-left: 0%; background: <?php echo "rgb".$scIt[ 'new_state' ]; ?>">
+<?php echo $scIt[ 'new_achievability' ] ?>
+                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-md-push-1">
+                                        <p class="color: #4FD3B1">More Likely</p>
+                                    </div>
+
+                                <?php }
+
+                              } ?>
+
+
                             </div>
                         </div>
-                        <div class="col-md-4 col-md-push-1">
-                            <p class="text-muted">Little Change</p>
-                        </div>
-                    </div>
-                </div>
+                    <?php } ?>
+                  </div>
+              <?php }?>
             </div>
             <div class="col-md-12 m-top-20">
                 <div class="row">

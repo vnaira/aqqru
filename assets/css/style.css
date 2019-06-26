@@ -302,6 +302,13 @@ color:#808080;
   height: 8px;
   margin-left: -4px;
 }
+.start-of-arrow{
+  background: url("../img/grow-down-smal_l.png");
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+}
 .small-value{
   background: url("../img/grow-up-small.png") repeat-x;
   display: inline-block;
@@ -371,7 +378,12 @@ color:#808080;
    border-bottom:4px solid #000;
    margin-top:1.5em;
  }
-
+.tradeoffState{
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 15px;
+}
 
 .no-pad-bottom{
   padding-bottom: 0;

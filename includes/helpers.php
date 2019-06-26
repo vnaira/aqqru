@@ -78,24 +78,41 @@ function defineYear($goal, $person) {
         $dt = new DateTime($item);
         $period[] = $dt->format('Y');
       }
-//      if ($key == 'end_date') {
-//        $dt = new DateTime($item);
-//        $period[] = $dt->format('Y');
-//      }
       if ( $key == 'target_date') {
         $dt = new DateTime($item);
         $period[] = $dt->format('Y');
       }
-//      if ( $key == 'months') {
-//        $datetime = new \DateTime();
-//        $datetime->modify('+' . $item . ' months');
-//        $period[] = $datetime->format('Y');
-//      }
     }
   }
   return min($period);
 }
 
+/**
+ * Calculate array of ages from goal year, ...
+ * @param $goal
+ * @param $person  date of birth
+ *
+ * @return array of years
+ */
+function defineAges($goal, $person) {
+  $ages = [];
+  if (!empty($goal)) {
+    for($i=0; $i<5; $i++){
+//      for($j=0; $i<5; $i++) {
+        foreach ($goal[ $i ] as $key => $item) {
+          if ($key == 'Age') {
+            $ages[] = $item;
+          }
+          if ($key == 'StartDate' || $key == 'TargetDate') {
+            $dt = new DateTime($item);
+            $ages[] = $dt->format('Y') - date('Y', strtotime($person));
+          }
+//        }
+      }
+    }
+  }
+  return $ages;
+}
 /**
  * Generate color value with RGB values
  * @param $wellnessState
