@@ -22,14 +22,6 @@
 
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="assets/js/main.js"></script>
 
 </head> 
 <body>
-<div class="container">
-    <div class="col-md-12 p-top-10 m-top-90">
-        <img src="assets/img/logos.png" alt="">
-    </div>
-    <div class="col-md-12">
-        <h1 id="header-title" class="border-bottom-green"><?php echo $title?></h1>
-    </div>

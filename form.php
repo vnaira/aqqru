@@ -15,10 +15,20 @@ echo "</pre>";
   <textarea type="text" name="message" style="width: 600px; height: 400px">
 <?php echo $data;?>
   </textarea>
+    <textarea type="text" name="message" style="width: 600px; height: 400px">
+<?php echo $data;?>
+  </textarea>
+    <textarea type="text" name="message" style="width: 600px; height: 400px">
+<?php echo $data;?>
+  </textarea>
+    <textarea type="text" name="message" style="width: 600px; height: 400px">
+<?php echo $data;?>
+  </textarea>
+
   <input type="submit" value="send">
 </form>
 
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/index.php".</p>
 
 </body>
 </html>

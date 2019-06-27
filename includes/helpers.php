@@ -3,24 +3,10 @@
 /* These are helper functions */
 
 function render($template,$vars = array()){
-	
-	// This function takes the name of a template and
-	// a list of variables, and renders it.
-	
 	// This will create variables from the array:
 	extract($vars);
-	
-	// It can also take an array of objects
-	// instead of a template name.
 	if(is_array($template)){
-		
-		// If an array was passed, it will loop
-		// through it, and include a partial view
 		foreach($template as $k){
-			
-			// This will create a local variable
-			// with the name of the object's class
-			
 			$cl = strtolower(get_class($k));
 			$$cl = $k;
 			
@@ -98,7 +84,6 @@ function defineAges($goal, $person) {
   $ages = [];
   if (!empty($goal)) {
     for($i=0; $i<5; $i++){
-//      for($j=0; $i<5; $i++) {
         foreach ($goal[ $i ] as $key => $item) {
           if ($key == 'Age') {
             $ages[] = $item;
@@ -107,7 +92,6 @@ function defineAges($goal, $person) {
             $dt = new DateTime($item);
             $ages[] = $dt->format('Y') - date('Y', strtotime($person));
           }
-//        }
       }
     }
   }
@@ -130,9 +114,7 @@ function generateColor($wellnessState) {
     $currentGreen = $wellnessState[ 0 ] * $red[ 1 ] + $wellnessState[ 1 ] * $yellow[ 1 ] + $wellnessState[ 2 ] * $green[ 1 ];
     $currentBlue = $wellnessState[ 0 ] * $red[ 2 ] + $wellnessState[ 1 ] * $yellow[ 2 ] + $wellnessState[ 2 ] * $green[ 2 ];
   }
-
   return '(' . $currentRed . ',' . $currentGreen . ',' . $currentBlue . ')';
-
 }
 
 /**

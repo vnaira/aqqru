@@ -10,9 +10,13 @@ class Goal {
 
   public static function getAll() {
 
-    $data="";
-    if (isset($_POST[ "message" ])) {
-      $data = $_POST[ "message" ];
+    $data=[];
+    if (isset($_POST)) {
+      $data['fullAvatar'] = json_decode($_POST[ "fullAvatar" ],true);
+      $data['tradeoffs'] = json_decode($_POST[ "tradeoffs" ],true);
+      $data['goalsForTradeoffs'] = json_decode($_POST[ "goalsForTradeoffs" ],true);
+      $data['scenarioes'] = json_decode($_POST[ "scenarioes" ],true);
+      $data['goalsForScenarioes'] = json_decode($_POST[ "goalsForScenarioes" ],true);
     }
     /*
     controls the RESTful services
@@ -25,7 +29,7 @@ class Goal {
     else {
       $statusCode = 200;
     }
-    return json_decode($data,true);
+    return $data;
 
 
 //    $token = $GLOBALS['key'];
