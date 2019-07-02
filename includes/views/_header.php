@@ -18,7 +18,6 @@
 
         <!-- Main Stylesheet File -->
         <link rel="stylesheet" href="assets/css/style.css" />
-        <link rel="stylesheet" href="assets/css/circle.css" />
 
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

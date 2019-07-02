@@ -12,20 +12,20 @@ echo "</pre>";
 ?>
 
 <form method="post" action="/index.php" name="form1" >
-  <textarea type="text" name="message" style="width: 600px; height: 400px">
+  <textarea type="text" name="message" style="width: 600px; height: 300px">
 <?php echo $data;?>
   </textarea>
-    <textarea type="text" name="message" style="width: 600px; height: 400px">
-<?php echo $data;?>
-  </textarea>
-    <textarea type="text" name="message" style="width: 600px; height: 400px">
-<?php echo $data;?>
-  </textarea>
-    <textarea type="text" name="message" style="width: 600px; height: 400px">
-<?php echo $data;?>
-  </textarea>
+<!--    <textarea type="text" name="message" style="width: 600px; height: 300px">-->
+<?php //echo $data;?>
+<!--  </textarea>-->
+<!--    <textarea type="text" name="message" style="width: 600px; height: 300px">-->
+<?php //echo $data;?>
+<!--  </textarea>-->
+<!--    <textarea type="text" name="message" style="width: 600px; height: 300px">-->
+<?php //echo $data;?>
+<!--  </textarea>-->
 
-  <input type="submit" value="send">
+    <input type="submit" value="send">
 </form>
 
 <p>If you click the "Submit" button, the form-data will be sent to a page called "/index.php".</p>

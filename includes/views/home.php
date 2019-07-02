@@ -70,6 +70,9 @@
       Welcome section
     ============================-->
 <section id="welcome" class="page-break">
+    <div class="container m-top-10">
+        <p class="text-right"><strong>Page 2</strong></p>
+    </div>
     <div class="container padd-section">
         <div class="col-md-12 border-bottom-grey">
             <h1>Welcome to your </h1>
@@ -117,9 +120,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 m-top-300">
-            <p class="text-right"><strong>Page 2</strong></p>
-        </div>
+
     </div>
 </section>
 
@@ -127,7 +128,9 @@
       Financial overview
     ============================-->
 <section id="fin-overview" class="page-break">
-
+    <div class="container m-top-10">
+        <p class="text-right"><strong>Page 3</strong></p>
+    </div>
     <div class="container">
         <div class="row-title col-md-12 m-top-40">
             <h2>Financial Overview</h2>
@@ -139,7 +142,7 @@
                     later.</p>
             </div>
         </div>
-        <div class="col-md-12 m-top-40">
+        <div class="col-md-12 m-top-20">
             <h3 class="text-center m-bot-20">Your Financial Wellness
                 Score:</h3>
             <p class="text-center grey-text">This number shows you how
@@ -174,17 +177,17 @@
                         up.</p>
                 </div>
             </div>
-            <div class="col-md-12 m-top-40">
+            <div class="col-md-12 m-top-10">
                 <h3 class="text-center">Financial Summary: </h3>
 
                 <div class="col-md-12 light-grey-bg p-bot-10 m-top-20">
                     <div class="col-md-6 text-right">
-                        <div class="col-md-4 col-md-offset-2">
+                        <div class="col-md-5">
                             <p class="big-line m-top-10">
                                 <strong>What I own:</strong>
                             </p>
                         </div>
-                        <div class="col-md-4 m-top-10">
+                        <div class="col-md-5 m-top-10">
                             <p class="big-line">
                             <span style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
                             <?php echo ($content[ 'balance' ][ 'assets' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'assets' ]) : '- $' . number_format($content[ 'balance' ][ 'assets' ]); ?>
@@ -205,12 +208,12 @@
 
                 <div class="col-md-12 light-grey-bg p-bot-10 m-top-20">
                     <div class="col-md-6 text-right">
-                        <div class="col-md-4 col-md-offset-2">
+                        <div class="col-md-5">
                             <p class="big-line m-top-10">
                                 <strong>What I own:</strong>
                             </p>
                         </div>
-                        <div class="col-md-4 m-top-10">
+                        <div class="col-md-5 m-top-10">
                             <p class="big-line">
                             <span style="color: <?php echo ($content[ 'balance' ][ 'liabilities' ] < 0) ? 'red' : ''; ?>">
                              <?php echo ($content[ 'balance' ][ 'liabilities' ] > 0) ? '+ $' . number_format($content[ 'balance' ][ 'liabilities' ]) : '- $' . number_format((-1) * $content[ 'balance' ][ 'liabilities' ]); ?>
@@ -238,12 +241,12 @@
 
                 <div class="col-md-12 light-grey-bg p-bot-10">
                     <div class="col-md-6 text-right">
-                        <div class="col-md-4 col-md-offset-2">
+                        <div class="col-md-5">
                             <p class="big-line m-top-10">
                                 <strong>Net Worth:</strong>
                             </p>
                         </div>
-                        <div class="col-md-4 m-top-10">
+                        <div class="col-md-5 m-top-10">
                             <p class="big-line">
                             <span style="color: <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
                             <?php echo '+ $' . number_format(($content[ 'balance' ][ 'assets' ] + $content[ 'balance' ][ 'liabilities' ])); ?>
@@ -266,11 +269,9 @@
         </div>
     </div>
     <div class="col-md-12">
-        <p class="text-center grey-text m-top-40 ">Voilà!</p>
+        <p class="text-center grey-text">Voilà!</p>
     </div>
-    <div class="col-md-12 m-top-20">
-        <p class="text-right"><strong>Page 3</strong></p>
-    </div>
+
 </section>
 
 
@@ -278,7 +279,9 @@
   Goals Summary
 ============================-->
 <section id="goal-summary" class="page-break">
-
+    <div class="container">
+        <p class="text-right"><strong>Page 4</strong></p>
+    </div>
     <div class="container">
         <div class="row-title col-md-12 m-top-40">
             <h2>Financial Overview</h2>
@@ -334,12 +337,16 @@
 
             <div class="table-responsive grey-table" id="drag1">
                 <table class="table goals-table">
-                  <?php foreach ($content[ 'priority' ] as $pr_item) { ?>
+                  <?php
+                  if(is_array($content[ 'priority' ])){
+                  foreach ($content[ 'priority' ] as $pr_item) { ?>
                       <tr>
                         <?php foreach ($content[ 'year_grid' ] as $grid_item) { ?>
                           <?php $is_single = TRUE; ?>
                             <td class="<?php echo $pr_item . "-" . $grid_item; ?>">
-                              <?php foreach ($content[ 'goals_list' ] as $key => $goal_item) {
+                              <?php
+                              if(is_array($content[ 'goals_list' ])){
+                              foreach ($content[ 'goals_list' ] as $key => $goal_item) {
 
                                 foreach ($goal_item as $value) {
                                   $period = defineYear($value, $content[ 'person_age' ]);
@@ -379,28 +386,28 @@
                                       </div>
                                       <!--end of goal item-->
                                     <?php $is_single = FALSE; ?>
-                                  <?php }
-                                }
-                              } ?>
+                                  <?php }}} }?>
 
                             </td>
                         <?php } ?>
                           <td></td>
                       </tr>
-                  <?php } ?>
+                  <?php } }?>
                 </table>
             </div>
             <div class="col-md-12">
                 <div class="grid-container2">
                     <table width="93%">
                         <tr>
-                          <?php foreach ($content[ 'year_grid' ] as $grid_item) { ?>
+                          <?php
+                          if(is_array($content[ 'year_grid' ])){
+                          foreach ($content[ 'year_grid' ] as $grid_item) { ?>
                               <td class="text-right">
                                   <div class="">
                                       <strong><?php echo $grid_item; ?></strong>
                                   </div>
                               </td>
-                          <?php } ?>
+                          <?php }} ?>
                             <td></td>
                         </tr>
                     </table>
@@ -418,9 +425,6 @@
             how likely you are to
             achieve your goals at specific milestones throughout your
             life</p>
-        <p class="col-md-12 text-right">
-            <strong>Page 4</strong>
-        </p>
     </div>
 </section>
 
@@ -428,6 +432,9 @@
   Recommendations
 ============================-->
 <section id="recommend" class="page-break">
+    <div class="container">
+        <p class="text-right"><strong>Page 5</strong></p>
+    </div>
     <div class="container padd-container">
         <div class="section-title">
             <h1 class="text-left">
@@ -508,7 +515,9 @@
                         <span>WITHDRAW FUNDS</span>
                     </h4>
                     <div class="col-md-12 m-top-20">
-                      <?php foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
+                      <?php
+                      if(is_array($content[ 'with_draw' ][ 'withdraw' ])){
+                      foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
                           <div class="col-md-12">
                               <div class="row">
                                   <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
@@ -520,7 +529,7 @@
                                   <p>(annual amount: $10k)</p>
                               </div>
                           </div>
-                      <?php } ?>
+                      <?php } }?>
                     </div>
                 </div>
             </div>
@@ -581,15 +590,19 @@
                                 </div>
                             </div>
                         </div>
-                      <?php foreach ($content[ 'risks' ] as $riskItem) { ?>
+                      <?php
+                      if(is_array($content[ 'risks' ])){
+                      foreach ($content[ 'risks' ] as $riskItem) { ?>
                           <div class="col-md-12">
                               <div class="row risk-values">
-                                  <div style="width: <?php echo $riskItem[ 'value' ] . '%' ?>; background: #000; height: 10px; border-radius: 5px; float: left"></div>
-                                  <div style="width: <?php echo (100 - $riskItem[ 'value' ]) . '%' ?>; background: #D55672; height: 10px; border-radius: 5px; float: left"></div>
+                                  <div style="width: <?php echo $riskItem[ 'value' ] . '%' ?>; background: #D55672; height: 10px; border-radius: 5px; float: left"></div>
+                                  <div style="width: <?php echo (100 - $riskItem[ 'value' ]) . '%' ?>; background:#000 ; height: 10px; border-radius: 5px; float: left"></div>
                               </div>
                           </div>
                           <div class="col-md-12">
                               <div class="row">
+                                  <div class="col-md-6"><?php echo $riskItem[ 'value' ] . '%' ?></div>
+                                  <div class="col-md-6 text-right"><?php echo (100 - $riskItem[ 'value' ]) . '%' ?></div>
                                   <strong>
                                     <?php echo $riskItem[ 'name' ]; ?>
                                   </strong>
@@ -598,7 +611,7 @@
                                   </p>
                               </div>
                           </div>
-                      <?php } ?>
+                      <?php }} ?>
                     </div>
                 </div>
             </div>
@@ -615,7 +628,9 @@
                         <span>DEPOSIT FUNDS</span>
                     </h4>
                     <div class="col-md-12 m-top-20">
-                      <?php foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
+                      <?php
+                      if(is_array($content[ 'with_draw' ][ 'withdraw' ])){
+                      foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
                           <div class="col-md-12">
                               <div class="row">
                                   <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
@@ -627,7 +642,7 @@
                                   <p>(annual amount: $10k)</p>
                               </div>
                           </div>
-                      <?php } ?>
+                      <?php }} ?>
                     </div>
                 </div>
             </div>
@@ -638,7 +653,7 @@
                     <div class="col-md-12 m-top-20">
                         <div class="">
                           <?php if (!empty($content[ 'expenses' ])) { ?>
-                              <strong><?php echo '$' . $content[ 'expenses' ] . '/month'; ?></strong>
+                              <strong><?php echo '$' . number_format($content[ 'expenses' ]) . '/month'; ?></strong>
                               <p>
                                   Discretionary
                                   Expenses
@@ -654,7 +669,7 @@
             </div>
         </div>
 
-        <div class="row m-top-60">
+        <div class="row m-top-20">
             <div class="col-md-12">
                 <strong><i class="fa fa-question-circle"></i> Will this
                     really make a difference?</strong>
@@ -669,410 +684,6 @@
                     equation as these are not actionable suggestions</p>
             </div>
         </div>
-        <div class="col-md-12">
-            <p class="text-right"><strong>Page 5</strong></p>
-        </div>
-    </div>
-</section>
-
-<!--==========================
-  Tips
-============================-->
-<section id="tips" class="page-break">
-    <div class="container">
-        <div class="col-md-10 padd-container">
-            <div class="section-title">
-                <h1 class="text-left"><span><img src="assets/img/tip.png"
-                                                 alt="" class=""></span>
-                    Tips to improve your finances
-                </h1>
-            </div>
-            <div class="col-md-12">
-                <p class="sub-title-3 m-bot-20">Consider Alternatives:
-                    <strong>
-                        Changing your goals</strong> as life unfolds
-                </p>
-                <p>It's good to dream big. And it’s good to be flexible.
-                    Think about changing some of your goals—it might make it
-                    easier to achieve the ones that really matter. These
-                    examples show how your ability to meet all your goals
-                    can change if you adjust one of them. </p>
-            </div>
-        </div>
-        <div class="col-md-2 light-grey-bg">
-            <div class="col-md-11 text-center m-top-40 scoped-p">
-                <p>Your Current Financial Wellness Score:</p>
-            </div>
-            <div class="">
-                <div class="m-top-40 p-left6">
-                    <style>
-                        .c100:after { border: 1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> }
-                    </style>
-                    <div class="c100 p<?php echo $content[ 'wellness' ][ 'wellness_score' ];
-                    echo ' color_' . $content[ 'wellness' ][ 'wellness_state_name' ]; ?>"
-                         style="border:1px solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>">
-                        <span style="color:<?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?> "><?php echo $content[ 'wellness' ][ 'wellness_score' ]; ?></span>
-                        <div class="slice">
-                            <div class="bar"
-                                 style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
-                            <div class="fill"
-                                 style="border: 0.08em solid  <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 grey-bordered m-top-20">
-            <h4 class="green-title">
-                <strong style="color:#000">Alternative 1: </strong>
-                Buy house with cash instead of financing</h4>
-            <div class="row grey-title">
-                <div class="col-md-4 text-center">
-                    <h4>YOUR GOALS</h4>
-                </div>
-                <div class="col-md-8 text-center">
-                    <h4>CHANGE IN LIKELIHOOD</h4>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Retire in 2042</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 57%; background: #4FD3B1">
-                                    57
-                               </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Send 2 daughers to college</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 100%; background: #4FD3B1">
-                                100
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="text-muted">Little Change</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Buy a new house</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 20%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1"><p
-                                class="green-text">More Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Buy a new car</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 3%; background: #D55672">
-3
-                            </span>
-                            <span class="small-value" style="width: 39%"></span>
-                            <span class="end-of-arrow"></span>
-                            <span class="status-image"
-                                  style="margin-left: 0%; background: #4FD3B1">
-43
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Start a business</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 0%; background: #D55672">
-                           0 </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Join Aurora Country Club
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 37%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Fund cancer research initiative
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 77%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="text-muted">Little Change</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Buy airplane</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 27%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="text-muted">Little Change</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 grey-bordered m-top-20">
-            <h4 class="green-title"><strong style="color:#000">Alternative
-                    2: </strong>Rent a home instead of buying one
-            </h4>
-            <div class="row grey-title">
-                <div class="col-md-4 text-center">
-                    <h4>YOUR GOALS</h4>
-                </div>
-                <div class="col-md-8 text-center">
-                    <h4>CHANGE IN LIKELIHOOD</h4>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Retire in 2042</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 57%; background: #4FD3B1">
-                                    57
-                               </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Send 2 daughers to college</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 100%; background: #4FD3B1">
-                                100
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="text-muted">Little Change</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Buy a new house</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 20%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1"><p
-                                class="green-text">More Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Buy a new car</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 3%; background: #D55672">
-3
-                            </span>
-                            <span class="small-value" style="width: 39%"></span>
-                            <span class="end-of-arrow"></span>
-                            <span class="status-image"
-                                  style="margin-left: 0%; background: #4FD3B1">
-43
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Start a business</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 0%; background: #D55672">
-                           0 </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Join Aurora Country Club
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 37%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="red-text">Less Likely</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Fund cancer research initiative
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 77%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="text-muted">Little Change</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 goal-row">
-                <div class="row">
-                    <div class="col-md-4 right-border">
-                        <p>Buy airplane</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: 27%;">
-
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-push-1">
-                        <p class="text-muted">Little Change</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 m-top-20">
-            <div class="row">
-                <p>
-                    <small><span class="red-text">Less Likely:</span>Smaller
-                        chance you’ll meet all your goals
-                    </small>
-                </p>
-                <p>
-                    <small><span class="text-muted">Little Change:</span>About
-                        the same likelihood you’ll meet all your
-                        goals
-                    </small>
-                </p>
-                <p>
-                    <small><span class="green-text">More Likely:</span>
-                        Higher chance you’ll meet all your goals
-                    </small>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-12 m-top-40">
-            <p class="text-right"><strong>Page 6</strong></p>
-        </div>
     </div>
 </section>
 
@@ -1080,6 +691,9 @@
   Tips to improve
 ============================-->
 <section id="tip" class="page-break">
+    <div class="container">
+        <p class="text-right"><strong>Page 7</strong></p>
+    </div>
     <div class="container">
         <div class="col-md-10 padd-container">
             <div class="section-title">
@@ -1148,9 +762,11 @@
                           <td class="text-muted" width="20%">Monthly
                               Contribution
                           </td>
-                        <?php foreach ($content[ 'tradeoffs1' ][ 0 ][ 'ages' ] as $tradeoffage) { ?>
+                        <?php
+                        if(is_array($content[ 'tradeoffs1' ][ 0 ][ 'ages' ])){
+                        foreach ($content[ 'tradeoffs1' ][ 0 ][ 'ages' ] as $tradeoffage) { ?>
                             <td width="16%"><?php echo $tradeoffage; ?></td>
-                        <?php } ?>
+                        <?php } }?>
                       </tr>
                     <?php foreach ($content[ 'tradeoffs1' ] as $troff1) { ?>
                         <tr>
@@ -1238,9 +854,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 m-top-40">
-            <p class="text-right"><strong>Page 7</strong></p>
-        </div>
     </div>
 </section>
 
@@ -1249,6 +862,9 @@
 ============================-->
 
 <section id="scenario" class="page-break">
+    <div class="container">
+        <p class="text-right"><strong>Page 8</strong></p>
+    </div>
     <div class="container padd-container">
         <div class="section-title">
             <h1 class="text-left"><span><img src="assets/img/scenarios.png"
@@ -1290,7 +906,9 @@
                       <h4>CHANGE IN LIKELIHOOD</h4>
                   </div>
               </div>
-            <?php foreach ($content[ 'scenarioes1' ] as $scIt) { ?>
+            <?php
+            if(is_array($content[ 'scenarioes1' ])){
+            foreach ($content[ 'scenarioes1' ] as $scIt) { ?>
                 <div class="col-md-12 goal-row">
                     <div class="row">
                         <div class="col-md-4 right-border">
@@ -1303,7 +921,9 @@
                           <div class="col-md-4">
                               <div class="col-md-10 scale-line col-md-push-1">
                                     <span class="status-image"
-                                          style="margin-left: <?php echo $scIt[ 'new_achievability' ] . "%" ?>; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                          style="margin-left:
+                                          <?php echo $scIt[ 'new_achievability' ] . "%" ?>;
+                                                  background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
                                    <?php echo $scIt[ 'new_achievability' ] ?>
                                </span>
 
@@ -1317,7 +937,8 @@
                             <div class="col-md-4">
                                 <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] ?>%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
+                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] ?>%;
+                                          background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
                                     <?php echo $scIt[ 'new_achievability' ]; ?>
                             </span>
                                     <span class="start-of-arrow"></span>
@@ -1337,7 +958,8 @@
                             <div class="col-md-4">
                                 <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] ?>%; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] ?>%;
+                                          background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
 <?php echo $scIt[ 'old_achievability' ]; ?>
                             </span>
                                     <span class="small-value"
@@ -1355,22 +977,22 @@
 
                       <?php if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ]) { ?>
                           <div class="col-md-4 col-md-push-1">
-                              <p style="color:grey">Same Likelihood</p>
+                              <p style="color:grey; font-weight: bold">Same Likelihood</p>
                           </div>
                       <?php } elseif ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) { ?>
                           <div class="col-md-4 col-md-push-1">
-                              <p style="color: red">
+                              <p style="color: red; font-weight: bold">
                                   Less Likely</p>
                           </div>
                       <?php } else { ?>
                           <div class="col-md-4 col-md-push-1">
-                              <p style="color: #4FD3B1">More Likely</p>
+                              <p style="color: #4FD3B1; font-weight: bold">More Likely</p>
                           </div>
 
                       <?php } ?>
                     </div>
                 </div>
-            <?php } ?>
+            <?php } }?>
           </div>
       <?php } ?>
         <div class="col-md-12 m-top-20 light-grey-bg">
@@ -1393,11 +1015,6 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-12 m-top-40">
-            <div class="row">
-                <p class="text-right"><strong>Page 8</strong></p>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -1405,6 +1022,9 @@
   Scenarios
 ============================-->
 <section id="scenarios" class="page-break">
+    <div class="container">
+        <p class="text-right"><strong>Page 9</strong></p>
+    </div>
     <div class="container padd-container ">
         <div class="section-title">
             <h1 class="text-left"><span><img src="assets/img/scenarios.png"
@@ -1412,7 +1032,7 @@
                 Scenarios that can impact your goals and expectations
             </h1>
         </div>
-        <div class="col-md-12 grey-bordered m-top-20">
+        <div class="col-md-12 grey-bordered m-top-80">
             <h4 class="green-title"><strong style="color:#000">Scenario 2:
                 </strong>You lose your job and remain unemployed for 6 months
             </h4>
@@ -1439,12 +1059,13 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                                     <span class="status-image"
-                                          style="margin-left: <?php echo $scIt[ 'new_achievability' ] . "%" ?>; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                          style="margin-left: <?php echo $scIt[ 'new_achievability' ] . "%" ?>; background:<?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
                                    <?php echo $scIt[ 'new_achievability' ] ?>
                                </span>
 
                             </div>
                         </div>
+
                     <?php }
                     else {
                       if ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) {
@@ -1458,8 +1079,7 @@
                             </span>
                                   <span class="start-of-arrow"></span>
                                   <span class="small-value"
-                                        style="width: <?php echo $diff ?>%"></span>
-                                  <!--                  <span class="end-of-arrow"></span>-->
+                                        style="width: <?php echo ($diff - $scIt[ 'new_achievability' ]) ?>%"></span>
                                   <span class="status-image"
                                         style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
                                         <?php echo $scIt[ 'old_achievability' ] ?>
@@ -1473,11 +1093,12 @@
                           <div class="col-md-4">
                               <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] ?>%; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ]; ?>%;
+                                          background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
 <?php echo $scIt[ 'old_achievability' ]; ?>
                             </span>
                                   <span class="small-value"
-                                        style="width: <?php echo $diff; ?>%"></span>
+                                        style="width: <?php echo ($diff - $scIt[ 'new_achievability' ]); ?>%"></span>
                                   <span class="end-of-arrow"></span>
                                   <span class="status-image"
                                         style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
@@ -1489,16 +1110,16 @@
                     } ?>
                     <?php if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ]) { ?>
                         <div class="col-md-4 col-md-push-1">
-                            <p style="color:grey">Same Likelihood</p>
+                            <p style="color:grey; font-weight: bold">Same Likelihood</p>
                         </div>
                     <?php } elseif ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) { ?>
                         <div class="col-md-4 col-md-push-1">
-                            <p style="color: red">
+                            <p style="color: red; font-weight: bold">
                                 Less Likely</p>
                         </div>
                     <?php } else { ?>
                         <div class="col-md-4 col-md-push-1">
-                            <p style="color: #4FD3B1">More Likely</p>
+                            <p style="color: #4FD3B1;font-weight: bold">More Likely</p>
                         </div>
                     <?php } ?>
                   </div>
@@ -1507,7 +1128,7 @@
         </div>
       <?php } ?>
 
-        <div class="col-md-12 m-top-20 light-grey-bg">
+        <div class="col-md-12 m-top-90 light-grey-bg">
             <div class="">
                 <p>
                     <small><span class="red-text">Less Likely:</span>Smaller
@@ -1527,11 +1148,6 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-12 m-top-40">
-            <div class="row">
-                <p class="text-right"><strong>Page 9</strong></p>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -1539,9 +1155,12 @@
      Financial Summary
    ============================-->
 <section id="fin-summary" class="page-break">
+    <div class="container">
+        <p class="text-right"><strong>Page 10</strong></p>
+    </div>
     <div class="container padd-container ">
         <div class="section-title">
-            <div class="col-md-12 m-top-40">
+            <div class="col-md-12 m-top-10">
                 <div class="row">
                     <h1 id="header-title" class="border-bottom-grey"
                         style="border-color: #000">Finally, your Financial
@@ -1921,12 +1540,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-12 m-top-40">
-            <div class="row">
-                <p class="text-right"><strong>Page 10</strong></p>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -1934,6 +1547,9 @@
           wrapping up
         ============================-->
 <section id="prapping-up" class="page-break">
+    <div class="container">
+        <p class="text-right"><strong>Page 11</strong></p>
+    </div>
     <div class="container padd-section">
         <div class="row">
             <div class="col-md-12">
@@ -2020,11 +1636,6 @@
                 </p>
                 <p class="green-text"><strong>You’re on your way. Let’s keep
                         moving.</strong></p>
-            </div>
-        </div>
-        <div class="col-md-12 m-top-40">
-            <div class="row">
-                <p class="text-right"><strong>Page 11</strong></p>
             </div>
         </div>
     </div>

@@ -214,12 +214,33 @@ class HomeController {
     $riskIt = [];
     if (!empty($risks)) {
       foreach ($risks as $riskItem) {
-        $riskIt[ 'name' ] = $riskItem[ 'object_name' ];
+        $riskIt[ 'name' ] = $this->getGoalNameById($riskItem['id'],$data['goals']);
         $riskIt[ 'value' ] = round($riskItem[ 'value' ] * 100);
         $apprRisks[] = $riskIt;
       }
     }
     return $apprRisks;
+  }
+
+  /**
+   * get goal name by gola id
+   * @param $id
+   * @return string name
+   */
+  public function getGoalNameById($id, $goals) {
+    $goalName = "";
+    if (is_array($goals)) {
+      foreach ($goals as $dataItem) {
+        if (is_array($dataItem)) {
+          foreach ($dataItem as $item) {
+            if ($id == $item[ 'id' ]) {
+              $goalName = $item[ 'name' ];
+            }
+          }
+        }
+      }
+    }
+    return $goalName;
   }
 
   public function getGridYears($goals, $person_age) {
