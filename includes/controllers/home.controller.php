@@ -136,8 +136,10 @@ class HomeController {
     $actions_w = [];
     $actions_d = [];
     $immediateActions = [];
+    $capitalAllocation = false;
     $invesAllocation = $data[ 'results' ][ 'guidence' ][ 'capital_allocation' ];
     if(is_array($invesAllocation)) {
+      $capitalAllocation = true;
       foreach ($invesAllocation as $investItem) {
         switch ($investItem[ 'action_name' ]) {
           case "Withdraw":
@@ -162,6 +164,7 @@ class HomeController {
             break;
         }
       }
+      $immediateActions['allocationObjectExist'] = $capitalAllocation;
     }
     return $immediateActions;
   }
@@ -169,10 +172,10 @@ class HomeController {
 
   public function getPayOfDebits($id) {
 
-    $lifeObject = $this->content[ 'avatar' ][ 'life_objects' ];
+    $lifeObject = $this->content[ 'life_objects' ];
     if (!empty($lifeObject)) {
       foreach ($lifeObject as $key => $lifeItem) {
-        if (!empty($lifeItem)) {
+        if (is_array($lifeItem)) {
           foreach ($lifeItem as $item) {
             if ($id == $item[ 'id' ] && ($key == 'student_loans' ||
                 $key == 'personal_loans' ||
@@ -214,7 +217,7 @@ class HomeController {
     $riskIt = [];
     if (!empty($risks)) {
       foreach ($risks as $riskItem) {
-        $riskIt[ 'name' ] = $this->getGoalNameById($riskItem['id'],$data['goals']);
+        $riskIt[ 'name' ] = $this->getGoalNameById($riskItem['object_id'],$data['life_objects']);
         $riskIt[ 'value' ] = round($riskItem[ 'value' ] * 100);
         $apprRisks[] = $riskIt;
       }
@@ -228,19 +231,19 @@ class HomeController {
    * @return string name
    */
   public function getGoalNameById($id, $goals) {
-    $goalName = "";
+    $lifeObject = "";
     if (is_array($goals)) {
       foreach ($goals as $dataItem) {
         if (is_array($dataItem)) {
           foreach ($dataItem as $item) {
             if ($id == $item[ 'id' ]) {
-              $goalName = $item[ 'name' ];
+              $lifeObject = $item[ 'name' ];
             }
           }
         }
       }
     }
-    return $goalName;
+    return $lifeObject;
   }
 
   public function getGridYears($goals, $person_age) {

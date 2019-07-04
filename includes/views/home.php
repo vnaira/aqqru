@@ -162,8 +162,10 @@
                         <div class="slice">
                             <div class="bar"
                                  style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
+                            <?php if($content[ 'wellness' ][ 'wellness_score' ] > 50){?>
                             <div class="fill"
                                  style="border: 0.08em solid  <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
@@ -210,7 +212,7 @@
                     <div class="col-md-6 text-right">
                         <div class="col-md-5">
                             <p class="big-line m-top-10">
-                                <strong>What I own:</strong>
+                                <strong>What I owe:</strong>
                             </p>
                         </div>
                         <div class="col-md-5 m-top-10">
@@ -267,11 +269,10 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="col-md-12">
         <p class="text-center grey-text">Voilà!</p>
     </div>
-
+    </div>
 </section>
 
 
@@ -355,7 +356,7 @@
                                       <!-- goal item-->
                                       <div class="goal-item tipContainer drag"
                                            id="<?php echo $value[ 'name' ]; ?>"
-                                           style="margin-top: <?php echo (!$is_single) ? '50px' : '0'; ?>">
+                                           style="margin-top: <?php echo (!$is_single) ? '60px' : '0'; ?>">
                                           <div class="tipContent">
                                               <div class="goal-icon col-md-5">
 
@@ -373,7 +374,7 @@
                                                       <div class="status-line text-left"
                                                            style="padding-left: 20%">
                                                           <span class="goal-status-color"
-                                                                style="background:<?php echo $value[ 'state' ] ?> ; margin-left: <?php echo ($value[ 'achievability' ] - 10) . '%' ?>"></span>
+                                                                style="background:<?php echo $value[ 'state' ] ?> ; margin-left: <?php echo ($value[ 'achievability' ] - 20) . '%' ?>"></span>
                                                       </div>
                                                   </div>
                                               </div>
@@ -390,25 +391,23 @@
 
                             </td>
                         <?php } ?>
-                          <td></td>
                       </tr>
                   <?php } }?>
                 </table>
             </div>
-            <div class="col-md-12">
+            <div class="table-responsive">
                 <div class="grid-container2">
-                    <table width="93%">
+                    <table width="100%">
                         <tr>
                           <?php
                           if(is_array($content[ 'year_grid' ])){
                           foreach ($content[ 'year_grid' ] as $grid_item) { ?>
-                              <td class="text-right">
+                              <td class="text-center">
                                   <div class="">
                                       <strong><?php echo $grid_item; ?></strong>
                                   </div>
                               </td>
                           <?php }} ?>
-                            <td></td>
                         </tr>
                     </table>
                 </div>
@@ -518,18 +517,26 @@
                       <?php
                       if(is_array($content[ 'with_draw' ][ 'withdraw' ])){
                       foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
-                          <div class="col-md-12">
-                              <div class="row">
-                                  <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
-                              </div>
-                          </div>
                           <div class="col-md-12 sub-title-2">
                               <div class="row">
-                                  <strong><?php echo $draw_item[ 'withdraw_name' ]; ?></strong>
-                                  <p>(annual amount: $10k)</p>
+                                  <strong> <?php echo 'Withdrow $' . number_format($draw_item[ 'withdraw' ]).' from '. $draw_item[ 'withdraw_name' ]; ?></strong>
                               </div>
                           </div>
                       <?php } }?>
+                    </div>
+                    <h4 class="htitle col-md-12 pink-text m-top-20">
+                        <span>DEPOSIT</span>
+                    </h4>
+                    <div class="col-md-12 m-top-20">
+                      <?php
+                      if(is_array($content[ 'with_draw' ][ 'withdraw' ])){
+                        foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <strong><?php echo 'Deposit $' . number_format($draw_item[ 'withdraw' ]).' to '.$draw_item[ 'withdraw_name' ] ; ?></strong>
+                                </div>
+                            </div>
+                        <?php }} ?>
                     </div>
                 </div>
             </div>
@@ -539,18 +546,11 @@
                         <span>PAY OFF DEBT</span>
                     </h4>
                     <div class="col-md-12 m-top-20">
-                      <?php if (!empty($content[ 'with_draw' ][ 'deposit' ])) { ?>
-                        <?php foreach ($content[ 'deposit' ] as $depositItem) { ?>
+                      <?php if (is_array($content[ 'with_draw' ][ 'deposit' ])) { ?>
+                        <?php foreach ($content[ 'with_draw' ][ 'deposit' ] as $depositItem) { ?>
                               <div class="col-md-12">
                                   <div class="row">
-                                      <strong><?php echo $depositItem[ 'deposit' ]; ?></strong>
-                                  </div>
-                              </div>
-                              <div class="col-md-12 sub-title-2">
-                                  <div class="row">
-                                      <p>
-                                          <strong><?php echo $depositItem[ 'deposit_name' ]; ?></strong>
-                                          <span>ending 0078</span></p>
+                                      <strong><?php echo 'Pay $'.number_format($depositItem[ 'deposit' ]). ' to '.$depositItem[ 'deposit_name' ]; ?></strong>
                                   </div>
                               </div>
                         <?php }
@@ -563,9 +563,7 @@
                           </div>
                           <div class="col-md-12 sub-title-2">
                               <div class="row">
-                                  <p>Well done!
-                                  </p>
-                                  <p>No deposits necessary.</p>
+                                  <p>No credit card payment to be done.</p>
                               </div>
                           </div>
                       <?php } ?>
@@ -595,14 +593,14 @@
                       foreach ($content[ 'risks' ] as $riskItem) { ?>
                           <div class="col-md-12">
                               <div class="row risk-values">
-                                  <div style="width: <?php echo $riskItem[ 'value' ] . '%' ?>; background: #D55672; height: 10px; border-radius: 5px; float: left"></div>
-                                  <div style="width: <?php echo (100 - $riskItem[ 'value' ]) . '%' ?>; background:#000 ; height: 10px; border-radius: 5px; float: left"></div>
+                                  <div style="width:  <?php echo (100 - $riskItem[ 'value' ]) . '%' ?>; background:#000 ; height: 10px; border-radius: 5px; float: left"></div>
+                                  <div style="width:<?php echo $riskItem[ 'value' ] . '%' ?>; background: #D55672; height: 10px; border-radius: 5px; float: left"></div>
                               </div>
                           </div>
                           <div class="col-md-12">
                               <div class="row">
-                                  <div class="col-md-6"><?php echo $riskItem[ 'value' ] . '%' ?></div>
-                                  <div class="col-md-6 text-right"><?php echo (100 - $riskItem[ 'value' ]) . '%' ?></div>
+                                  <div class="col-md-6"><?php echo (100 - $riskItem[ 'value' ]) . '%' ?></div>
+                                  <div class="col-md-6 text-right"><?php echo $riskItem[ 'value' ] . '%' ?></div>
                                   <strong>
                                     <?php echo $riskItem[ 'name' ]; ?>
                                   </strong>
@@ -616,11 +614,10 @@
                 </div>
             </div>
         </div>
-
+      <?php if(!$content['with_draw']['allocationObjectExist']){?>
         <div class="col-md-12 green-bg-title m-top-40">
             <h2>Don’t worry about these this month:</h2>
         </div>
-
         <div class="row">
             <div class="col-md-4">
                 <div class="light-grey-bg col-md-12 deposit-value">
@@ -628,21 +625,16 @@
                         <span>DEPOSIT FUNDS</span>
                     </h4>
                     <div class="col-md-12 m-top-20">
-                      <?php
-                      if(is_array($content[ 'with_draw' ][ 'withdraw' ])){
-                      foreach ($content[ 'with_draw' ][ 'withdraw' ] as $draw_item) { ?>
                           <div class="col-md-12">
                               <div class="row">
-                                  <strong><?php echo '$' . number_format($draw_item[ 'withdraw' ]); ?></strong>
+                                  <strong>Well done! </strong>
                               </div>
                           </div>
                           <div class="col-md-12 sub-title-2">
                               <div class="row">
-                                  <strong><?php echo $draw_item[ 'withdraw_name' ]; ?></strong>
-                                  <p>(annual amount: $10k)</p>
+                                  <strong>No deposits necessary.</strong>
                               </div>
                           </div>
-                      <?php }} ?>
                     </div>
                 </div>
             </div>
@@ -652,23 +644,15 @@
                     </h4>
                     <div class="col-md-12 m-top-20">
                         <div class="">
-                          <?php if (!empty($content[ 'expenses' ])) { ?>
-                              <strong><?php echo '$' . number_format($content[ 'expenses' ]) . '/month'; ?></strong>
-                              <p>
-                                  Discretionary
-                                  Expenses
-                              </p>
-                          <?php } else { ?>
                               <strong>
                                   Nice! Keep it up.
                               </strong>
-                          <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+<?php } ?>
         <div class="row m-top-20">
             <div class="col-md-12">
                 <strong><i class="fa fa-question-circle"></i> Will this
@@ -735,8 +719,10 @@
                         <div class="slice">
                             <div class="bar"
                                  style="border: 0.08em solid <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
+                          <?php if($content[ 'wellness' ][ 'wellness_score' ] > 50){?>
                             <div class="fill"
                                  style="border: 0.08em solid  <?php echo $content[ 'wellness' ][ 'wellness_state' ]; ?>"></div>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
@@ -922,8 +908,7 @@
                               <div class="col-md-10 scale-line col-md-push-1">
                                     <span class="status-image"
                                           style="margin-left:
-                                          <?php echo $scIt[ 'new_achievability' ] . "%" ?>;
-                                                  background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                          <?php echo $scIt[ 'new_achievability' ]- 5  . "%" ?>;background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
                                    <?php echo $scIt[ 'new_achievability' ] ?>
                                </span>
 
@@ -937,15 +922,14 @@
                             <div class="col-md-4">
                                 <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] ?>%;
+                                  style="margin-left: <?php echo ($scIt[ 'new_achievability' ] - 10) ?>%;
                                           background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
                                     <?php echo $scIt[ 'new_achievability' ]; ?>
                             </span>
                                     <span class="start-of-arrow"></span>
                                     <span class="small-value"
-                                          style="width: <?php echo $diff ?>%"></span>
-                                    <!--                  <span class="end-of-arrow"></span>-->
-                                    <span class="status-image"
+                                          style="width: <?php echo $diff - 10 ?>%"></span>
+                                    <span class="status-image_abs"
                                           style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
                                         <?php echo $scIt[ 'old_achievability' ] ?>
                                          </span>
@@ -958,14 +942,14 @@
                             <div class="col-md-4">
                                 <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] ?>%;
+                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] - 10 ?>%;
                                           background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
 <?php echo $scIt[ 'old_achievability' ]; ?>
                             </span>
                                     <span class="small-value"
-                                          style="width: <?php echo $diff; ?>%"></span>
+                                          style="width: <?php echo $diff - 10 ; ?>%"></span>
                                     <span class="end-of-arrow"></span>
-                                    <span class="status-image"
+                                    <span class="status-image_abs"
                                           style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
 <?php echo $scIt[ 'new_achievability' ] ?>
                             </span>
@@ -1059,7 +1043,7 @@
                         <div class="col-md-4">
                             <div class="col-md-10 scale-line col-md-push-1">
                                     <span class="status-image"
-                                          style="margin-left: <?php echo $scIt[ 'new_achievability' ] . "%" ?>; background:<?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
+                                          style="margin-left: <?php echo $scIt[ 'new_achievability' ] - 5 . "%" ?>; background:<?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
                                    <?php echo $scIt[ 'new_achievability' ] ?>
                                </span>
 
@@ -1074,13 +1058,13 @@
                           <div class="col-md-4">
                               <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] ?>%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
+                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] -10 ?>%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
                                     <?php echo $scIt[ 'new_achievability' ]; ?>
                             </span>
                                   <span class="start-of-arrow"></span>
                                   <span class="small-value"
-                                        style="width: <?php echo ($diff - $scIt[ 'new_achievability' ]) ?>%"></span>
-                                  <span class="status-image"
+                                        style="width: <?php echo ($diff - 10) ?>%"></span>
+                                  <span class="status-image_abs"
                                         style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
                                         <?php echo $scIt[ 'old_achievability' ] ?>
                                          </span>
@@ -1093,14 +1077,14 @@
                           <div class="col-md-4">
                               <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ]; ?>%;
+                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] -10 ; ?>%;
                                           background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
 <?php echo $scIt[ 'old_achievability' ]; ?>
                             </span>
                                   <span class="small-value"
-                                        style="width: <?php echo ($diff - $scIt[ 'new_achievability' ]); ?>%"></span>
+                                        style="width: <?php echo ($diff - 10); ?>%"></span>
                                   <span class="end-of-arrow"></span>
-                                  <span class="status-image"
+                                  <span class="status-image_abs"
                                         style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
 <?php echo $scIt[ 'new_achievability' ] ?>
                             </span>
@@ -1437,7 +1421,7 @@
                                               <td class="text-right">
                                                 <?php if ($content[ 'cashflow' ][ 'expense' ][ 'monthly' ] < 0) { ?>
                                                     <strong style="color:#E64E50">
-                                                      <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'tax' ][ 'monthly' ])); ?>
+                                                      <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'expense' ][ 'monthly' ])); ?>
                                                     </strong>
                                                 <?php } else { ?>
                                                     <strong style="color:#4FD3B1">
