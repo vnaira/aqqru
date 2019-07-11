@@ -14,6 +14,8 @@ class HomeController {
 
   private $page_content = [];
 
+  private $totalAmount = 0;
+
   public function __construct() {
     $this->messageObject = Goal::getAll();
     $this->content = $this->messageObject[ 'fullAvatar' ];
@@ -35,6 +37,7 @@ class HomeController {
       'wellness_state' => 'rgb' . generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ]),
       'wellness_state_name' => fromRGB(generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ])),
     ];
+    $page_content['totalAmount'] = $this->totalAmount;
     $page_content[ 'balance' ] = $this->getAssets($data);
     $page_content[ 'expenses' ] = $this->getExpenses($data);
     $page_content[ 'risks' ] = $this->getAppropriateRisks($data);
@@ -115,6 +118,7 @@ class HomeController {
                 $item[ 'achievability' ] = $resultItem[ 'achievability' ];
                 $item [ 'state' ] = 'rgb' . generateColor($resultItem[ 'state' ]);
                 $goal_item[ $key ] = $item;
+                $this->totalAmount += $item[ 'amount' ];
               }
             }
           }
