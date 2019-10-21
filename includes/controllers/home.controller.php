@@ -204,7 +204,7 @@ class HomeController {
       }
     }
     if(count($incomes)!= 0){
-      $res =  round($expenses) / count($incomes);
+      $res =  round($expenses) / sizeof($incomes);
     }
     return $res;
   }
