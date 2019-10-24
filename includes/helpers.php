@@ -84,11 +84,11 @@ function defineAges($goal, $person) {
   $ages = [];
   if (!empty($goal)) {
     for($i=0; $i<5; $i++){
-        foreach ($goal[ $i ] as $key => $item) {
+        foreach ($goal[ $i ]['GoalItem'] as $key => $item) {
           if ($key == 'Age') {
             $ages[] = $item;
           }
-          if ($key == 'StartDate' || $key == 'TargetDate') {
+          if ($key == 'start_date' || $key == 'target_date') {
             $dt = new DateTime($item);
             $ages[] = $dt->format('Y') - date('Y', strtotime($person));
           }
@@ -104,7 +104,9 @@ function defineAges($goal, $person) {
  * @return array
  */
 function generateColor($wellnessState) {
-
+  $currentRed = 0;
+  $currentGreen = 0;
+  $currentBlue = 0;
   $red = [231.0, 78.0, 78.0];
   $yellow = [255.0, 185.0, 0.0];
   $green = [78.0, 211.0, 177.0];
@@ -114,7 +116,7 @@ function generateColor($wellnessState) {
     $currentGreen = $wellnessState[ 0 ] * $red[ 1 ] + $wellnessState[ 1 ] * $yellow[ 1 ] + $wellnessState[ 2 ] * $green[ 1 ];
     $currentBlue = $wellnessState[ 0 ] * $red[ 2 ] + $wellnessState[ 1 ] * $yellow[ 2 ] + $wellnessState[ 2 ] * $green[ 2 ];
   }
-  return '(' . $currentRed . ',' . $currentGreen . ',' . $currentBlue . ')';
+  return '(' . round($currentRed) . ',' . round($currentGreen) . ',' . round($currentBlue) . ')';
 }
 
 /**

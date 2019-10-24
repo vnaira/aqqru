@@ -762,15 +762,16 @@
                 </div>
             </div>
         </div>
+      <?php if (!empty($content[ 'tradeoffs' ])) {
+          foreach ($content[ 'tradeoffs' ] as $k=>$tardeOffItem ) {?>
         <div class="col-md-12 grey-bordered m-top-20 no-pad-bottom">
-            <h4 class="green-title"><strong style="color:#000">Tradeoff 1:
-                </strong> Retire later and/or contribute less
-                to cancer research</h4>
+            <h4 class="green-title"><strong style="color:#000">
+          <?php echo $tardeOffItem['Title']; ?>:
+                </strong><?php echo $tardeOffItem['Description']; ?></h4>
             <div class="row">
                 <div class="col-md-12 grey-line"></div>
             </div>
             <div class="table-responsive">
-              <?php if (!empty($content[ 'tradeoffs1' ])) { ?>
                   <table class="table trade-table" border="0">
                       <tr>
                           <td></td>
@@ -778,78 +779,37 @@
                               Retirement Age
                           </td>
                       </tr>
+            <?php
+            if (is_array($tardeOffItem['ages'])) {?>
                       <tr>
                           <td class="text-muted" width="20%">Monthly
                               Contribution
                           </td>
                         <?php
-                        if (is_array($content[ 'tradeoffs1' ][ 0 ][ 'ages' ])) {
-                          foreach ($content[ 'tradeoffs1' ][ 0 ][ 'ages' ] as $tradeoffage) { ?>
+                          foreach ($tardeOffItem['ages'] as $tradeOffAges) { ?>
                               <td width="16%"
-                                  style="text-align: center"><?php echo $tradeoffage; ?></td>
-                          <?php }
-                        } ?>
-                      </tr>
-                    <?php foreach ($content[ 'tradeoffs1' ] as $troff1) { ?>
-                        <tr>
-                            <td><?php echo "$" . number_format($troff1[ 'amount' ]); ?>
-                            </td>
-                          <?php foreach ($troff1[ 'state' ] as $itState) { ?>
-                              <td style="text-align: center">
-                                      <span class="tradeoffState"
-                                            style="background: <?php echo "rgb" . $itState ?>"></span>
-                              </td>
+                                  style="text-align: center"><?php echo $tradeOffAges; ?></td>
                           <?php } ?>
-                        </tr>
-                    <?php } ?>
-
-                  </table>
-              <?php } ?>
-            </div>
-
-        </div>
-        <div class="col-md-12 grey-bordered m-top-20 no-pad-bottom">
-            <h4 class="green-title"><strong style="color:#000">Tradeoff
-                    2: </strong> Retire later and/or invest less in
-                your business</h4>
-            <div class="row">
-                <div class="col-md-12 grey-line"></div>
-            </div>
-            <div class="table-responsive">
-              <?php if (!empty($content[ 'tradeoffs2' ])) { ?>
-                  <table class="table trade-table" border="0">
-                      <tr>
-                          <td></td>
-                          <td colspan="5" class="text-center text-muted">
-                              Retirement Age
-                          </td>
                       </tr>
-                      <tr>
-                          <td class="text-muted" width="20%">Cost to start
-                              your
-                              own business
-                          </td>
-                        <?php foreach ($content[ 'tradeoffs2' ][ 0 ][ 'ages' ] as $tradeoffage2) { ?>
-                            <td width="16%"
-                                style="text-align: center"><?php echo $tradeoffage2; ?></td>
-                        <?php } ?>
-                      </tr>
-                    <?php foreach ($content[ 'tradeoffs2' ] as $troff2) { ?>
+            <?php } ?>
+                    <?php foreach ($tardeOffItem['amount'] as $it=> $tradeOffResult) { ?>
                         <tr>
-                            <td><?php echo "$" . number_format($troff2[ 'amount' ]); ?>
+                            <td><?php echo "$" . number_format($tradeOffResult); ?>
                             </td>
-                          <?php foreach ($troff2[ 'state' ] as $itState2) { ?>
+                          <?php foreach ($tardeOffItem['state'][$it] as $itState) { ?>
                               <td style="text-align: center">
-                                      <span class="tradeoffState"
-                                            style="background: <?php echo "rgb" . $itState2 ?>"></span>
+                                  <span class="tradeoffState"
+                                            style="background: <?php echo "rgb" . $itState ?>">
+                                  </span>
                               </td>
                           <?php } ?>
                         </tr>
                     <?php } ?>
                   </table>
-              <?php } ?>
             </div>
         </div>
+    <?php  }} ?>
+        <!-- end of tradeOff item -->
         <div class="col-md-12 m-top-40">
             <div class="row light-grey-bg">
                 <div class="col-md-12">
@@ -916,11 +876,12 @@
                 </p>
             </div>
         </div>
-      <?php if (!empty($content[ 'scenarioes1' ])) { ?>
+      <?php if (is_array($content[ 'scenarios' ])) {
+        $i = 1;
+        foreach ($content[ 'scenarios' ] as $name=>$scenarItem) { ?>
           <div class="col-md-12 grey-bordered m-top-20">
               <h4 class="green-title"><strong style="color:#000">Scenario
-                      1: </strong> S&P 500 Index drops 10% in the next
-                  12 months</h4>
+                     <?php echo $i;?>: </strong> <?php echo $name; ?></h4>
               <div class="row grey-title">
                   <div class="col-md-4">
                       <div class="col-md-12"><h4>YOUR GOALS</h4></div>
@@ -930,78 +891,73 @@
                   </div>
               </div>
             <?php
-            if (is_array($content[ 'scenarioes1' ])) {
-              foreach ($content[ 'scenarioes1' ] as $scIt) { ?>
+                  foreach ($scenarItem as $scenarioItem){?>
                   <div class="col-md-12 goal-row">
                       <div class="row">
                           <div class="col-md-4 right-border">
-                              <p><?php echo $scIt[ 'name' ]; ?></p>
+                              <p><?php echo $scenarioItem[ 'name' ]; ?></p>
                           </div>
                         <?php
-                        $diff = abs($scIt[ 'old_achievability' ] - $scIt[ 'new_achievability' ]);
-                        if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ] || $diff < 13) {
+                        $diff = abs($scenarioItem[ 'old_achievability' ] - $scenarioItem[ 'new_achievability' ]);
+                        if ($scenarioItem[ 'new_achievability' ] == $scenarioItem[ 'old_achievability' ] || $diff < 13) {
                           ?>
                             <div class="col-md-4">
                                 <div class="col-md-10 scale-line col-md-push-1">
                                     <span class="status-image"
                                           style="margin-left:
-                                          <?php echo $scIt[ 'new_achievability' ] - 5 . "%" ?>;background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
-                                   <?php echo $scIt[ 'new_achievability' ] ?>
+                                          <?php echo $scenarioItem[ 'new_achievability' ] - 5 . "%" ?>;background: <?php echo "rgb" . $scenarioItem[ 'old_state' ]; ?>">
+                                   <?php echo $scenarioItem[ 'new_achievability' ] ?>
                                </span>
 
                                 </div>
                             </div>
                         <?php }
                         else {
-                          if ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) {
+                          if ($scenarioItem[ 'new_achievability' ] < $scenarioItem[ 'old_achievability' ]) {
                             ?>
 
                               <div class="col-md-4">
                                   <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo($scIt[ 'new_achievability' ] - 5) ?>%;
-                                          background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
-                                    <?php echo $scIt[ 'new_achievability' ]; ?>
+                                  style="margin-left: <?php echo($scenarioItem[ 'new_achievability' ] - 5) ?>%;
+                                          background: <?php echo "rgb" . $scenarioItem[ 'new_state' ]; ?>">
+                                    <?php echo $scenarioItem[ 'new_achievability' ]; ?>
                             </span>
                                       <span class="start-of-arrow"></span>
                                       <span class="small-value"
                                             style="width: <?php echo $diff - 13 ?>%"></span>
                                       <span class="status-image_abs"
-                                            style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
-                                        <?php echo $scIt[ 'old_achievability' ] ?>
+                                            style="margin-left: 0%; background: <?php echo "rgb" . $scenarioItem[ 'old_state' ]; ?>">
+                                        <?php echo $scenarioItem[ 'old_achievability' ] ?>
                                          </span>
                                   </div>
                               </div>
                           <?php }
-                          else {
-                            ?>
-
+                          else { ?>
                               <div class="col-md-4">
                                   <div class="col-md-10 scale-line col-md-push-1">
                             <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] - 5 ?>%;
-                                          background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
-<?php echo $scIt[ 'old_achievability' ]; ?>
+                                  style="margin-left: <?php echo $scenarioItem[ 'old_achievability' ] - 5 ?>%;
+                                          background: <?php echo "rgb" . $scenarioItem[ 'old_state' ]; ?>">
+<?php echo $scenarioItem[ 'old_achievability' ]; ?>
                             </span>
                                       <span class="small-value"
                                             style="width: <?php echo $diff - 13; ?>%"></span>
                                       <span class="end-of-arrow"></span>
                                       <span class="status-image_abs"
-                                            style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
-<?php echo $scIt[ 'new_achievability' ] ?>
+                                            style="margin-left: 0%; background: <?php echo "rgb" . $scenarioItem[ 'new_state' ]; ?>">
+<?php echo $scenarioItem[ 'new_achievability' ] ?>
                             </span>
                                   </div>
                               </div>
-
                           <?php }
                         } ?>
-
-                        <?php if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ]) { ?>
+                        <?php if ($scenarioItem[ 'new_achievability' ] == $scenarioItem[ 'old_achievability' ]) { ?>
                             <div class="col-md-4 col-md-push-1">
                                 <p style="color:grey; font-weight: bold">Same
                                     Likelihood</p>
                             </div>
-                        <?php } elseif ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) { ?>
+                        <?php } elseif ($scenarioItem[ 'new_achievability' ] < $scenarioItem[ 'old_achievability' ]) { ?>
                             <div class="col-md-4 col-md-push-1">
                                 <p style="color: red; font-weight: bold">
                                     Less Likely</p>
@@ -1016,9 +972,8 @@
                       </div>
                   </div>
               <?php }
-            } ?>
+            ?>
           </div>
-      <?php } ?>
         <div class="col-md-12 m-top-20 light-grey-bg">
             <div class="">
                 <p>
@@ -1039,141 +994,7 @@
                 </p>
             </div>
         </div>
-    </div>
-</section>
-
-<!--==========================
-  Scenarios
-============================-->
-<section id="scenarios" class="page-break">
-    <div class="container">
-        <p class="text-right"><strong>Page 9</strong></p>
-    </div>
-    <div class="container padd-container ">
-        <div class="section-title">
-            <h1 class="text-left"><span><img src="assets/img/scenarios.png"
-                                             alt="" class=""></span>
-                Scenarios that can impact your goals and expectations
-            </h1>
-        </div>
-        <div class="col-md-12 grey-bordered m-top-80">
-            <h4 class="green-title"><strong style="color:#000">Scenario 2:
-                </strong>You lose your job and remain unemployed for 6 months
-            </h4>
-            <div class="row grey-title">
-                <div class="col-md-4">
-                    <div class="col-md-12"><h4>YOUR GOALS</h4></div>
-                </div>
-                <div class="col-md-8 text-center">
-                    <h4>CHANGE IN LIKELIHOOD</h4>
-                </div>
-            </div>
-          <?php if (!empty($content[ 'scenarioes2' ])) { ?>
-
-          <?php foreach ($content[ 'scenarioes2' ] as $scIt) { ?>
-              <div class="col-md-12 goal-row">
-                  <div class="row">
-                      <div class="col-md-4 right-border">
-                          <p><?php echo $scIt[ 'name' ]; ?></p>
-                      </div>
-                    <?php
-                    $diff = abs($scIt[ 'old_achievability' ] - $scIt[ 'new_achievability' ]);
-                    if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ] || $diff < 13) {
-                      ?>
-                        <div class="col-md-4">
-                            <div class="col-md-10 scale-line col-md-push-1">
-                                    <span class="status-image"
-                                          style="margin-left: <?php echo $scIt[ 'new_achievability' ] - 5 . "%" ?>; background:<?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
-                                   <?php echo $scIt[ 'new_achievability' ] ?>
-                               </span>
-
-                            </div>
-                        </div>
-
-                    <?php }
-                    else {
-                      if ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) {
-                        ?>
-
-                          <div class="col-md-4">
-                              <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'new_achievability' ] - 5 ?>%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
-                                    <?php echo $scIt[ 'new_achievability' ]; ?>
-                            </span>
-                                  <span class="start-of-arrow"></span>
-                                  <span class="small-value"
-                                        style="width: <?php echo($diff - 13) ?>%"></span>
-                                  <span class="status-image_abs"
-                                        style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
-                                        <?php echo $scIt[ 'old_achievability' ] ?>
-                                         </span>
-                              </div>
-                          </div>
-                      <?php }
-                      else {
-                        ?>
-
-                          <div class="col-md-4">
-                              <div class="col-md-10 scale-line col-md-push-1">
-                            <span class="status-image"
-                                  style="margin-left: <?php echo $scIt[ 'old_achievability' ] - 5; ?>%;
-                                          background: <?php echo "rgb" . $scIt[ 'old_state' ]; ?>">
-<?php echo $scIt[ 'old_achievability' ]; ?>
-                            </span>
-                                  <span class="small-value"
-                                        style="width: <?php echo($diff - 13); ?>%"></span>
-                                  <span class="end-of-arrow"></span>
-                                  <span class="status-image_abs"
-                                        style="margin-left: 0%; background: <?php echo "rgb" . $scIt[ 'new_state' ]; ?>">
-<?php echo $scIt[ 'new_achievability' ] ?>
-                            </span>
-                              </div>
-                          </div>
-                      <?php }
-                    } ?>
-                    <?php if ($scIt[ 'new_achievability' ] == $scIt[ 'old_achievability' ]) { ?>
-                        <div class="col-md-4 col-md-push-1">
-                            <p style="color:grey; font-weight: bold">Same
-                                Likelihood</p>
-                        </div>
-                    <?php } elseif ($scIt[ 'new_achievability' ] < $scIt[ 'old_achievability' ]) { ?>
-                        <div class="col-md-4 col-md-push-1">
-                            <p style="color: red; font-weight: bold">
-                                Less Likely</p>
-                        </div>
-                    <?php } else { ?>
-                        <div class="col-md-4 col-md-push-1">
-                            <p style="color: #4FD3B1;font-weight: bold">More
-                                Likely</p>
-                        </div>
-                    <?php } ?>
-                  </div>
-              </div>
-          <?php } ?>
-        </div>
-      <?php } ?>
-
-        <div class="col-md-12 m-top-90 light-grey-bg">
-            <div class="">
-                <p>
-                    <small><span class="red-text">Less Likely: </span>Smaller
-                        chance you’ll meet all your goals
-                    </small>
-                </p>
-                <p>
-                    <small><span class="text-muted">Little Change: </span>About
-                        the same likelihood you’ll meet all your
-                        goals
-                    </small>
-                </p>
-                <p>
-                    <small><span class="green-text">More Likely: </span>
-                        Higher chance you’ll meet all your goals
-                    </small>
-                </p>
-            </div>
-        </div>
+        <?php $i++; }} ?>
     </div>
 </section>
 
