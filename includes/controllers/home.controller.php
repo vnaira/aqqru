@@ -44,7 +44,7 @@ class HomeController {
     $page_content[ 'with_draw' ] = $this->getImmediateAction($data);
     $page_content[ 'networth' ] = $this->getNetWorth($data);
     $page_content[ 'cashflow' ] = $this->getCashFlow($data);
-    $page_content[ 'scenarios' ] = $this->getScenarios($this->messageObject[ 'fullAvatar' ], $this->messageObject[ 'scenarios' ]);
+    $page_content[ 'scenarios' ] = $this->setScenarioName($this->getScenarios($this->messageObject[ 'fullAvatar' ], $this->messageObject[ 'scenarios' ]));
     $page_content[ 'tradeoffs' ] = $this->getTradeOffsContent($this->messageObject[ 'tradeoffs' ]);
 
     return $page_content;
@@ -410,6 +410,36 @@ class HomeController {
       }
     }
     return $fullScenarioAll;
+  }
+  public function setScenarioName($fullScenario) {
+    foreach ($fullScenario as $key=>$val){
+      switch ($key){
+        case "ScenarioStockMarketDrop10Pct":
+          $val[0]['ScenarioName'] = "Pay Increase by 10%";
+          break;
+        case "ScenarioStockMarketUp5Pct":
+          $val[0]['ScenarioName'] = "Stock Market Up 5%";
+          break;
+        case "ScenarioIncomeRaise10Pct":
+          $val[0]['ScenarioName'] = "Stock Market Down 10%";
+          break;
+        case "ScenarioJobLess6Months":
+          $val[0]['ScenarioName'] = "Temporary Job Loss";
+          break;
+        case "ScenarioJobLess12Months":
+          $val[0]['ScenarioName'] = "12 Month Disability";
+          break;
+        case "ScenarioJobLess24Months":
+          $val[0]['ScenarioName'] = "24 Month Disability";
+          break;
+        case "ScenarioLiability100k":
+          $val[0]['ScenarioName'] = "$100K liability";
+          break;
+        default: break;
+      }
+      $fullScenario[$key] = $val;
+    }
+return $fullScenario;
   }
   /**
    * Calculate tradeoffs array

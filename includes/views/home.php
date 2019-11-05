@@ -881,7 +881,7 @@
         foreach ($content[ 'scenarios' ] as $name=>$scenarItem) { ?>
           <div class="col-md-12 grey-bordered m-top-20">
               <h4 class="green-title"><strong style="color:#000">Scenario
-                     <?php echo $i;?>: </strong> <?php echo $name; ?></h4>
+                     <?php echo $i;?>: </strong> <?php echo $scenarItem[0]['ScenarioName']; ?></h4>
               <div class="row grey-title">
                   <div class="col-md-4">
                       <div class="col-md-12"><h4>YOUR GOALS</h4></div>
