@@ -198,7 +198,7 @@ class HomeController {
         $expenses += $incomeItem[ 'current_month_value' ];
       }
     }
-    if(count($incomes)!= 0){
+    if(sizeof($incomes)!= 0){
       $res =  round($expenses) / sizeof($incomes);
     }
     return $res;
@@ -445,26 +445,33 @@ return $fullScenario;
    * Calculate tradeoffs array
    * @param $data
    */
-  public function getTradeOffsContent($tradeOffs) {
-    $tradeoffcontent = [];
-    foreach ($tradeOffs as $tradeOffKey => $tradeOffItem) {
-      $tradeoffcontent[$tradeOffKey]['Title'] = $tradeOffItem['Title'];
-      $tradeoffcontent[$tradeOffKey]['Description'] = $tradeOffItem['Description'];
-      $tradeoffcontent[$tradeOffKey]['Conclusion'] = $tradeOffItem['Conclusion'];
+    public function getTradeOffsContent($tradeOffs)
+    {
+        $tradeoffcontent = [];
+        if (is_array($tradeOffs) || is_object($tradeOffs)) {
+            foreach ($tradeOffs as $tradeOffKey => $tradeOffItem) {
+                $tradeoffcontent[$tradeOffKey]['Title'] = $tradeOffItem['Title'];
+                $tradeoffcontent[$tradeOffKey]['Description'] = $tradeOffItem['Description'];
+                $tradeoffcontent[$tradeOffKey]['Conclusion'] = $tradeOffItem['Conclusion'];
+                $tradeoffcontent[$tradeOffKey]['Yformat'] = $tradeOffItem['YFormat'];
+                $tradeoffcontent[$tradeOffKey]['AmountAxisDescription'] = $tradeOffItem['AmountAxisDescription'];
+                $tradeoffcontent[$tradeOffKey]['TimeAxisDescription'] = $tradeOffItem['TimeAxisDescription'];
 
-      foreach($tradeOffItem['GoalResult'] as $goalResultKey => $goalItem) {
-        $result = [];
-        foreach ($goalItem as $key=> $it){
-          $result['ages'] = defineAges($goalItem, $this->personAge);
+                if (is_array($tradeOffItem['GoalResult']) || is_object($tradeOffItem['GoalResult'])) {
+                    foreach ($tradeOffItem['GoalResult'] as $goalResultKey => $goalItem) {
+                        $result = [];
+                        foreach ($goalItem as $key => $it) {
+                            $result['ages'] = defineAges($goalItem, $this->personAge);
+                        }
+                        $tradeoffcontent[$tradeOffKey]['amount'][] = isset($goalItem[0]['GoalItem']['percent_expenses'])? $goalItem[0]['GoalItem']['percent_expenses'] : $goalItem[0]['GoalItem']['amount'];
+                        $tradeoffcontent[$tradeOffKey]['ages'] = $result['ages'];
+                        $tradeoffcontent[$tradeOffKey]['state'] = $this->getAmountAgeMatrix($tradeOffItem);
+                    }
+                }
+            }
         }
-        $tradeoffcontent[$tradeOffKey]['amount'][] = $goalItem[0]['GoalItem']['amount'];
-        $tradeoffcontent[$tradeOffKey]['ages'] = $result['ages'];
-        $tradeoffcontent[$tradeOffKey]['state'] = $this->getAmountAgeMatrix($tradeOffItem);
-      }
-
+        return $tradeoffcontent;
     }
-    return $tradeoffcontent;
-  }
 
   public function getAmountAgeMatrix($tradeOff) {
     $state = [];

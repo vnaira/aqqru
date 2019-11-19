@@ -766,8 +766,8 @@
           foreach ($content[ 'tradeoffs' ] as $k=>$tardeOffItem ) {?>
         <div class="col-md-12 grey-bordered m-top-20 no-pad-bottom">
             <h4 class="green-title"><strong style="color:#000">
-          <?php echo $tardeOffItem['Title']; ?>:
-                </strong><?php echo $tardeOffItem['Description']; ?></h4>
+          TradeOff:
+                </strong><?php echo $tardeOffItem['Conclusion']; ?></h4>
             <div class="row">
                 <div class="col-md-12 grey-line"></div>
             </div>
@@ -775,40 +775,52 @@
                   <table class="table trade-table" border="0">
                       <tr>
                           <td></td>
+                          <td></td>
                           <td colspan="5" class="text-center text-muted">
-                              Retirement Age
+                              <?php echo $tardeOffItem['TimeAxisDescription'];?>
                           </td>
                       </tr>
-            <?php
-            if (is_array($tardeOffItem['ages'])) {?>
-                      <tr>
-                          <td class="text-muted" width="20%">Monthly
-                              Contribution
-                          </td>
-                        <?php
-                          foreach ($tardeOffItem['ages'] as $tradeOffAges) { ?>
-                              <td width="16%"
-                                  style="text-align: center"><?php echo $tradeOffAges; ?></td>
-                          <?php } ?>
-                      </tr>
-            <?php } ?>
-                    <?php foreach ($tardeOffItem['amount'] as $it=> $tradeOffResult) { ?>
-                        <tr>
-                            <td><?php echo "$" . number_format($tradeOffResult); ?>
-                            </td>
-                          <?php foreach ($tardeOffItem['state'][$it] as $itState) { ?>
-                              <td style="text-align: center">
-                                  <span class="tradeoffState"
-                                            style="background: <?php echo "rgb" . $itState ?>">
-                                  </span>
+                      <?php
+                      if (is_array($tardeOffItem['ages'])) { ?>
+                          <tr>
+                              <td rowspan="6" class="rotate-text" style="padding:0;vertical-align: middle;">
+                                  <p style="font-size: 10px; color:#999">
+                                      <?php echo $tardeOffItem['AmountAxisDescription'] ?>
+                                  </p>
                               </td>
-                          <?php } ?>
-                        </tr>
-                    <?php } ?>
+                              <td class="text-muted" width="15%">
+                                  <!--                              Monthly Contribution-->
+                              </td>
+                              <?php
+                              if (is_array($tardeOffItem['ages']) || is_object($tardeOffItem['ages'])) {
+                                  foreach ($tardeOffItem['ages'] as $tradeOffAges) { ?>
+                                      <td width="16%"
+                                          style="text-align: center"><?php echo $tradeOffAges; ?></td>
+                                  <?php }
+                              } ?>
+                          </tr>
+                      <?php } ?>
+                      <?php foreach ($tardeOffItem['amount'] as $it => $tradeOffResult) { ?>
+                          <tr>
+                              <td><?php echo $tardeOffItem['Yformat'] . number_format($tradeOffResult); ?>
+                              </td>
+                              <?php foreach ($tardeOffItem['state'][$it] as $itState) { ?>
+                                  <td style="text-align: center">
+                                  <span class="tradeoffState"
+                                        style="background: <?php echo "rgb" . $itState ?>">
+                                  </span>
+                                  </td>
+                              <?php } ?>
+                          </tr>
+                      <?php } ?>
+                      <tr>
+                          <td colspan="7"></td>
+                      </tr>
                   </table>
             </div>
         </div>
-    <?php  }} ?>
+          <?php }
+      } ?>
         <!-- end of tradeOff item -->
         <div class="col-md-12 m-top-40">
             <div class="row light-grey-bg">
@@ -1375,9 +1387,14 @@
                                         same every month.
                                     </small>
                                 </p>
-                                <h2 class="col-md-12 green-text">
-                                  <?php echo '$' . number_format($content[ 'cashflow' ][ 'income' ][ 'monthly' ] + $content[ 'cashflow' ][ 'tax' ][ 'monthly' ] + $content[ 'cashflow' ][ 'expense' ][ 'monthly' ]); ?>
-                                </h2>
+                                    <?php if(($content[ 'cashflow' ][ 'income' ][ 'monthly' ] + $content[ 'cashflow' ][ 'tax' ][ 'monthly' ] + $content[ 'cashflow' ][ 'expense' ][ 'monthly' ]) > 0){?>
+                                <h2 class="col-md-12" style="color:#4FD3B1">
+                                        <?php echo '$' . number_format($content[ 'cashflow' ][ 'income' ][ 'monthly' ] + $content[ 'cashflow' ][ 'tax' ][ 'monthly' ] + $content[ 'cashflow' ][ 'expense' ][ 'monthly' ]); ?>
+                                <?php } else {?>
+                                    <h2 class="col-md-12" style="color:#E64E50">
+                                    <?php echo '-$' . number_format(abs($content[ 'cashflow' ][ 'income' ][ 'monthly' ] + $content[ 'cashflow' ][ 'tax' ][ 'monthly' ] + $content[ 'cashflow' ][ 'expense' ][ 'monthly' ])); ?>
+                                <?php } ?>
+                                    </h2>
                             </div>
                         </div>
                     </div>

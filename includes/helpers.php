@@ -85,7 +85,7 @@ function defineAges($goal, $person) {
   if (!empty($goal)) {
     for($i=0; $i<5; $i++){
         foreach ($goal[ $i ]['GoalItem'] as $key => $item) {
-          if ($key == 'Age') {
+          if ($key == 'age') {
             $ages[] = $item;
           }
           if ($key == 'start_date' || $key == 'target_date') {
