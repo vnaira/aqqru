@@ -198,7 +198,7 @@ class HomeController {
         $expenses += $incomeItem[ 'current_month_value' ];
       }
     }
-    if(sizeof($incomes)!= 0){
+    if(is_array($incomes) && sizeof($incomes)){
       $res =  round($expenses) / sizeof($incomes);
     }
     return $res;
@@ -415,25 +415,25 @@ class HomeController {
     foreach ($fullScenario as $key=>$val){
       switch ($key){
         case "ScenarioStockMarketDrop10Pct":
-          $val[0]['ScenarioName'] = "Pay Increase by 10%";
+          $val[0]['scenarioname'] = "Pay Increase by 10%";
           break;
         case "ScenarioStockMarketUp5Pct":
-          $val[0]['ScenarioName'] = "Stock Market Up 5%";
+          $val[0]['scenarioname'] = "Stock Market Up 5%";
           break;
         case "ScenarioIncomeRaise10Pct":
-          $val[0]['ScenarioName'] = "Stock Market Down 10%";
+          $val[0]['scenarioname'] = "Stock Market Down 10%";
           break;
         case "ScenarioJobLess6Months":
-          $val[0]['ScenarioName'] = "Temporary Job Loss";
+          $val[0]['scenarioname'] = "Temporary Job Loss";
           break;
         case "ScenarioJobLess12Months":
-          $val[0]['ScenarioName'] = "12 Month Disability";
+          $val[0]['scenarioname'] = "12 Month Disability";
           break;
         case "ScenarioJobLess24Months":
-          $val[0]['ScenarioName'] = "24 Month Disability";
+          $val[0]['scenarioname'] = "24 Month Disability";
           break;
         case "ScenarioLiability100k":
-          $val[0]['ScenarioName'] = "$100K liability";
+          $val[0]['scenarioname'] = "$100K liability";
           break;
         default: break;
       }

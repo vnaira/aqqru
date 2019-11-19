@@ -788,7 +788,7 @@
                                       <?php echo $tardeOffItem['AmountAxisDescription'] ?>
                                   </p>
                               </td>
-                              <td class="text-muted" width="15%">
+                              <td class="text-muted" width="14%">
                                   <!--                              Monthly Contribution-->
                               </td>
                               <?php
@@ -888,12 +888,13 @@
                 </p>
             </div>
         </div>
-      <?php if (is_array($content[ 'scenarios' ])) {
+        <?php var_dump($content[ 'scenarios' ]); ?>
+      <?php if (!empty($content[ 'scenarios' ])) {
         $i = 1;
-        foreach ($content[ 'scenarios' ] as $name=>$scenarItem) { ?>
+        foreach ($content[ 'scenarios' ] as $name => $scenarItem) { ?>
           <div class="col-md-12 grey-bordered m-top-20">
               <h4 class="green-title"><strong style="color:#000">Scenario
-                     <?php echo $i;?>: </strong> <?php echo $scenarItem[0]['ScenarioName']; ?></h4>
+                     <?php echo $i;?>: </strong> <?php echo $scenarItem[0]['scenarioname']; ?></h4>
               <div class="row grey-title">
                   <div class="col-md-4">
                       <div class="col-md-12"><h4>YOUR GOALS</h4></div>

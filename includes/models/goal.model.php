@@ -9,7 +9,6 @@
 class Goal {
 
   public static function getAll() {
-
     $data=[];
     if (isset($_POST)) {
       $data = json_decode($_POST[ "message" ],true);
