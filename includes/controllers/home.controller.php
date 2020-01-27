@@ -14,6 +14,8 @@ class HomeController {
 
   private $page_content = [];
 
+  private $totalAmount = 0;
+
   public function __construct() {
     $this->messageObject = Goal::getAll();
     $this->content = $this->messageObject[ 'fullAvatar' ];
@@ -35,25 +37,22 @@ class HomeController {
       'wellness_state' => 'rgb' . generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ]),
       'wellness_state_name' => fromRGB(generateColor($this->content[ 'results' ][ 'avatar_results' ][ 'wellness_state' ])),
     ];
+    $page_content['totalAmount'] = $this->totalAmount;
     $page_content[ 'balance' ] = $this->getAssets($data);
     $page_content[ 'expenses' ] = $this->getExpenses($data);
     $page_content[ 'risks' ] = $this->getAppropriateRisks($data);
     $page_content[ 'with_draw' ] = $this->getImmediateAction($data);
     $page_content[ 'networth' ] = $this->getNetWorth($data);
     $page_content[ 'cashflow' ] = $this->getCashFlow($data);
-
-    //    new in page content scenarioes and tradeoffs
-    $page_content[ 'scenarioes1' ] = $this->getScenarios($this->messageObject[ 'fullAvatar' ], $this->messageObject[ 'scenarioes' ][ 'Scenario1' ][ 'goal_results' ]);
-    $page_content[ 'scenarioes2' ] = $this->getScenarios($this->messageObject[ 'fullAvatar' ], $this->messageObject[ 'scenarioes' ][ 'Scenario2' ][ 'goal_results' ]);
-    $page_content[ 'tradeoffs1' ] = $this->getTradeOffsContent($this->messageObject[ 'goalsForTradeoffs' ][ 'GoalsForTradeOff1' ], $this->messageObject[ 'tradeoffs' ][ 'TradeOff1' ]);
-    $page_content[ 'tradeoffs2' ] = $this->getTradeOffsContent($this->messageObject[ 'goalsForTradeoffs' ][ 'GoalsForTradeOff2' ], $this->messageObject[ 'tradeoffs' ][ 'TradeOff2' ]);
+    $page_content[ 'scenarios' ] = $this->setScenarioName($this->getScenarios($this->messageObject[ 'fullAvatar' ], $this->messageObject[ 'scenarios' ]));
+    $page_content[ 'tradeoffs' ] = $this->getTradeOffsContent($this->messageObject[ 'tradeoffs' ]);
 
     return $page_content;
   }
 
   public function getPersonName($data) {
     if (!empty($data)) {
-      return $data[ 'profile' ][ 'persons' ][ 0 ][ 'name' ];
+      return $data[ 'profile' ][ 'persons' ][ 'name' ];
     }
   }
 
@@ -115,6 +114,7 @@ class HomeController {
                 $item[ 'achievability' ] = $resultItem[ 'achievability' ];
                 $item [ 'state' ] = 'rgb' . generateColor($resultItem[ 'state' ]);
                 $goal_item[ $key ] = $item;
+                $this->totalAmount += $item[ 'amount' ];
               }
             }
           }
@@ -136,8 +136,10 @@ class HomeController {
     $actions_w = [];
     $actions_d = [];
     $immediateActions = [];
+    $capitalAllocation = false;
     $invesAllocation = $data[ 'results' ][ 'guidence' ][ 'capital_allocation' ];
     if(is_array($invesAllocation)) {
+      $capitalAllocation = true;
       foreach ($invesAllocation as $investItem) {
         switch ($investItem[ 'action_name' ]) {
           case "Withdraw":
@@ -162,17 +164,17 @@ class HomeController {
             break;
         }
       }
+      $immediateActions['allocationObjectExist'] = $capitalAllocation;
     }
     return $immediateActions;
   }
 
 
   public function getPayOfDebits($id) {
-
-    $lifeObject = $this->content[ 'avatar' ][ 'life_objects' ];
+    $lifeObject = $this->content[ 'life_objects' ];
     if (!empty($lifeObject)) {
       foreach ($lifeObject as $key => $lifeItem) {
-        if (!empty($lifeItem)) {
+        if (is_array($lifeItem)) {
           foreach ($lifeItem as $item) {
             if ($id == $item[ 'id' ] && ($key == 'student_loans' ||
                 $key == 'personal_loans' ||
@@ -196,8 +198,8 @@ class HomeController {
         $expenses += $incomeItem[ 'current_month_value' ];
       }
     }
-    if(count($incomes)!= 0){
-      $res =  round($expenses) / count($incomes);
+    if(is_array($incomes) && sizeof($incomes)){
+      $res =  round($expenses) / sizeof($incomes);
     }
     return $res;
   }
@@ -208,18 +210,38 @@ class HomeController {
    * @return array
    */
   public function getAppropriateRisks($data) {
-    $risks = [];
     $risks = $data[ 'results' ][ 'guidence' ][ 'investment_allocation' ];
     $apprRisks = [];
     $riskIt = [];
     if (!empty($risks)) {
       foreach ($risks as $riskItem) {
-        $riskIt[ 'name' ] = $riskItem[ 'object_name' ];
+        $riskIt[ 'name' ] = $this->getGoalNameById($riskItem['object_id'],$data['life_objects']);
         $riskIt[ 'value' ] = round($riskItem[ 'value' ] * 100);
         $apprRisks[] = $riskIt;
       }
     }
     return $apprRisks;
+  }
+
+  /**
+   * get goal name by gola id
+   * @param $id
+   * @return string name
+   */
+  public function getGoalNameById($id, $goals) {
+    $lifeObject = "";
+    if (is_array($goals)) {
+      foreach ($goals as $dataItem) {
+        if (is_array($dataItem)) {
+          foreach ($dataItem as $item) {
+            if ($id == $item[ 'id' ]) {
+              $lifeObject = $item[ 'name' ];
+            }
+          }
+        }
+      }
+    }
+    return $lifeObject;
   }
 
   public function getGridYears($goals, $person_age) {
@@ -361,63 +383,108 @@ class HomeController {
     $fullScenario = [];
     $fullScenarioAll = [];
     if(is_array($scenario)) {
-      foreach ($scenario as $scenarioItem) {
-        $id = $scenarioItem[ 'goal_id' ];
-        $new_achievability = $scenarioItem[ 'achievability' ];
-        if(is_array($results)) {
-        foreach ($results as $resultItem) {
-          if ($resultItem[ 'goal_id' ] == $id) {
-            $old_achievability = $resultItem[ 'achievability' ];
-            $fullScenario[ 'old_achievability' ] = $old_achievability;
-            $fullScenario[ 'new_achievability' ] = $new_achievability;
-            $fullScenario[ 'old_state' ] = generateColor($resultItem[ 'state' ]);
-            $fullScenario[ 'new_state' ] = generateColor($scenarioItem[ 'state' ]);
-          }
-        }}
-        foreach ($goals as $goalItem) {
-          foreach ($goalItem as $it) {
-            if ($it[ 'id' ] == $id) {
-              $fullScenario[ 'name' ] = $it[ 'name' ];
+      foreach ($scenario as $scenarioName => $scenarioVal) {
+        foreach ($scenarioVal['GoalResults'] as $scenarioItem) {
+          $id = $scenarioItem[ 'goal_id' ];
+          $new_achievability = $scenarioItem[ 'achievability' ];
+          if (is_array($results)) {
+            foreach ($results as $resultItem) {
+              if ($resultItem[ 'goal_id' ] == $id) {
+                $old_achievability = $resultItem[ 'achievability' ];
+                $fullScenario[ 'old_achievability' ] = $old_achievability;
+                $fullScenario[ 'new_achievability' ] = $new_achievability;
+                $fullScenario[ 'old_state' ] = generateColor($resultItem[ 'state' ]);
+                $fullScenario[ 'new_state' ] = generateColor($scenarioItem[ 'state' ]);
+              }
             }
           }
+          foreach ($goals as $goalItem) {
+            foreach ($goalItem as $it) {
+              if ($it[ 'id' ] == $id) {
+                $fullScenario[ 'name' ] = $it[ 'name' ];
+              }
+            }
+          }
+          $fullScenarioAll[$scenarioName][] = $fullScenario;
         }
-        $fullScenarioAll[] = $fullScenario;
       }
     }
     return $fullScenarioAll;
   }
-
+  public function setScenarioName($fullScenario) {
+    foreach ($fullScenario as $key=>$val){
+      switch ($key){
+        case "ScenarioStockMarketDrop10Pct":
+          $val[0]['ScenarioName'] = "Pay Increase by 10%";
+          break;
+        case "ScenarioStockMarketUp5Pct":
+          $val[0]['ScenarioName'] = "Stock Market Up 5%";
+          break;
+        case "ScenarioIncomeRaise10Pct":
+          $val[0]['ScenarioName'] = "Stock Market Down 10%";
+          break;
+        case "ScenarioJobLess6Months":
+          $val[0]['ScenarioName'] = "Temporary Job Loss";
+          break;
+        case "ScenarioJobLess12Months":
+          $val[0]['ScenarioName'] = "12 Month Disability";
+          break;
+        case "ScenarioJobLess24Months":
+          $val[0]['ScenarioName'] = "24 Month Disability";
+          break;
+        case "ScenarioLiability100k":
+          $val[0]['ScenarioName'] = "$100K liability";
+          break;
+        default: break;
+      }
+      $fullScenario[$key] = $val;
+    }
+return $fullScenario;
+  }
   /**
    * Calculate tradeoffs array
    * @param $data
    */
-  public function getTradeOffsContent($goalsForTradeOff, $trageOffs) {
-    $tradeoffcontent = [];
-    $id = $goalsForTradeOff[ 0 ][ 0 ][ 'id' ];
-    for ($i = 0; $i < 3; $i++) {
-      $tradeoffcontent[ $i ][ 'amount' ] = $goalsForTradeOff[ $i ][ 0 ][ 'Amount' ];
-      $tradeoffcontent[ $i ][ 'ages' ] = defineAges($goalsForTradeOff[ $i ], $this->personAge);
-      $tradeoffcontent[ $i ][ 'state' ] = $this->getAmountAgeMatrix($trageOffs[ $i ], $id, $goalsForTradeOff[ $i ][ 0 ][ 'Amount' ]);
-    }
-    return $tradeoffcontent;
-  }
+    public function getTradeOffsContent($tradeOffs)
+    {
+        $tradeoffcontent = [];
+        if (is_array($tradeOffs) || is_object($tradeOffs)) {
+            foreach ($tradeOffs as $tradeOffKey => $tradeOffItem) {
+                $tradeoffcontent[$tradeOffKey]['Title'] = $tradeOffItem['Title'];
+                $tradeoffcontent[$tradeOffKey]['Description'] = $tradeOffItem['Description'];
+                $tradeoffcontent[$tradeOffKey]['Conclusion'] = $tradeOffItem['Conclusion'];
+                $tradeoffcontent[$tradeOffKey]['Yformat'] = $tradeOffItem['YFormat'];
+                $tradeoffcontent[$tradeOffKey]['AmountAxisDescription'] = $tradeOffItem['AmountAxisDescription'];
+                $tradeoffcontent[$tradeOffKey]['TimeAxisDescription'] = $tradeOffItem['TimeAxisDescription'];
 
-
-  public function getAmountAgeMatrix($tradeOff, $id, $amount) {
-    $state = [];
-    if (is_array($tradeOff)) {
-      foreach ($tradeOff as $troffit) {
-        if (is_array($troffit[ 'goal_results' ])) {
-          foreach ($troffit[ 'goal_results' ] as $item) {
-            if ($id == $item[ 'goal_id' ]) {
-              $state[] = generateColor($item[ 'state' ]);
+                if (is_array($tradeOffItem['GoalResult']) || is_object($tradeOffItem['GoalResult'])) {
+                    foreach ($tradeOffItem['GoalResult'] as $goalResultKey => $goalItem) {
+                        $result = [];
+                        foreach ($goalItem as $key => $it) {
+                            $result['ages'] = defineAges($goalItem, $this->personAge);
+                        }
+                        $tradeoffcontent[$tradeOffKey]['amount'][] = isset($goalItem[0]['GoalItem']['percent_expenses'])? $goalItem[0]['GoalItem']['percent_expenses'] : $goalItem[0]['GoalItem']['amount'];
+                        $tradeoffcontent[$tradeOffKey]['ages'] = $result['ages'];
+                        $tradeoffcontent[$tradeOffKey]['state'] = $this->getAmountAgeMatrix($tradeOffItem);
+                    }
+                }
             }
+        }
+        return $tradeoffcontent;
+    }
+
+  public function getAmountAgeMatrix($tradeOff) {
+    $state = [];
+        if (is_array($tradeOff[ 'GoalResult' ])) {
+          foreach ($tradeOff[ 'GoalResult' ] as $key=> $item) {
+            $st = [];
+            foreach ($item as $goalResultItem){
+              $st[] = generateColor($goalResultItem['GoalResult'][ 'state' ]);
+            }
+            $state[]  = $st;
           }
         }
-      }
-    }
     return $state;
   }
 }
-
 ?>
