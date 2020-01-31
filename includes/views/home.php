@@ -788,9 +788,8 @@
                                       <?php echo $tardeOffItem['AmountAxisDescription'] ?>
                                   </p>
                               </td>
-                              <td class="text-muted" width="14%">
-                                  <!--                              Monthly Contribution-->
-                              </td>
+<!--                              <td class="text-muted" width="14%">-->
+<!--                              </td>-->
                               <?php
                               if (is_array($tardeOffItem['ages']) || is_object($tardeOffItem['ages'])) {
                                   foreach ($tardeOffItem['ages'] as $tradeOffAges) { ?>
@@ -813,6 +812,9 @@
                               <?php } ?>
                           </tr>
                       <?php } ?>
+                      <tr>
+                          <td colspan="7"></td>
+                      </tr>
                       <tr>
                           <td colspan="7"></td>
                       </tr>

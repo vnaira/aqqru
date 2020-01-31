@@ -251,18 +251,24 @@ class HomeController {
       $it = $goals[ $key ];
       if (!empty($it)) {
         if (is_array($it)) {
-          foreach ($it as $item) {
-            if (array_key_exists('age', $item)) {
-              $years[] = (string) (date('Y', strtotime($person_age)) + $item[ 'age' ]);
-            }
-            if (array_key_exists('start_date', $item)) {
-              $dt = new DateTime($item[ 'start_date' ]);
-              $years[] = $dt->format('Y');
-            }
-            if (array_key_exists('target_date', $item)) {
-              $dt = new DateTime($item[ 'target_date' ]);
-              $years[] = $dt->format('Y');
-            }
+            foreach ($it as $item) {
+                if (array_key_exists('age', $item)) {
+                    $years[] = (string)(date('Y', strtotime($person_age)) + $item['age']);
+                }
+                if (array_key_exists('start_age', $item)) {
+                    $years[] = (string)(date('Y', strtotime($person_age)) + $item['start_age']);
+                }
+                if (array_key_exists('end_age', $item)) {
+                    $years[] = (string)(date('Y', strtotime($person_age)) + $item['end_age']);
+                }
+                if (array_key_exists('start_date', $item)) {
+                    $dt = new DateTime($item['start_date']);
+                    $years[] = $dt->format('Y');
+                }
+                if (array_key_exists('target_date', $item)) {
+                    $dt = new DateTime($item['target_date']);
+                    $years[] = $dt->format('Y');
+                }
           }
         }
         else {

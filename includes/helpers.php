@@ -60,6 +60,9 @@ function defineYear($goal, $person) {
           if ($key == 'age') {
               $period[] = (string)(date('Y', strtotime($person)) + $item);
           }
+          if ($key == 'start_age') {
+              $period[] = (string)(date('Y', strtotime($person)) + $item);
+          }
           if ($key == 'end_age') {
               $period[] = (string)(date('Y', strtotime($person)) + $item);
           }
