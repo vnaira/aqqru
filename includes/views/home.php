@@ -772,53 +772,59 @@
                 <div class="col-md-12 grey-line"></div>
             </div>
             <div class="table-responsive">
-                  <table class="table trade-table" border="0">
-                      <tr>
-                          <td></td>
-                          <td></td>
-                          <td colspan="5" class="text-center text-muted">
-                              <?php echo $tardeOffItem['TimeAxisDescription'];?>
-                          </td>
-                      </tr>
-                      <?php
-                      if (is_array($tardeOffItem['ages'])) { ?>
-                          <tr>
-                              <td rowspan="6" class="rotate-text" style="padding:0;vertical-align: middle;">
-                                  <p style="font-size: 10px; color:#999">
-                                      <?php echo $tardeOffItem['AmountAxisDescription'] ?>
-                                  </p>
-                              </td>
-<!--                              <td class="text-muted" width="14%">-->
-<!--                              </td>-->
-                              <?php
-                              if (is_array($tardeOffItem['ages']) || is_object($tardeOffItem['ages'])) {
-                                  foreach ($tardeOffItem['ages'] as $tradeOffAges) { ?>
-                                      <td width="16%"
-                                          style="text-align: center"><?php echo $tradeOffAges; ?></td>
-                                  <?php }
-                              } ?>
-                          </tr>
-                      <?php } ?>
-                      <?php foreach ($tardeOffItem['amount'] as $it => $tradeOffResult) { ?>
-                          <tr>
-                              <td><?php echo $tardeOffItem['Yformat'] . number_format($tradeOffResult); ?>
-                              </td>
-                              <?php foreach ($tardeOffItem['state'][$it] as $itState) { ?>
-                                  <td style="text-align: center">
+                <table class="table trade-table" border="0">
+                    <tr>
+                        <td rowspan="<?php echo count($tardeOffItem['amount'])+2; ?>" class="rotate-text"
+                            style="padding:0;vertical-align: middle;">
+                            <p style="font-size: 10px; color:#999">
+                                <?php echo $tardeOffItem['AmountAxisDescription'] ?>
+                            </p>
+                        </td>
+                        <td></td>
+                        <td colspan="5" class="text-center text-muted">
+                            <?php echo $tardeOffItem['TimeAxisDescription']; ?>
+                        </td>
+                    </tr>
+                    <!--                      --><?php
+                    //                      if (is_array($tardeOffItem['ages'])) { ?>
+                    <!--                          <tr>-->
+                    <!--                              <td rowspan="-->
+                    <?php //echo count($tardeOffItem['amount'])?><!--" class="rotate-text" style="padding:0;vertical-align: middle;">-->
+                    <!--                                  <p style="font-size: 10px; color:#999">-->
+                    <!--                                      --><?php //echo $tardeOffItem['AmountAxisDescription'] ?>
+                    <!--                                  </p>-->
+                    <!--                              </td>-->
+                    <!--                              <td class="text-muted" width="14%">-->
+                    <!--                              </td>-->
+                    <!--                              --><?php
+                    //                              if (is_array($tardeOffItem['ages']) || is_object($tardeOffItem['ages'])) {
+                    //                                  foreach ($tardeOffItem['ages'] as $tradeOffAges) { ?>
+                    <!--                                      <td width="16%"-->
+                    <!--                                          style="text-align: center">-->
+                    <?php //echo $tradeOffAges; ?><!--</td>-->
+                    <!--                                  --><?php //}
+                    //                              } ?>
+                    <!--                          </tr>-->
+                    <!--                      --><?php //} ?>
+                    <?php foreach ($tardeOffItem['amount'] as $it => $tradeOffResult) { ?>
+                        <tr>
+                            <td width="15%"><?php echo $tardeOffItem['Yformat'] . number_format($tradeOffResult); ?></td>
+                            <?php foreach ($tardeOffItem['state'][$it] as $itState) { ?>
+                                <td style="text-align: center" width="15%">
                                   <span class="tradeoffState"
                                         style="background: <?php echo "rgb" . $itState ?>">
                                   </span>
-                                  </td>
-                              <?php } ?>
-                          </tr>
-                      <?php } ?>
-                      <tr>
-                          <td colspan="7"></td>
-                      </tr>
-                      <tr>
-                          <td colspan="7"></td>
-                      </tr>
-                  </table>
+                                </td>
+                            <?php } ?>
+                        </tr>
+                    <?php } ?>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+                </table>
             </div>
         </div>
           <?php }
